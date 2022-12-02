@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -20,6 +22,7 @@ import it.university.student.entity.Course;
 import it.university.student.entity.Department;
 import it.university.student.entity.Exam;
 import it.university.student.entity.Faculty;
+import it.university.student.entity.Professor;
 import it.university.student.entity.Student;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class)
@@ -242,5 +245,241 @@ public class TestStudentRepository {
 		
 		final List<Student> students = this.service.findAllByExamVoteLowerThan(exam, (byte)18);
 		assertEquals(students.size(), 0);
+	}
+	
+	public void testSaveStudent() {
+		
+		final Student student = new Student();
+		student.setId("AB123CD");
+		student.setName("Mario");
+		student.setSurname("Rossi");
+		student.setSex('M');
+		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1990-01-01")));
+		student.setDiplomaGrade((byte)79);
+		student.setBachelorGrade((byte)105);
+		
+		final Address address = new Address();
+		address.setId(1);
+		address.setStreet("Via Nazionale");
+		address.setNumber(123);
+		address.setCity("Milano");
+		address.setProvince("Milano");
+		address.setRegion("Lombardia");
+		address.setNation("Italia");
+		
+		student.setAddress(address);
+		
+		final Department department = new Department();
+		department.setName("Dipartimento 1");
+		department.setAddress(address);
+		
+		final Professor professor = new Professor();
+		professor.setId("XK123JH");
+		professor.setName("Maria");
+		professor.setSurname("Rossi");
+		professor.setDepartment(department);
+		
+		department.setDirector(professor);
+		
+		final Faculty faculty = new Faculty();
+		faculty.setName("Facoltà 1");
+		faculty.setDirector(professor);
+		
+		department.setFaculty(faculty);
+		
+		Set<Professor> professors = new HashSet<>();
+		professors.add(professor);
+		
+		final Course course = new Course();
+		course.setId(1);
+		course.setName("Analisi 1");
+		course.setDate(Date.valueOf(LocalDate.now()));
+		course.setProfessors(professors);
+		
+		final Exam exam = new Exam();
+		exam.setId(1);
+		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
+		exam.setVote((byte)21);
+		exam.setCourse(course);
+		
+		Set<Exam> exams = new HashSet<>();
+		exams.add(exam);
+		
+		student.setExams(exams);
+		
+		this.service.save(student);
+	}
+	
+	public void testSaveStudentExamAbsent() {
+		
+		final Student student = new Student();
+		student.setId("AB456CD");
+		student.setName("Federica");
+		student.setSurname("Gialli");
+		student.setSex('F');
+		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1995-01-01")));
+		student.setDiplomaGrade((byte)100);
+		
+		final Address address = new Address();
+		address.setId(2);
+		address.setStreet("Via Nazionale");
+		address.setNumber(123);
+		address.setCity("Torino");
+		address.setProvince("Torino");
+		address.setRegion("Piemonte");
+		address.setNation("Italia");
+		
+		student.setAddress(address);
+		
+		final Department department = new Department();
+		department.setName("Dipartimento 1");
+		department.setAddress(address);
+		
+		final Professor professor = new Professor();
+		professor.setName("Maria");
+		professor.setSurname("Rossi");
+		professor.setDepartment(department);
+		
+		department.setDirector(professor);
+		
+		final Faculty faculty = new Faculty();
+		faculty.setName("Facoltà 1");
+		faculty.setDirector(professor);
+		
+		department.setFaculty(faculty);
+		
+		Set<Professor> professors = new HashSet<>();
+		professors.add(professor);
+		
+		final Course course = new Course();
+		course.setName("Analisi 1");
+		course.setProfessors(professors);
+		
+		final Exam exam = new Exam();
+		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
+		exam.setCourse(course);
+		
+		Set<Exam> exams = new HashSet<>();
+		exams.add(exam);
+		
+		student.setExams(exams);
+		
+		this.service.save(student);
+	}
+	
+	public void testSaveStudentExamPassed() {
+		
+		final Student student = new Student();
+		student.setId("AB456KJ");
+		student.setName("John");
+		student.setSurname("Black");
+		student.setSex('M');
+		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1997-01-01")));
+		student.setDiplomaGrade((byte)100);
+		
+		final Address address = new Address();
+		address.setId(3);
+		address.setStreet("Groove Street");
+		address.setNumber(123);
+		address.setCity("Los Angeles");
+		address.setProvince("Los Angeles");
+		address.setRegion("California");
+		address.setNation("USA");
+		
+		student.setAddress(address);
+		
+		final Department department = new Department();
+		department.setName("Dipartimento 2");
+		department.setAddress(address);
+		
+		final Professor professor = new Professor();
+		professor.setId("OP321PP");
+		professor.setName("Federico");
+		professor.setSurname("Gialli");
+		professor.setDepartment(department);
+		
+		department.setDirector(professor);
+		
+		final Faculty faculty = new Faculty();
+		faculty.setName("Facoltà 2");
+		faculty.setDirector(professor);
+		
+		department.setFaculty(faculty);
+		
+		Set<Professor> professors = new HashSet<>();
+		professors.add(professor);
+		
+		final Course course = new Course();
+		course.setName("Programmazione");
+		course.setProfessors(professors);
+		
+		final Exam exam = new Exam();
+		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
+		exam.setVote((byte)30);
+		exam.setCourse(course);
+		
+		Set<Exam> exams = new HashSet<>();
+		exams.add(exam);
+		
+		student.setExams(exams);
+		
+		this.service.save(student);
+	}
+	
+	public void testSaveStudentExamNotPassed() {
+		
+		final Student student = new Student();
+		student.setId("AB456KJ");
+		student.setName("John");
+		student.setSurname("Black");
+		student.setSex('M');
+		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1997-01-01")));
+		student.setDiplomaGrade((byte)100);
+		
+		final Address address = new Address();
+		address.setStreet("Groove Street");
+		address.setNumber(123);
+		address.setCity("Los Angeles");
+		address.setProvince("Los Angeles");
+		address.setRegion("California");
+		address.setNation("USA");
+		
+		student.setAddress(address);
+		
+		final Department department = new Department();
+		department.setName("Dipartimento 2");
+		department.setAddress(address);
+		
+		final Professor professor = new Professor();
+		professor.setName("Federico");
+		professor.setSurname("Gialli");
+		professor.setDepartment(department);
+		
+		department.setDirector(professor);
+		
+		final Faculty faculty = new Faculty();
+		faculty.setName("Facoltà 2");
+		faculty.setDirector(professor);
+		
+		department.setFaculty(faculty);
+		
+		Set<Professor> professors = new HashSet<>();
+		professors.add(professor);
+		
+		final Course course = new Course();
+		course.setName("Programmazione");
+		course.setProfessors(professors);
+		
+		final Exam exam = new Exam();
+		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
+		exam.setVote((byte)15);
+		exam.setCourse(course);
+		
+		Set<Exam> exams = new HashSet<>();
+		exams.add(exam);
+		
+		student.setExams(exams);
+		
+		this.service.save(student);		
 	}
 }
