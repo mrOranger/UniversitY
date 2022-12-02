@@ -1,11 +1,16 @@
 package it.university.student.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
@@ -30,6 +35,9 @@ public class Department implements Serializable{
 	@PrimaryKeyJoinColumn
 	@JsonIgnore
 	private Professor director;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
+	private Set<Professor> professors = new HashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "department", referencedColumnName = "name")
