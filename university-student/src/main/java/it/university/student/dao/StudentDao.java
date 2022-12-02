@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.university.student.entity.Address;
 import it.university.student.entity.Department;
+import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 
 public interface StudentDao {
@@ -24,5 +25,7 @@ public interface StudentDao {
 	public abstract List<Student> findAllByAddress(Address address);
 	
 	public abstract List<Student> findAllByDepartment(Department department);
+	
+	public abstract List<Student> findAllByFaculty(Faculty faculty);
 	
 }

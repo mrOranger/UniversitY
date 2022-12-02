@@ -132,6 +132,7 @@ public class TestStudentRepository {
 		assertEquals(students.size(), 0);		
 	}
 	
+	@Test @Order(15)
 	public void testFindStudentsByFaculty() {
 		
 		final Faculty faculty = new Faculty();
