@@ -41,6 +41,7 @@ public class Course {
 	@JsonManagedReference
 	private Set<Exam> exams = new HashSet<>();
 	
+	@ManyToMany(mappedBy = "courses")
 	private Set<Professor> professors = new HashSet<>();
 
 }

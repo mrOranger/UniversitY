@@ -2,12 +2,16 @@ package it.university.student.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -63,5 +67,11 @@ public class Professor implements Serializable {
 	
 	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL)
 	private Faculty faculty;
-
+	
+	@ManyToMany
+	@JoinTable(
+			name = "join_course",
+			joinColumns = @JoinColumn(name = "id"),
+			inverseJoinColumns = @JoinColumn(name = "professors"))
+	private Set<Course> courses = new HashSet<>();
 }
