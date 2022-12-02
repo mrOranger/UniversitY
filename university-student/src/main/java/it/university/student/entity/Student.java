@@ -1,7 +1,7 @@
 package it.university.student.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,7 +44,7 @@ public class Student implements Serializable {
 	@Column(name = "date_of_birth")
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "{NotNull.Student.DateOfBirth.Validation}")
-	private LocalDate dateOfBirth;
+	private Date dateOfBirth;
 	
 	@Column(name = "sex")
 	private char sex;

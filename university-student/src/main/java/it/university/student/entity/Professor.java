@@ -1,7 +1,7 @@
 package it.university.student.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +45,7 @@ public class Professor implements Serializable {
 	@Column(name = "date_of_birth")
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "{NotNull.Professor.DateOfBirth.Validation}")
-	private LocalDate dateOfBirth;
+	private Date dateOfBirth;
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
