@@ -247,6 +247,7 @@ public class TestStudentRepository {
 		assertEquals(students.size(), 0);
 	}
 	
+	@Test @Order(22)
 	public void testSaveStudent() {
 		
 		final Student student = new Student();
@@ -310,6 +311,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 	}
 	
+	@Test @Order(23)
 	public void testSaveStudentExamAbsent() {
 		
 		final Student student = new Student();
@@ -367,6 +369,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 	}
 	
+	@Test @Order(24)
 	public void testSaveStudentExamPassed() {
 		
 		final Student student = new Student();
@@ -426,6 +429,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 	}
 	
+	@Test @Order(25)
 	public void testSaveStudentExamNotPassed() {
 		
 		final Student student = new Student();

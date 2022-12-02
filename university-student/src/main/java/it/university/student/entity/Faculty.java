@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -36,7 +35,7 @@ public class Faculty implements Serializable {
 	
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	@JsonIgnore
+	@JsonManagedReference
 	private Professor director;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "faculty", orphanRemoval = true)

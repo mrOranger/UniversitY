@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -62,15 +62,15 @@ public class Address implements Serializable{
 	private String nation;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Student> students = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Professor> professors = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Department> departments = new HashSet<>();
 
 }

@@ -19,7 +19,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -40,15 +39,16 @@ public class Department implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
+	@JsonManagedReference
 	private Address address;
 	
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	@JsonIgnore
+	@JsonManagedReference
 	private Professor director;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Student> students = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")

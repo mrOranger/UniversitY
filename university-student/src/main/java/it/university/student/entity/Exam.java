@@ -14,6 +14,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,10 +39,12 @@ public class Exam {
 	
 	@ManyToOne
 	@JoinColumn(name = "student", referencedColumnName = "id")
+	@JsonBackReference
 	private Student student;
 	
 	@ManyToOne
 	@JoinColumn(name = "course", referencedColumnName = "id")
+	@JsonBackReference
 	private Course course;
 	
 }
