@@ -40,7 +40,7 @@ public class StudentService implements StudentDao{
 
 	@Override
 	public List<Student> findAllByBachelorDegree() {
-		return this.repository.findByBachelorDegreeNotNull();
+		return this.repository.findByBachelorGradeNotNull();
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class StudentService implements StudentDao{
 
 	@Override
 	public List<Student> findAllByBachelorGrade(byte bachelorGrade) {
-		return this.repository.findByBachelorDegree(bachelorGrade);
+		return this.repository.findByBachelorGrade(bachelorGrade);
 	}
 
 }
