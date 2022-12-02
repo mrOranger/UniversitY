@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.university.student.dao.StudentDao;
 import it.university.student.entity.Address;
+import it.university.student.entity.Department;
 import it.university.student.entity.Student;
 import it.university.student.repository.StudentRepository;
 
@@ -80,6 +81,11 @@ public class StudentService implements StudentDao{
 	@Override
 	public List<Student> findAllByAddress(Address address) {
 		return this.repository.findByAddress(address);
+	}
+
+	@Override
+	public List<Student> findAllByDepartment(Department department) {
+		return this.repository.findByDepartment(department);
 	}
 
 }
