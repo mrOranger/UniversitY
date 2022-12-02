@@ -52,7 +52,7 @@ public class Professor implements Serializable {
 	private Address address;
 	
 	@ManyToOne
-	@JoinColumn(name = "department", referencedColumnName = "id")
+	@JoinColumn(name = "department", referencedColumnName = "name")
 	private Department department;
 	
 	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL)
