@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.university.student.dao.StudentDao;
+import it.university.student.entity.Address;
 import it.university.student.entity.Student;
 import it.university.student.repository.StudentRepository;
 
@@ -54,6 +55,31 @@ public class StudentService implements StudentDao{
 	@Override
 	public List<Student> findAllByBachelorGrade(byte bachelorGrade) {
 		return this.repository.findByBachelorGrade(bachelorGrade);
+	}
+
+	@Override
+	public List<Student> findAllByCity(String city) {
+		return this.repository.findByAddressCity(city);
+	}
+
+	@Override
+	public List<Student> findAllByProvince(String province) {
+		return this.repository.findByAddressProvince(province);
+	}
+
+	@Override
+	public List<Student> findAllByRegion(String region) {
+		return this.repository.findByAddressRegion(region);
+	}
+
+	@Override
+	public List<Student> findAllByNation(String nation) {
+		return this.repository.findByAddressNation(nation);
+	}
+
+	@Override
+	public List<Student> findAllByAddress(Address address) {
+		return this.repository.findByAddress(address);
 	}
 
 }
