@@ -57,7 +57,7 @@ public class Department implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "department", referencedColumnName = "name")
-	@JsonBackReference
+	@JsonManagedReference
 	private Faculty faculty; 
 
 }

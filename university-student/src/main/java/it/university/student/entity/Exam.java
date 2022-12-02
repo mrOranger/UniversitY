@@ -15,6 +15,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,7 +45,7 @@ public class Exam {
 	
 	@ManyToOne
 	@JoinColumn(name = "course", referencedColumnName = "id")
-	@JsonBackReference
+	@JsonManagedReference
 	private Course course;
 	
 }

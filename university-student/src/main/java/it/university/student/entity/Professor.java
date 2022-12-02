@@ -55,7 +55,7 @@ public class Professor implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
-	@JsonBackReference
+	@JsonManagedReference
 	private Address address;
 	
 	@ManyToOne
@@ -76,6 +76,6 @@ public class Professor implements Serializable {
 			name = "join_course",
 			joinColumns = @JoinColumn(name = "id"),
 			inverseJoinColumns = @JoinColumn(name = "professors"))
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Course> courses = new HashSet<>();
 }

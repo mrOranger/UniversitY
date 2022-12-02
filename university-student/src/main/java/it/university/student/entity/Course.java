@@ -39,11 +39,11 @@ public class Course {
 	private Date date;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Exam> exams = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "courses")
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 
 }
