@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.university.student.entity.Address;
 import it.university.student.entity.Department;
+import it.university.student.entity.Exam;
 import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 
@@ -27,5 +28,11 @@ public interface StudentDao {
 	public abstract List<Student> findAllByDepartment(Department department);
 	
 	public abstract List<Student> findAllByFaculty(Faculty faculty);
+	
+	public abstract List<Student> findAllByExam(Exam exam);
+	public abstract List<Student> findAllByExamPresent(Exam exam);
+	public abstract List<Student> findAllByExamAbsente(Exam exam);
+	public abstract List<Student> findAllByExamVoteGreaterThan(Exam exam, byte vote);
+	public abstract List<Student> findAllByExamVoteLowerThan(Exam exam, byte vote);
 	
 }

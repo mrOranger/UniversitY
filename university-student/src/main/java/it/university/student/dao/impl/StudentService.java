@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import it.university.student.dao.StudentDao;
 import it.university.student.entity.Address;
 import it.university.student.entity.Department;
+import it.university.student.entity.Exam;
 import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 import it.university.student.repository.StudentRepository;
@@ -92,6 +93,31 @@ public class StudentService implements StudentDao{
 	@Override
 	public List<Student> findAllByFaculty(Faculty faculty) {
 		return this.repository.findByDepartmentFaculty(faculty);
+	}
+
+	@Override
+	public List<Student> findAllByExam(Exam exam) {
+		return this.repository.findByExams(exam);
+	}
+
+	@Override
+	public List<Student> findAllByExamPresent(Exam exam) {
+		return this.repository.findByExamsVoteNotNull(exam);
+	}
+
+	@Override
+	public List<Student> findAllByExamAbsente(Exam exam) {
+		return this.repository.findByExamsVoteIsNull(exam);
+	}
+	
+	@Override
+	public List<Student> findAllByExamVoteGreaterThan(Exam exam, byte vote) {
+		return this.repository.findByExamsVoteGreaterThan(exam, vote);
+	}
+
+	@Override
+	public List<Student> findAllByExamVoteLowerThan(Exam exam, byte vote) {
+		return this.repository.findByExamsVoteLowerThan(exam, vote);
 	}
 
 }

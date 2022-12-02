@@ -7,6 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import it.university.student.entity.Address;
 import it.university.student.entity.Department;
+import it.university.student.entity.Exam;
 import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 
@@ -27,4 +28,10 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, S
 	public abstract List<Student> findByDepartment(Department department);
 	
 	public abstract List<Student> findByDepartmentFaculty(Faculty faculty);
+	
+	public abstract List<Student> findByExams(Exam exam);
+	public abstract List<Student> findByExamsVoteNotNull(Exam exam);
+	public abstract List<Student> findByExamsVoteIsNull(Exam exam);
+	public abstract List<Student> findByExamsVoteGreaterThan(Exam exam, byte vote);
+	public abstract List<Student> findByExamsVoteLowerThan(Exam exam, byte vote);
 }

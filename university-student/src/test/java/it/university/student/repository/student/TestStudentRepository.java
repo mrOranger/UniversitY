@@ -164,7 +164,7 @@ public class TestStudentRepository {
 	}
 	
 	@Test @Order(17)
-	public void testFindStudentsByExamAbsent() {
+	public void testFindStudentsByExamPresent() {
 		final Exam exam = new Exam();
 		exam.setId(1);
 		exam.setDate(Date.valueOf(LocalDate.now()));
@@ -175,7 +175,7 @@ public class TestStudentRepository {
 		
 		exam.setCourse(course);
 		
-		final List<Student> students = this.service.findAllByExamAbsent(exam);
+		final List<Student> students = this.service.findAllByExamPresent(exam);
 		assertEquals(students.size(), 0);		
 	}
 	
@@ -191,7 +191,7 @@ public class TestStudentRepository {
 		
 		exam.setCourse(course);
 		
-		final List<Student> students = this.service.findAllByExamPresent(exam);
+		final List<Student> students = this.service.findAllByExamAbsente(exam);
 		assertEquals(students.size(), 0);		
 	}
 	
@@ -208,7 +208,7 @@ public class TestStudentRepository {
 		
 		exam.setCourse(course);
 		
-		final List<Student> students = this.service.findAllByExamVote(exam);
+		final List<Student> students = this.service.findAllByExam(exam);
 		assertEquals(students.size(), 0);		
 	}
 	
@@ -224,7 +224,7 @@ public class TestStudentRepository {
 		
 		exam.setCourse(course);
 		
-		final List<Student> students = this.service.findAllByExamPassed(exam);
+		final List<Student> students = this.service.findAllByExamVoteGreaterThan(exam, (byte)18);
 		assertEquals(students.size(), 0);		
 	}
 	
@@ -240,7 +240,7 @@ public class TestStudentRepository {
 		
 		exam.setCourse(course);
 		
-		final List<Student> students = this.service.findAllByExamNotPassed(exam);
-		assertEquals(students.size(), 0);		
+		final List<Student> students = this.service.findAllByExamVoteLowerThan(exam, (byte)18);
+		assertEquals(students.size(), 0);
 	}
 }
