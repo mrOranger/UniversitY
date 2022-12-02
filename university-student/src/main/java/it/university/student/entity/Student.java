@@ -1,5 +1,6 @@
 package it.university.student.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -21,8 +22,10 @@ import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Students")
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Student {
+public class Student implements Serializable {
 	
+	private static final long serialVersionUID = 5616681937140085884L;
+
 	@Id @Column(name = "Id")
 	@Size(min = 5, max = 15, message = "{Size.Student.Id.Validation}")
 	@NotNull(message = "{NotNull.Student.Id.Validation}")

@@ -1,5 +1,6 @@
 package it.university.student.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,8 +24,10 @@ import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Addresses")
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Address {
+public class Address implements Serializable{
 	
+	private static final long serialVersionUID = -3040216250095742667L;
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	@NotNull(message = "{NotNull.Address.Id.Validation}")

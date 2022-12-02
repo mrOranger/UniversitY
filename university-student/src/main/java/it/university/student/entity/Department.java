@@ -1,5 +1,7 @@
 package it.university.student.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -11,8 +13,10 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Department {
+public class Department implements Serializable{
 	
+	private static final long serialVersionUID = 2117670150489443646L;
+
 	@Id @Column(name = "name") 
 	@NotNull(message = "{NotNull.Department.Name.Validation}")
 	@Size(min = 5, max = 15, message = "{Size.Department.Name.Validation}")

@@ -1,5 +1,6 @@
 package it.university.student.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -21,8 +22,10 @@ import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Professors")
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Professor {
+public class Professor implements Serializable {
 	
+	private static final long serialVersionUID = -4714224185426689915L;
+
 	@Id
 	@Column(name = "id")
 	@NotNull(message = "{NotNull.Professor.Id.Validation}")

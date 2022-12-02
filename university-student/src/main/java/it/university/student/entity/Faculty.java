@@ -1,5 +1,6 @@
 package it.university.student.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,8 +17,10 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-public class Faculty {
+public class Faculty implements Serializable {
 	
+	private static final long serialVersionUID = -7069931654707277600L;
+
 	@Id @Column(name = "name")
 	@NotNull(message = "{NotNull.Faculty.Name.Validation}")
 	@Size(min = 5, max = 15, message = "{Size.Faculty.Name.Validation}")
