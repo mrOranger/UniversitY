@@ -9,7 +9,7 @@ import it.university.student.entity.Student;
 
 public interface StudentRepository extends PagingAndSortingRepository<Student, String>{
 	
-	public abstract List<Student> findByDateOfBirthBetweenStartAndEnd(Date start, Date end);
+	public abstract List<Student> findByDateOfBirthBetween(Date start, Date end);
 	public abstract List<Student> findBySex(char sex);
 	public abstract List<Student> findByBachelorGradeNotNull();
 	public abstract List<Student> findByDiplomaGrade(byte diplomaGrade);
