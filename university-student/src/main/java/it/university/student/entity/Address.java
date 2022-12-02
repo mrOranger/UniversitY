@@ -62,6 +62,11 @@ public class Address {
 	private Set<Student> students = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
+	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
+	@JsonManagedReference
+	private Set<Department> departments = new HashSet<>();
 
 }
