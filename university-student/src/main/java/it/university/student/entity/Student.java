@@ -52,7 +52,7 @@ public class Student implements Serializable {
 	@Column(name = "diploma_grade")
 	@NotNull(message = "{NotNull.Student.DiplomaGrade.Validation}")
 	@Min(value = (byte)60, message = "{Min.Student.DiplomaGrade.Validation}") 
-	@Max(value = (byte)100, message = "{Min.Student.DiplomaGrade.Validation}")
+	@Max(value = (byte)100, message = "{Max.Student.DiplomaGrade.Validation}")
 	private byte diplomaGrade;
 	
 	@Column(name = "bachelor_grade")
