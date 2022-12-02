@@ -180,6 +180,23 @@ public class TestStudentRepository {
 	}
 	
 	@Test @Order(18)
+	public void testFindStudentsByExamVote() {
+		final Exam exam = new Exam();
+		exam.setId(1);
+		exam.setVote((byte)28);
+		exam.setDate(Date.valueOf(LocalDate.now()));
+		
+		final Course course = new Course();
+		course.setId(1);
+		course.setName("Analisi 1");
+		
+		exam.setCourse(course);
+		
+		final List<Student> students = this.service.findAllByExamVote(exam);
+		assertEquals(students.size(), 0);		
+	}
+	
+	@Test @Order(18)
 	public void testFindStudentsByExamPassed() {
 		final Exam exam = new Exam();
 		exam.setId(1);
