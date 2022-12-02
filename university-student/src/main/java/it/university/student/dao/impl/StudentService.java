@@ -7,11 +7,14 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.university.student.dao.StudentDao;
 import it.university.student.entity.Student;
 import it.university.student.repository.StudentRepository;
 
+@Service @Transactional(readOnly = true)
 public class StudentService implements StudentDao{
 	
 	@Autowired private StudentRepository repository;
