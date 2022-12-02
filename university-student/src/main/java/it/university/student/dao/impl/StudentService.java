@@ -102,22 +102,22 @@ public class StudentService implements StudentDao{
 
 	@Override
 	public List<Student> findAllByExamPresent(Exam exam) {
-		return this.repository.findByExamsVoteNotNull(exam);
+		return this.repository.findByExamsAndExamsVoteNotNull(exam);
 	}
 
 	@Override
 	public List<Student> findAllByExamAbsente(Exam exam) {
-		return this.repository.findByExamsVoteIsNull(exam);
+		return this.repository.findByExamsAndExamsVoteIsNull(exam);
 	}
 	
 	@Override
 	public List<Student> findAllByExamVoteGreaterThan(Exam exam, byte vote) {
-		return this.repository.findByExamsVoteGreaterThan(exam, vote);
+		return this.repository.findByExamsAndExamsVoteGreaterThan(exam, vote);
 	}
 
 	@Override
 	public List<Student> findAllByExamVoteLowerThan(Exam exam, byte vote) {
-		return this.repository.findByExamsVoteLowerThan(exam, vote);
+		return this.repository.findByExamsAndExamsVoteLessThan(exam, vote);
 	}
 
 }

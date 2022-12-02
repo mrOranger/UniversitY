@@ -30,8 +30,8 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, S
 	public abstract List<Student> findByDepartmentFaculty(Faculty faculty);
 	
 	public abstract List<Student> findByExams(Exam exam);
-	public abstract List<Student> findByExamsVoteNotNull(Exam exam);
-	public abstract List<Student> findByExamsVoteIsNull(Exam exam);
-	public abstract List<Student> findByExamsVoteGreaterThan(Exam exam, byte vote);
-	public abstract List<Student> findByExamsVoteLowerThan(Exam exam, byte vote);
+	public abstract List<Student> findByExamsAndExamsVoteNotNull(Exam exam);
+	public abstract List<Student> findByExamsAndExamsVoteIsNull(Exam exam);
+	public abstract List<Student> findByExamsAndExamsVoteGreaterThan(Exam exam, byte vote);
+	public abstract List<Student> findByExamsAndExamsVoteLessThan(Exam exam, byte vote);
 }
