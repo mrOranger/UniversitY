@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,16 +21,19 @@ public class TestStudentRepository {
 	
 	@Autowired private StudentDao repository;
 	
+	@Test @Order(1)
 	public void testFindStudents() {
 		final List<Student> students = this.repository.findAll();
 		assertEquals(students.size(), 0);
 	}
 	
+	@Test @Order(2)
 	public void testFindStudentById() {
 		final String id = "AB123CD";
 		assertNull(this.repository.findById(id));
 	}
 	
+	@Test @Order(3)
 	public void testFindStudentsByDateOfBirth() {
 		final LocalDate startDate = LocalDate.parse("1990-01-01");
 		final LocalDate endDate   = LocalDate.now();
@@ -36,29 +41,34 @@ public class TestStudentRepository {
 		assertEquals(students.size(), 0);
 	}
 	
+	@Test @Order(4)
 	public void testFindStudentsBySexMale() {
 		final char sex = 'M';
 		final List<Student> students = this.repository.findAllBySex(sex);
 		assertEquals(students.size(), 0);
 	}
 	
+	@Test @Order(5)
 	public void testFindStudentsBySexFemale() {
 		final char sex = 'F';
 		final List<Student> students = this.repository.findAllBySex(sex);
 		assertEquals(students.size(), 0);
 	}
 	
+	@Test @Order(6)
 	public void testFindStudentByBachelorDegree() {
 		final List<Student> students = this.repository.findAllByBachelorDegree();
 		assertEquals(students.size(), 0);
 	}
 	
+	@Test @Order(7)
 	public void testFindStudentsByDiplomaGrade() {
 		final byte diplomaGrade = 60;
 		final List<Student> students = this.repository.findAllByDiplomaGrade(diplomaGrade);
 		assertEquals(students.size(), 0);		
 	}
 	
+	@Test @Order(8)
 	public void testFindStudentsByBachelorGrade() {
 		final byte bacherlorGrade = 100;
 		final List<Student> students = this.repository.findAllByBachelorGrade(bacherlorGrade);
