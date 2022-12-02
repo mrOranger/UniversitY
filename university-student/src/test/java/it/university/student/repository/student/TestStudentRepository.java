@@ -1,28 +1,23 @@
 package it.university.student.repository.student;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import it.university.student.dao.StudentDao;
+import it.university.student.entity.Student;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class)
 public class TestStudentRepository {
 	
-	@Autowired private StudentRepository repository;
+	@Autowired private StudentDao repository;
 	
 	public void testFindStudents() {
 		final List<Student> students = this.repository.findAll();
