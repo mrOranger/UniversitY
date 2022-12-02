@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import it.university.student.dao.impl.StudentService;
+import it.university.student.entity.Address;
 import it.university.student.entity.Student;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class)
@@ -73,5 +74,49 @@ public class TestStudentRepository {
 		final byte bacherlorGrade = 100;
 		final List<Student> students = this.service.findAllByBachelorGrade(bacherlorGrade);
 		assertEquals(students.size(), 0);		
+	}
+	
+	@Test @Order(9)
+	public void testFindStudentsByCity() {
+		final String city = "Roma";
+		final List<Student> students = this.service.findAllByCity(city);
+		assertEqual(students.size(), 0);
+	}
+	
+	@Test @Order(10)
+	public void testFindStudentsByProvince() {
+		final String province = "Roma";
+		final List<Student> students = this.service.findAllByProvince(province);
+		assertEqual(students.size(), 0);
+	}
+	
+	@Test @Order(11)
+	public void testFindStudentsByRegion() {
+		final String region = "Lazio";
+		final List<Student> students = this.service.findAllByRegion(region);
+		assertEqual(students.size(), 0);
+	}
+	
+	@Test @Order(12)
+	public void testFindStudentsByNation() {
+		final String nation = "Italia";
+		final List<Student> students = this.service.findAllByNation(nation);
+		assertEqual(students.size(), 0);
+	}
+	
+	@Test @Order(12)
+	public void testFindStudentsByAddress() {
+		
+		final Address address = new Address();
+		address.setId(1);
+		address.setStreet("Via Nazionale");
+		address.setNumber(123);
+		address.setCity("Milano");
+		address.setProvince("Milano");
+		address.setRegion("Lombardia");
+		address.setNation("Italia");
+		
+		final List<Student> students = this.service.findAllByAddress(address);
+		assertEqual(students.size(), 0);
 	}
 }
