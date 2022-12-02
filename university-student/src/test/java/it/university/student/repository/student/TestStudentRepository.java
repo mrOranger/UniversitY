@@ -80,31 +80,31 @@ public class TestStudentRepository {
 	public void testFindStudentsByCity() {
 		final String city = "Roma";
 		final List<Student> students = this.service.findAllByCity(city);
-		assertEqual(students.size(), 0);
+		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(10)
 	public void testFindStudentsByProvince() {
 		final String province = "Roma";
 		final List<Student> students = this.service.findAllByProvince(province);
-		assertEqual(students.size(), 0);
+		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(11)
 	public void testFindStudentsByRegion() {
 		final String region = "Lazio";
 		final List<Student> students = this.service.findAllByRegion(region);
-		assertEqual(students.size(), 0);
+		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(12)
 	public void testFindStudentsByNation() {
 		final String nation = "Italia";
 		final List<Student> students = this.service.findAllByNation(nation);
-		assertEqual(students.size(), 0);
+		assertEquals(students.size(), 0);
 	}
 	
-	@Test @Order(12)
+	@Test @Order(13)
 	public void testFindStudentsByAddress() {
 		
 		final Address address = new Address();
@@ -117,6 +117,6 @@ public class TestStudentRepository {
 		address.setNation("Italia");
 		
 		final List<Student> students = this.service.findAllByAddress(address);
-		assertEqual(students.size(), 0);
+		assertEquals(students.size(), 0);
 	}
 }
