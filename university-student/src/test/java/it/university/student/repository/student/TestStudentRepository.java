@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import it.university.student.dao.impl.StudentService;
 import it.university.student.entity.Address;
 import it.university.student.entity.Department;
+import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class)
@@ -128,6 +129,15 @@ public class TestStudentRepository {
 		department.setName("Dipartimento 1");
 		
 		final List<Student> students = this.service.findAllByDepartment(department);
+		assertEquals(students.size(), 0);		
+	}
+	
+	public void testFindStudentsByFaculty() {
+		
+		final Faculty faculty = new Faculty();
+		faculty.setName("Facoltà 1");
+		
+		final List<Student> students = this.service.findAllByFaculty(faculty);
 		assertEquals(students.size(), 0);		
 	}
 }
