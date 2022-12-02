@@ -6,21 +6,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Department {
 	
 	@Id @Column(name = "name") 
 	@NotNull(message = "{NotNull.Department.Name.Validation}")
-	@Size(min = 5, max = 15, message = "{Size.Department.Id.Validation}")
+	@Size(min = 5, max = 15, message = "{Size.Department.Name.Validation}")
 	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	private Address address;
 	
-	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	@JsonIgnore
 	private Professor director;
 	
 	@ManyToOne

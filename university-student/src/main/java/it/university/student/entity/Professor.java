@@ -52,7 +52,10 @@ public class Professor {
 	@JoinColumn(name = "department", referencedColumnName = "id")
 	private Department department;
 	
-	@OneToOne(mappedBy = "direttore", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL)
 	private Department director;
+	
+	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL)
+	private Faculty faculty;
 
 }
