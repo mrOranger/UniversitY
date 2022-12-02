@@ -3,6 +3,7 @@ package it.university.student.repository.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import it.university.student.dao.impl.StudentService;
 import it.university.student.entity.Address;
+import it.university.student.entity.Course;
 import it.university.student.entity.Department;
+import it.university.student.entity.Exam;
 import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 
@@ -139,6 +142,72 @@ public class TestStudentRepository {
 		faculty.setName("Facoltà 1");
 		
 		final List<Student> students = this.service.findAllByFaculty(faculty);
+		assertEquals(students.size(), 0);		
+	}
+	
+	@Test @Order(16)
+	public void testFindStudentsByExam() {
+		
+		final Exam exam = new Exam();
+		exam.setId(1);
+		exam.setDate(Date.valueOf(LocalDate.now()));
+		
+		final Course course = new Course();
+		course.setId(1);
+		course.setName("Analisi 1");
+		
+		exam.setCourse(course);
+		
+		final List<Student> students = this.service.findAllByExam(exam);
+		assertEquals(students.size(), 0);		
+		
+	}
+	
+	@Test @Order(17)
+	public void testFindStudentsByExamAbsent() {
+		final Exam exam = new Exam();
+		exam.setId(1);
+		exam.setDate(Date.valueOf(LocalDate.now()));
+		
+		final Course course = new Course();
+		course.setId(1);
+		course.setName("Analisi 1");
+		
+		exam.setCourse(course);
+		
+		final List<Student> students = this.service.findAllByExamAbsent(exam);
+		assertEquals(students.size(), 0);		
+	}
+	
+	@Test @Order(18)
+	public void testFindStudentsByExamPassed() {
+		final Exam exam = new Exam();
+		exam.setId(1);
+		exam.setDate(Date.valueOf(LocalDate.now()));
+		
+		final Course course = new Course();
+		course.setId(1);
+		course.setName("Analisi 1");
+		
+		exam.setCourse(course);
+		
+		final List<Student> students = this.service.findAllByExamPassed(exam);
+		assertEquals(students.size(), 0);		
+	}
+	
+	@Test @Order(19)
+	public void testFindStudentsByExamNotPassed() {
+		final Exam exam = new Exam();
+		exam.setId(1);
+		exam.setDate(Date.valueOf(LocalDate.now()));
+		
+		final Course course = new Course();
+		course.setId(1);
+		course.setName("Analisi 1");
+		
+		exam.setCourse(course);
+		
+		final List<Student> students = this.service.findAllByExamNotPassed(exam);
 		assertEquals(students.size(), 0);		
 	}
 }
