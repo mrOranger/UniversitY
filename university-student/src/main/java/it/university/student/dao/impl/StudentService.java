@@ -30,7 +30,7 @@ public class StudentService implements StudentDao{
 	@Override
 	public List<Student> findAllByDate(LocalDate start, LocalDate end) {
 		return this.repository
-				.findByDateOfBirthBetweenStartAndEnd(Date.valueOf(start), Date.valueOf(end));
+				.findByDateOfBirthBetween(Date.valueOf(start), Date.valueOf(end));
 	}
 
 	@Override
