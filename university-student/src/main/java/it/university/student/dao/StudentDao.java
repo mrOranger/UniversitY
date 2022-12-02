@@ -35,4 +35,6 @@ public interface StudentDao {
 	public abstract List<Student> findAllByExamVoteGreaterThan(Exam exam, byte vote);
 	public abstract List<Student> findAllByExamVoteLowerThan(Exam exam, byte vote);
 	
+	public abstract Student save(Student student);
+	
 }

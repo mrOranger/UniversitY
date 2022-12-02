@@ -120,4 +120,9 @@ public class StudentService implements StudentDao{
 		return this.repository.findByExamsAndExamsVoteLessThan(exam, vote);
 	}
 
+	@Override @Transactional
+	public Student save(Student student) {
+		return this.repository.save(student);
+	}
+
 }
