@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,8 +54,11 @@ public class Professor {
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	private Address address;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "professor")
-	@JsonManagedReference
-	private Set<Department> department = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "department", referencedColumnName = "id")
+	private Department department;
+	
+	@OneToOne(mappedBy = "direttore", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Department director;
 
 }
