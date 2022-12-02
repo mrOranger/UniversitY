@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,6 @@ public class Professor implements Serializable {
 	private static final long serialVersionUID = -4714224185426689915L;
 
 	@Id
-	@Column(name = "id")
 	@NotNull(message = "{NotNull.Professor.Id.Validation}")
 	@Size(min = 5, max = 15, message = "{Size.Professor.Id.Validation}")
 	private String id;
@@ -49,10 +50,12 @@ public class Professor implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
+	@JsonBackReference
 	private Address address;
 	
 	@ManyToOne
 	@JoinColumn(name = "department", referencedColumnName = "name")
+	@JsonBackReference
 	private Department department;
 	
 	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL)

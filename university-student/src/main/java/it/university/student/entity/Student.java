@@ -16,6 +16,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,8 @@ public class Student implements Serializable {
 	
 	private static final long serialVersionUID = 5616681937140085884L;
 
-	@Id @Column(name = "Id")
+	@Id 
+	@Column(name = "id")
 	@Size(min = 5, max = 15, message = "{Size.Student.Id.Validation}")
 	@NotNull(message = "{NotNull.Student.Id.Validation}")
 	private String id;
@@ -62,10 +65,12 @@ public class Student implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
+	@JsonBackReference
 	private Address address;
 	
 	@ManyToOne
-	@JoinColumn(name = "department", referencedColumnName = "id")
+	@JoinColumn(name = "department", referencedColumnName = "name")
+	@JsonBackReference
 	private Department department;
 
 }

@@ -18,7 +18,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 
@@ -31,7 +33,7 @@ public class Department implements Serializable{
 	
 	private static final long serialVersionUID = 2117670150489443646L;
 
-	@Id @Column(name = "name") 
+	@Id @Column(name = "name")
 	@NotNull(message = "{NotNull.Department.Name.Validation}")
 	@Size(min = 5, max = 15, message = "{Size.Department.Name.Validation}")
 	private String name;
@@ -46,10 +48,16 @@ public class Department implements Serializable{
 	private Professor director;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
+	@JsonManagedReference
+	private Set<Student> students = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
+	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "department", referencedColumnName = "name")
+	@JsonBackReference
 	private Faculty faculty; 
 
 }
