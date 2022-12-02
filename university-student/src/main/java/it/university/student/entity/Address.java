@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Addresses")
@@ -63,14 +64,17 @@ public class Address implements Serializable{
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Set<Professor> professors = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Set<Department> departments = new HashSet<>();
 
 }

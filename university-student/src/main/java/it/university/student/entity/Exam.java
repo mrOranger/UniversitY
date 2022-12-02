@@ -15,10 +15,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Exams")
@@ -41,11 +41,11 @@ public class Exam {
 	@ManyToOne
 	@JoinColumn(name = "student", referencedColumnName = "id")
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Student student;
 	
 	@ManyToOne
 	@JoinColumn(name = "course", referencedColumnName = "id")
-	@JsonManagedReference
 	private Course course;
 	
 }

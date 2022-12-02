@@ -21,10 +21,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Professors")
@@ -55,16 +55,18 @@ public class Professor implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
-	@JsonManagedReference
+	@EqualsAndHashCode.Exclude
 	private Address address;
 	
 	@ManyToOne
 	@JoinColumn(name = "department", referencedColumnName = "name")
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Department department;
 	
 	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL)
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Department director;
 	
 	@OneToOne(mappedBy = "director", cascade = CascadeType.ALL)

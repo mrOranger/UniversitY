@@ -70,12 +70,10 @@ public class Student implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
-	@JsonManagedReference
 	private Address address;
 	
 	@ManyToOne
 	@JoinColumn(name = "department", referencedColumnName = "name")
-	@JsonManagedReference
 	private Department department;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "student")

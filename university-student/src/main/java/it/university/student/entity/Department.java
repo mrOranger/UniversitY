@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Departments")
@@ -39,16 +40,15 @@ public class Department implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "address", referencedColumnName = "id")
-	@JsonManagedReference
 	private Address address;
 	
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	@JsonManagedReference
 	private Professor director;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
@@ -57,7 +57,6 @@ public class Department implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "department", referencedColumnName = "name")
-	@JsonManagedReference
 	private Faculty faculty; 
 
 }

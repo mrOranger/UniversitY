@@ -17,10 +17,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Faculties")
@@ -36,11 +36,11 @@ public class Faculty implements Serializable {
 	
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	@JsonManagedReference
 	private Professor director;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "faculty", orphanRemoval = true)
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Set<Department> departments = new HashSet<>();
 
 }

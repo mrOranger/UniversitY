@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "Courses")
@@ -40,6 +41,7 @@ public class Course {
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Set<Exam> exams = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "courses")
