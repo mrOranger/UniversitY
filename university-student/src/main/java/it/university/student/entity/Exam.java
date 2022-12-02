@@ -39,4 +39,8 @@ public class Exam {
 	@JoinColumn(name = "student", referencedColumnName = "id")
 	private Student student;
 	
+	@ManyToOne
+	@JoinColumn(name = "course", referencedColumnName = "id")
+	private Course course;
+	
 }
