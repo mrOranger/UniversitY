@@ -180,6 +180,22 @@ public class TestStudentRepository {
 	}
 	
 	@Test @Order(18)
+	public void testFindStudentsByExamAbsent() {
+		final Exam exam = new Exam();
+		exam.setId(1);
+		exam.setDate(Date.valueOf(LocalDate.now()));
+		
+		final Course course = new Course();
+		course.setId(1);
+		course.setName("Analisi 1");
+		
+		exam.setCourse(course);
+		
+		final List<Student> students = this.service.findAllByExamPresent(exam);
+		assertEquals(students.size(), 0);		
+	}
+	
+	@Test @Order(19)
 	public void testFindStudentsByExamVote() {
 		final Exam exam = new Exam();
 		exam.setId(1);
@@ -196,7 +212,7 @@ public class TestStudentRepository {
 		assertEquals(students.size(), 0);		
 	}
 	
-	@Test @Order(18)
+	@Test @Order(20)
 	public void testFindStudentsByExamPassed() {
 		final Exam exam = new Exam();
 		exam.setId(1);
@@ -212,7 +228,7 @@ public class TestStudentRepository {
 		assertEquals(students.size(), 0);		
 	}
 	
-	@Test @Order(19)
+	@Test @Order(21)
 	public void testFindStudentsByExamNotPassed() {
 		final Exam exam = new Exam();
 		exam.setId(1);
