@@ -1,5 +1,6 @@
 package it.university.student.repository.student;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -306,6 +307,11 @@ public class TestStudentRepository {
 		student.setExams(exams);
 		
 		this.service.save(student);
+		
+		assertThat(this.service.findById(student.getId()))
+			.extracting(Student::getId)
+			.isEqualTo(student.getId());
+		
 	}
 	
 	@Test @Order(23)
@@ -363,6 +369,10 @@ public class TestStudentRepository {
 		student.setExams(exams);
 		
 		this.service.save(student);
+		
+		assertThat(this.service.findById(student.getId()))
+			.extracting(Student::getId)
+			.isEqualTo(student.getId());
 	}
 	
 	@Test @Order(24)
@@ -422,6 +432,10 @@ public class TestStudentRepository {
 		student.setExams(exams);
 		
 		this.service.save(student);
+		
+		assertThat(this.service.findById(student.getId()))
+			.extracting(Student::getId)
+			.isEqualTo(student.getId());
 	}
 	
 	@Test @Order(25)
@@ -480,5 +494,43 @@ public class TestStudentRepository {
 		student.setExams(exams);
 		
 		this.service.save(student);		
+		
+		assertThat(this.service.findById(student.getId()))
+			.extracting(Student::getId)
+			.isEqualTo(student.getId());
+	}
+	
+	@Test @Order(26)
+	public void testUpdateStudent() {
+		final Student student = new Student();
+		student.setId("AB456KJ");
+		student.setName("John");
+		student.setSurname("Black");
+		student.setSex('M');
+		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1998-01-01")));
+		student.setDiplomaGrade((byte)100);
+		
+		final Department department = new Department();
+		department.setName("Dipartimento 1");
+		
+		student.setDepartment(department);
+		
+		this.service.save(student);		
+		
+		assertThat(this.service.findById(student.getId()))
+			.extracting(Student::getDateOfBirth)
+			.isEqualTo(student.getDateOfBirth());
+	}
+	
+	@Test @Order(27)
+	public void testDeleteStudents() {
+		this.service.deleteAll();
+	}
+	
+	@Test @Order(28)
+	public void testDeleteStudent() {
+		final Student student = new Student();
+		student.setId("AB456KJ");
+		this.service.deleteStudent(student);
 	}
 }
