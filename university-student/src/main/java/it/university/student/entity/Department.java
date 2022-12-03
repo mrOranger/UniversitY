@@ -37,11 +37,11 @@ public class Department implements Serializable{
 	@Size(max = 15, message = "{Size.Department.Name.Validation}")
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "address")
 	private Address address;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "director")
 	private Professor director;
 	
@@ -54,7 +54,7 @@ public class Department implements Serializable{
 	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "faculty")
 	private Faculty faculty; 
 

@@ -68,15 +68,15 @@ public class Student implements Serializable {
 	@Max(value = (byte)110, message = "{Max.Student.BachelorGrade.Validation}")
 	private byte bachelorGrade;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "address")
 	private Address address;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "department")
 	private Department department;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
 	@JsonManagedReference
 	private Set<Exam> exams = new HashSet<>();
 

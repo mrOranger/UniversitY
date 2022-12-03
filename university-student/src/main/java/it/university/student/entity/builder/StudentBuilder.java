@@ -2,6 +2,8 @@ package it.university.student.entity.builder;
 
 import java.sql.Date;
 
+import it.university.student.entity.Address;
+import it.university.student.entity.Department;
 import it.university.student.entity.Exam;
 import it.university.student.entity.Student;
 
@@ -50,6 +52,16 @@ public class StudentBuilder implements Builder<Student>{
 	
 	public StudentBuilder addExam(Exam exam) {
 		this.student.getExams().add(exam);
+		return this;
+	}
+	
+	public StudentBuilder setAddress(Address address) {
+		this.student.setAddress(address);
+		return this;
+	}
+	
+	public StudentBuilder setDeparment(Department department) {
+		this.student.setDepartment(department);
 		return this;
 	}
 

@@ -2,6 +2,7 @@ package it.university.student.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,13 +40,13 @@ public class Exam {
 	@Max(value = (byte)30, message = "{Max.Exam.Date.Validation}")
 	private byte vote;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "student")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Student student;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "course")
 	private Course course;
 	

@@ -1,5 +1,6 @@
 package it.university.student.entity.builder;
 
+import it.university.student.entity.Address;
 import it.university.student.entity.Department;
 import it.university.student.entity.Professor;
 import it.university.student.entity.Student;
@@ -24,6 +25,11 @@ public class DepartmentBuilder implements Builder<Department>{
 	
 	public DepartmentBuilder addProfessor(Professor professor) {
 		this.department.getProfessors().add(professor);
+		return this;
+	}
+	
+	public DepartmentBuilder setAddress(Address address) {
+		this.department.setAddress(address);
 		return this;
 	}
 

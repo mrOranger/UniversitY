@@ -54,12 +54,12 @@ public class Professor implements Serializable {
 	@NotNull(message = "{NotNull.Professor.DateOfBirth.Validation}")
 	private Date dateOfBirth;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "address")
 	@EqualsAndHashCode.Exclude
 	private Address address;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "department")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
