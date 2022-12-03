@@ -53,31 +53,33 @@ public class Professor implements Serializable {
 	@NotNull(message = "{NotNull.Professor.DateOfBirth.Validation}")
 	private Date dateOfBirth;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "address", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address")
 	@EqualsAndHashCode.Exclude
 	private Address address;
 	
-	@ManyToOne
-	@JoinColumn(name = "department", referencedColumnName = "name", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "department")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Department department;
 	
-	@OneToOne(mappedBy = "director", fetch = FetchType.LAZY, optional = true)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "department_director")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Department director;
 	
-	@OneToOne(mappedBy = "director", fetch = FetchType.LAZY, optional = true)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "faculty_director")
 	@JsonBackReference
 	private Faculty faculty;
 	
 	@ManyToMany
 	@JoinTable(
 			name = "join_course",
-			joinColumns = @JoinColumn(name = "id"),
-			inverseJoinColumns = @JoinColumn(name = "professors"))
+			joinColumns = { @JoinColumn(name = "professor") },
+			inverseJoinColumns = { @JoinColumn(name = "course") })
 	@JsonBackReference
 	private Set<Course> courses = new HashSet<>();
 }

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -68,15 +67,15 @@ public class Student implements Serializable {
 	@Max(value = (byte)110, message = "{Max.Student.BachelorGrade.Validation}")
 	private byte bachelorGrade;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address")
 	private Address address;
 	
-	@ManyToOne
-	@JoinColumn(name = "department", referencedColumnName = "name")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "department")
 	private Department department;
 	
-	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "student")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
 	@JsonManagedReference
 	private Set<Exam> exams = new HashSet<>();
 

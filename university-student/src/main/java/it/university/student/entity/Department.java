@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,25 +37,26 @@ public class Department implements Serializable{
 	@Size(max = 15, message = "{Size.Department.Name.Validation}")
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "address", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address")
 	private Address address;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "director")
 	@PrimaryKeyJoinColumn
 	private Professor director;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
 	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "department", referencedColumnName = "name")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "faculty")
 	private Faculty faculty; 
 
 }

@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -34,11 +34,12 @@ public class Faculty implements Serializable {
 	@Size(max = 15, message = "{Size.Faculty.Name.Validation}")
 	private String name;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "director")
 	@PrimaryKeyJoinColumn
 	private Professor director;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "faculty", orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Department> departments = new HashSet<>();

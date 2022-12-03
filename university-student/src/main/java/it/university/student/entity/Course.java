@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +41,7 @@ public class Course {
 	@Column(name = "start_date", nullable = true)
 	private Date date;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Exam> exams = new HashSet<>();

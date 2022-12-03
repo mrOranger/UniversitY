@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,14 +39,14 @@ public class Exam {
 	@Max(value = (byte)30, message = "{Max.Exam.Date.Validation}")
 	private byte vote;
 	
-	@ManyToOne
-	@JoinColumn(name = "student", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "student")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Student student;
 	
-	@ManyToOne
-	@JoinColumn(name = "course", referencedColumnName = "id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "course")
 	private Course course;
 	
 }
