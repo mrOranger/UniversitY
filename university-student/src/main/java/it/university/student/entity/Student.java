@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,6 +55,7 @@ public class Student implements Serializable {
 	private Date dateOfBirth;
 	
 	@Column(name = "sex")
+	@NotNull(message = "{NotNull.Student.Sex.Validation}")
 	private char sex;
 	
 	@Column(name = "diploma_grade")
@@ -62,12 +64,11 @@ public class Student implements Serializable {
 	@Max(value = (byte)100, message = "{Max.Student.DiplomaGrade.Validation}")
 	private byte diplomaGrade;
 	
-	@Column(name = "bachelor_grade")
-	@Min(value = (byte)66, message = "{Min.Student.BachelorGrade.Validation}") 
+	@Column(name = "bachelor_grade", nullable = true)
 	@Max(value = (byte)110, message = "{Max.Student.BachelorGrade.Validation}")
 	private byte bachelorGrade;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	private Address address;
 	

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -52,23 +53,23 @@ public class Professor implements Serializable {
 	@NotNull(message = "{NotNull.Professor.DateOfBirth.Validation}")
 	private Date dateOfBirth;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	@EqualsAndHashCode.Exclude
 	private Address address;
 	
 	@ManyToOne
-	@JoinColumn(name = "department", referencedColumnName = "name")
+	@JoinColumn(name = "department", referencedColumnName = "name", nullable = false)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Department department;
 	
-	@OneToOne(mappedBy = "director")
+	@OneToOne(mappedBy = "director", fetch = FetchType.LAZY, optional = true)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Department director;
 	
-	@OneToOne(mappedBy = "director")
+	@OneToOne(mappedBy = "director", fetch = FetchType.LAZY, optional = true)
 	@JsonBackReference
 	private Faculty faculty;
 	

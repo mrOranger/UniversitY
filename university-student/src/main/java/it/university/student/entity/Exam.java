@@ -2,7 +2,6 @@ package it.university.student.entity;
 
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +33,7 @@ public class Exam {
 	@NotNull(message = "{NotNull.Exam.Date.Validation}")
 	private Date date;
 	
-	@Column(name = "vote")
+	@Column(name = "vote", nullable = true)
 	@Min(value = (byte)0, message = "{Min.Exam.Date.Validation}")
 	@Max(value = (byte)30, message = "{Max.Exam.Date.Validation}")
 	private byte vote;
@@ -46,7 +45,7 @@ public class Exam {
 	private Student student;
 	
 	@ManyToOne
-	@JoinColumn(name = "course", referencedColumnName = "id")
+	@JoinColumn(name = "course", referencedColumnName = "id", nullable = false)
 	private Course course;
 	
 }

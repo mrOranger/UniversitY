@@ -34,7 +34,7 @@ public class Faculty implements Serializable {
 	@Size(max = 15, message = "{Size.Faculty.Name.Validation}")
 	private String name;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
 	@PrimaryKeyJoinColumn
 	private Professor director;
 	

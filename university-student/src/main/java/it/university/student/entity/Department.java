@@ -38,11 +38,11 @@ public class Department implements Serializable{
 	@Size(max = 15, message = "{Size.Department.Name.Validation}")
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	private Address address;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@PrimaryKeyJoinColumn
 	private Professor director;
 	

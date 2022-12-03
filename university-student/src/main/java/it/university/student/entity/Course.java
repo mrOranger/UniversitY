@@ -39,7 +39,7 @@ public class Course {
 	@Size(max = 30, message = "{Size.Course.Name.Validation}")
 	private String name;
 	
-	@Column(name = "start_date")
+	@Column(name = "start_date", nullable = true)
 	private Date date;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
