@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,17 +62,17 @@ public class Address implements Serializable{
 	@NotNull(message = "{NotNull.Address.Nation.Validation}")
 	private String nation;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.ALL)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.ALL)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Professor> professors = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address",  cascade = CascadeType.ALL)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Department> departments = new HashSet<>();
