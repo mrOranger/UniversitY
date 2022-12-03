@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -42,8 +41,8 @@ public class Department implements Serializable{
 	@JoinColumn(name = "address")
 	private Address address;
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "director", cascade = CascadeType.ALL, orphanRemoval = true)
-	@PrimaryKeyJoinColumn
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "director")
 	private Professor director;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)

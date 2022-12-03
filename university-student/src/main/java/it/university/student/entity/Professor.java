@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -64,15 +65,14 @@ public class Professor implements Serializable {
 	@EqualsAndHashCode.Exclude
 	private Department department;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "department_director")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "director", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Department director;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "faculty_director")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "director", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Faculty faculty;
 	
 	@ManyToMany
