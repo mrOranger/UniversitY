@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -29,11 +31,12 @@ public class Course {
 	
 	@Id
 	@NotNull(message = "{NotNull.Course.Id.Validation}")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "name")
 	@NotNull(message = "{NotNull.Course.Name.Validation}")
-	@Size(min = 10, max = 30, message = "{Size.Course.Name.Validation}")
+	@Size(max = 30, message = "{Size.Course.Name.Validation}")
 	private String name;
 	
 	@Column(name = "start_date")

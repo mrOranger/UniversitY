@@ -31,10 +31,10 @@ public class Faculty implements Serializable {
 
 	@Id @Column(name = "name")
 	@NotNull(message = "{NotNull.Faculty.Name.Validation}")
-	@Size(min = 5, max = 15, message = "{Size.Faculty.Name.Validation}")
+	@Size(max = 15, message = "{Size.Faculty.Name.Validation}")
 	private String name;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Professor director;
 	

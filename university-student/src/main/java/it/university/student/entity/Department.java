@@ -35,7 +35,7 @@ public class Department implements Serializable{
 
 	@Id @Column(name = "name")
 	@NotNull(message = "{NotNull.Department.Name.Validation}")
-	@Size(min = 5, max = 15, message = "{Size.Department.Name.Validation}")
+	@Size(max = 15, message = "{Size.Department.Name.Validation}")
 	private String name;
 	
 	@ManyToOne

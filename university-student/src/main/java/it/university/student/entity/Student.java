@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,17 +34,17 @@ public class Student implements Serializable {
 
 	@Id 
 	@Column(name = "id")
-	@Size(min = 5, max = 15, message = "{Size.Student.Id.Validation}")
+	@Size(max = 15, message = "{Size.Student.Id.Validation}")
 	@NotNull(message = "{NotNull.Student.Id.Validation}")
 	private String id;
 	
 	@Column(name = "name") 
-	@Size(min = 10, max = 30, message = "{Size.Student.Name.Validation}")
+	@Size(max = 30, message = "{Size.Student.Name.Validation}")
 	@NotNull(message = "{NotNull.Student.Name.Validation}")
 	private String name;
 	
 	@Column(name = "surname")
-	@Size(min = 10, max = 30, message = "{Size.Student.Surname.Validation}")
+	@Size(max = 30, message = "{Size.Student.Surname.Validation}")
 	@NotNull(message = "{NotNull.Student.Surname.Validation}")
 	private String surname;
 	
@@ -76,7 +75,7 @@ public class Student implements Serializable {
 	@JoinColumn(name = "department", referencedColumnName = "name")
 	private Department department;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "student")
+	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "student")
 	@JsonManagedReference
 	private Set<Exam> exams = new HashSet<>();
 

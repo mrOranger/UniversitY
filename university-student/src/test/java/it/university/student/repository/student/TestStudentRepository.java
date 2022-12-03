@@ -260,7 +260,6 @@ public class TestStudentRepository {
 		student.setBachelorGrade((byte)105);
 		
 		final Address address = new Address();
-		address.setId(1);
 		address.setStreet("Via Nazionale");
 		address.setNumber(123);
 		address.setCity("Milano");
@@ -292,13 +291,11 @@ public class TestStudentRepository {
 		professors.add(professor);
 		
 		final Course course = new Course();
-		course.setId(1);
 		course.setName("Analisi 1");
 		course.setDate(Date.valueOf(LocalDate.now()));
 		course.setProfessors(professors);
 		
 		final Exam exam = new Exam();
-		exam.setId(1);
 		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
 		exam.setVote((byte)21);
 		exam.setCourse(course);
@@ -323,7 +320,6 @@ public class TestStudentRepository {
 		student.setDiplomaGrade((byte)100);
 		
 		final Address address = new Address();
-		address.setId(2);
 		address.setStreet("Via Nazionale");
 		address.setNumber(123);
 		address.setCity("Torino");
@@ -381,7 +377,6 @@ public class TestStudentRepository {
 		student.setDiplomaGrade((byte)100);
 		
 		final Address address = new Address();
-		address.setId(3);
 		address.setStreet("Groove Street");
 		address.setNumber(123);
 		address.setCity("Los Angeles");

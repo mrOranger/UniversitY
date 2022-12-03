@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,7 +35,7 @@ public class Address implements Serializable{
 	private int id;
 	
 	@Column(name = "street")
-	@Size(min = 10, max = 50, message = "Size.Address.Street.Validation")
+	@Size(max = 50, message = "Size.Address.Street.Validation")
 	@NotNull(message = "{NotNull.Address.Street.Validation}")
 	private String street;
 
@@ -46,33 +45,33 @@ public class Address implements Serializable{
 	
 	@Column(name = "city")
 	@NotNull(message = "{NotNull.Address.City.Validation}")
-	@Size(min = 5, max = 50, message = "{Size.Address.City.Validation}")
+	@Size(max = 50, message = "{Size.Address.City.Validation}")
 	private String city;
 	
 	@Column(name = "province")
-	@Size(min = 5, max = 50, message = "{Size.Address.Province.Validation}")
+	@Size(max = 50, message = "{Size.Address.Province.Validation}")
 	private String province;
 	
 	@Column(name = "region")
-	@Size(min = 5, max = 50, message = "{Size.Address.Region.Validation}")
+	@Size(max = 50, message = "{Size.Address.Region.Validation}")
 	private String region;
 	
 	@Column(name = "nation")
-	@Size(min = 5, max = 50, message = "{Size.Address.Nation.Validation}")
+	@Size(max = 50, message = "{Size.Address.Nation.Validation}")
 	@NotNull(message = "{NotNull.Address.Nation.Validation}")
 	private String nation;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Professor> professors = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Department> departments = new HashSet<>();
