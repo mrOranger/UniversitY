@@ -11,10 +11,6 @@ public class DepartmentBuilder implements Builder<Department>{
 	public DepartmentBuilder() {
 		this.department = new Department();
 	}
-	
-	public DepartmentBuilder(Department department) {
-		this.department = department;
-	}
 
 	public DepartmentBuilder setName(String name) {
 		this.department.setName(name);
@@ -34,6 +30,11 @@ public class DepartmentBuilder implements Builder<Department>{
 	@Override
 	public Department build() {
 		return this.department;
+	}
+
+	@Override
+	public void clean() {
+		this.department = new Department();
 	}
 
 }

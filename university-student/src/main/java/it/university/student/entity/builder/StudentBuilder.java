@@ -13,10 +13,6 @@ public class StudentBuilder implements Builder<Student>{
 		this.student = new Student();
 	}
 
-	public StudentBuilder(Student student) {
-		this.student = student;
-	}
-
 	public StudentBuilder setId(String id) {
 		this.student.setId(id);
 		return this;
@@ -62,4 +58,8 @@ public class StudentBuilder implements Builder<Student>{
 		return this.student;
 	}
 
+	@Override
+	public void clean() {
+		this.student = new Student();
+	}
 }

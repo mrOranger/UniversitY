@@ -13,10 +13,6 @@ public class AddressBuilder implements Builder<Address>{
 		this.address = new Address();
 	}
 	
-	public AddressBuilder(Address address) {
-		this.address = address;
-	}
-	
 	public AddressBuilder setId(int id) {
 		this.address.setId(id);
 		return this;
@@ -72,4 +68,8 @@ public class AddressBuilder implements Builder<Address>{
 		return address;
 	}
 
+	@Override
+	public void clean() {
+		this.address = new Address();
+	}
 }

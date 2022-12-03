@@ -14,10 +14,6 @@ public class ProfessorBuilder implements Builder<Professor>{
 	public ProfessorBuilder() {
 		this.professor = new Professor();
 	}
-
-	public ProfessorBuilder(Professor professor) {
-		this.professor = professor;
-	}
 	
 	public ProfessorBuilder setId(String id) {
 		this.professor.setId(id);
@@ -57,5 +53,10 @@ public class ProfessorBuilder implements Builder<Professor>{
 	@Override
 	public Professor build() {
 		return this.professor;
+	}
+
+	@Override
+	public void clean() {
+		this.professor = new Professor();
 	}
 }

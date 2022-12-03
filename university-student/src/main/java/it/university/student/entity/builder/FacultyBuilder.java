@@ -10,10 +10,6 @@ public class FacultyBuilder implements Builder<Faculty>{
 	public FacultyBuilder() {
 		this.faculty = new Faculty();
 	}
-
-	public FacultyBuilder(Faculty faculty) {
-		this.faculty = faculty;
-	}
 	
 	public FacultyBuilder setName(String name) {
 		this.faculty.setName(name);
@@ -28,5 +24,10 @@ public class FacultyBuilder implements Builder<Faculty>{
 	@Override
 	public Faculty build() {
 		return this.faculty;
+	}
+
+	@Override
+	public void clean() {
+		this.faculty = new Faculty();
 	}
 }

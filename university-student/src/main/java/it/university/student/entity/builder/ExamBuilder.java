@@ -11,10 +11,6 @@ public class ExamBuilder implements Builder<Exam>{
 	public ExamBuilder() {
 		this.exam = new Exam();
 	}
-
-	public ExamBuilder(Exam exam) {
-		this.exam = exam;
-	}
 	
 	public ExamBuilder setId(int id) {
 		this.exam.setId(id);
@@ -34,5 +30,10 @@ public class ExamBuilder implements Builder<Exam>{
 	@Override
 	public Exam build() {
 		return this.exam;
+	}
+
+	@Override
+	public void clean() {
+		this.exam = new Exam();
 	}
 }

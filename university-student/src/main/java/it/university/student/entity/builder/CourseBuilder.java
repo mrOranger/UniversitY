@@ -14,10 +14,6 @@ public class CourseBuilder implements Builder<Course>{
 		this.course = new Course();
 	}
 	
-	public CourseBuilder(Course course) {
-		this.course = course;
-	}
-	
 	public CourseBuilder setId(int id) {
 		this.course.setId(id);
 		return this;
@@ -48,4 +44,8 @@ public class CourseBuilder implements Builder<Course>{
 		return this.course;
 	}
 
+	@Override
+	public void clean() {
+		this.course = new Course();
+	}
 }
