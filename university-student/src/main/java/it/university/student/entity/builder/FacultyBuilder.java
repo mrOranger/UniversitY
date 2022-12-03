@@ -1,6 +1,5 @@
 package it.university.student.entity.builder;
 
-import it.university.student.entity.Department;
 import it.university.student.entity.Faculty;
 
 public class FacultyBuilder implements Builder<Faculty>{
@@ -13,11 +12,6 @@ public class FacultyBuilder implements Builder<Faculty>{
 	
 	public FacultyBuilder setName(String name) {
 		this.faculty.setName(name);
-		return this;
-	}
-	
-	public FacultyBuilder addDepartment(Department department) {
-		this.faculty.getDepartments().add(department);
 		return this;
 	}
 

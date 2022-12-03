@@ -45,12 +45,12 @@ public class Department implements Serializable{
 	@JoinColumn(name = "director")
 	private Professor director;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
 	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 	
