@@ -49,6 +49,16 @@ public class ProfessorBuilder implements Builder<Professor>{
 		this.professor.getCourses().add(course);
 		return this;
 	}
+	
+	public ProfessorBuilder setDeparmentDirector(Department department) {
+		this.professor.setDirector(department);
+		return this;
+	}
+	
+	public ProfessorBuilder setFacultyDirector(Faculty faculty) {
+		this.professor.setFaculty(faculty);
+		return this;
+	}
 
 	@Override
 	public Professor build() {

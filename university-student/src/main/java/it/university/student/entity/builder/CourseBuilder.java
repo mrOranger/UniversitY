@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import it.university.student.entity.Course;
 import it.university.student.entity.Exam;
-import it.university.student.entity.Professor;
 
 public class CourseBuilder implements Builder<Course>{
 	
@@ -31,11 +30,6 @@ public class CourseBuilder implements Builder<Course>{
 	
 	public CourseBuilder addExam(Exam exam) {
 		this.course.getExams().add(exam);
-		return this;
-	}
-	
-	public CourseBuilder addProfessor(Professor professor) {
-		this.course.getProfessors().add(professor);
 		return this;
 	}
 
