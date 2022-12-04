@@ -50,11 +50,6 @@ public class StudentBuilder implements Builder<Student>{
 		return this;
 	}
 	
-	public StudentBuilder addExam(Exam exam) {
-		this.student.getExams().add(exam);
-		return this;
-	}
-	
 	public StudentBuilder setAddress(Address address) {
 		this.student.setAddress(address);
 		return this;
@@ -62,6 +57,11 @@ public class StudentBuilder implements Builder<Student>{
 	
 	public StudentBuilder setDeparment(Department department) {
 		this.student.setDepartment(department);
+		return this;
+	}
+	
+	public StudentBuilder addExam(Exam exam) {
+		this.student.getExams().add(exam);
 		return this;
 	}
 

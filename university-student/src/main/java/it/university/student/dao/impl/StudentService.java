@@ -11,10 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.university.student.dao.StudentDao;
-import it.university.student.entity.Address;
-import it.university.student.entity.Department;
-import it.university.student.entity.Exam;
-import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 import it.university.student.repository.StudentRepository;
 
@@ -81,43 +77,43 @@ public class StudentService implements StudentDao{
 	}
 
 	@Override
-	public List<Student> findAllByAddress(Address address) {
-		return this.repository.findByAddress(address);
+	public List<Student> findAllByAddress(int address) {
+		return this.repository.findByAddressId(address);
 	}
 
 	@Override
-	public List<Student> findAllByDepartment(Department department) {
-		return this.repository.findByDepartment(department);
+	public List<Student> findAllByDepartment(String department) {
+		return this.repository.findByDepartmentName(department);
 	}
 
 	@Override
-	public List<Student> findAllByFaculty(Faculty faculty) {
-		return this.repository.findByDepartmentFaculty(faculty);
+	public List<Student> findAllByFaculty(String faculty) {
+		return this.repository.findByDepartmentFacultyName(faculty);
 	}
 
 	@Override
-	public List<Student> findAllByExam(Exam exam) {
-		return this.repository.findByExams(exam);
+	public List<Student> findAllByExam(int exam) {
+		return this.repository.findByExamsId(exam);
 	}
 
 	@Override
-	public List<Student> findAllByExamPresent(Exam exam) {
-		return this.repository.findByExamsAndExamsVoteNotNull(exam);
+	public List<Student> findAllByExamPresent(int exam) {
+		return this.repository.findByExamsIdAndExamsVoteNotNull(exam);
 	}
 
 	@Override
-	public List<Student> findAllByExamAbsente(Exam exam) {
-		return this.repository.findByExamsAndExamsVoteIsNull(exam);
+	public List<Student> findAllByExamAbsente(int exam) {
+		return this.repository.findByExamsIdAndExamsVoteIsNull(exam);
 	}
 	
 	@Override
-	public List<Student> findAllByExamVoteGreaterThan(Exam exam, byte vote) {
-		return this.repository.findByExamsAndExamsVoteGreaterThan(exam, vote);
+	public List<Student> findAllByExamVoteGreaterThan(int exam, byte vote) {
+		return this.repository.findByExamsIdAndExamsVoteGreaterThan(exam, vote);
 	}
 
 	@Override
-	public List<Student> findAllByExamVoteLowerThan(Exam exam, byte vote) {
-		return this.repository.findByExamsAndExamsVoteLessThan(exam, vote);
+	public List<Student> findAllByExamVoteLowerThan(int exam, byte vote) {
+		return this.repository.findByExamsIdAndExamsVoteLessThan(exam, vote);
 	}
 
 	@Override @Transactional
@@ -125,4 +121,13 @@ public class StudentService implements StudentDao{
 		return this.repository.save(student);
 	}
 
+	@Override @Transactional
+	public void deleteAll() {
+		this.repository.deleteAll();
+	}
+
+	@Override @Transactional
+	public void deleteStudent(String id) {
+		this.repository.deleteById(id);
+	}
 }

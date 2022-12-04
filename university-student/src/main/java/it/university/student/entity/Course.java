@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,7 @@ public class Course {
 	@EqualsAndHashCode.Exclude
 	private Set<Exam> exams = new HashSet<>();
 	
-	@ManyToMany(mappedBy = "courses")
+	@ManyToMany(mappedBy = "courses", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 

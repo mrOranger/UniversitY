@@ -5,10 +5,6 @@ import java.util.List;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import it.university.student.entity.Address;
-import it.university.student.entity.Department;
-import it.university.student.entity.Exam;
-import it.university.student.entity.Faculty;
 import it.university.student.entity.Student;
 
 public interface StudentRepository extends PagingAndSortingRepository<Student, String>{
@@ -23,15 +19,15 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, S
 	public abstract List<Student> findByAddressProvince(String province);
 	public abstract List<Student> findByAddressRegion(String region);
 	public abstract List<Student> findByAddressNation(String nation);
-	public abstract List<Student> findByAddress(Address address);
+	public abstract List<Student> findByAddressId(int id);
 	
-	public abstract List<Student> findByDepartment(Department department);
+	public abstract List<Student> findByDepartmentName(String name);
 	
-	public abstract List<Student> findByDepartmentFaculty(Faculty faculty);
+	public abstract List<Student> findByDepartmentFacultyName(String faculty);
 	
-	public abstract List<Student> findByExams(Exam exam);
-	public abstract List<Student> findByExamsAndExamsVoteNotNull(Exam exam);
-	public abstract List<Student> findByExamsAndExamsVoteIsNull(Exam exam);
-	public abstract List<Student> findByExamsAndExamsVoteGreaterThan(Exam exam, byte vote);
-	public abstract List<Student> findByExamsAndExamsVoteLessThan(Exam exam, byte vote);
+	public abstract List<Student> findByExamsId(int id);
+	public abstract List<Student> findByExamsIdAndExamsVoteNotNull(int id);
+	public abstract List<Student> findByExamsIdAndExamsVoteIsNull(int id);
+	public abstract List<Student> findByExamsIdAndExamsVoteGreaterThan(int id, byte vote);
+	public abstract List<Student> findByExamsIdAndExamsVoteLessThan(int id, byte vote);
 }

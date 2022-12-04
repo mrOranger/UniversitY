@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -25,11 +23,26 @@ import it.university.student.entity.Exam;
 import it.university.student.entity.Faculty;
 import it.university.student.entity.Professor;
 import it.university.student.entity.Student;
+import it.university.student.entity.builder.AddressBuilder;
+import it.university.student.entity.builder.CourseBuilder;
+import it.university.student.entity.builder.DepartmentBuilder;
+import it.university.student.entity.builder.ExamBuilder;
+import it.university.student.entity.builder.FacultyBuilder;
+import it.university.student.entity.builder.ProfessorBuilder;
+import it.university.student.entity.builder.StudentBuilder;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class)
 public class TestStudentRepository {
 	
 	@Autowired private StudentService service;
+	
+	@Autowired private AddressBuilder addressBuilder;
+	@Autowired private CourseBuilder courseBuilder;
+	@Autowired private DepartmentBuilder departmentBuilder;
+	@Autowired private ExamBuilder examBuilder;
+	@Autowired private FacultyBuilder facultyBuilder;
+	@Autowired private ProfessorBuilder professorBuilder;
+	@Autowired private StudentBuilder studentBuilder;
 	
 	@Test @Order(1)
 	public void testFindStudents() {
@@ -84,7 +97,7 @@ public class TestStudentRepository {
 		final List<Student> students = this.service.findAllByBachelorGrade(bacherlorGrade);
 		assertEquals(students.size(), 0);		
 	}
-	
+
 	@Test @Order(9)
 	public void testFindStudentsByCity() {
 		final String city = "Roma";
@@ -115,196 +128,111 @@ public class TestStudentRepository {
 	
 	@Test @Order(13)
 	public void testFindStudentsByAddress() {
-		
-		final Address address = new Address();
-		address.setId(1);
-		address.setStreet("Via Nazionale");
-		address.setNumber(123);
-		address.setCity("Milano");
-		address.setProvince("Milano");
-		address.setRegion("Lombardia");
-		address.setNation("Italia");
-		
-		final List<Student> students = this.service.findAllByAddress(address);
+		final List<Student> students = this.service.findAllByAddress(1);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(14)
 	public void testFindStudentsByDepartment() {
-		
-		final Department department = new Department();
-		department.setName("Dipartimento 1");
-		
-		final List<Student> students = this.service.findAllByDepartment(department);
+		final List<Student> students = this.service.findAllByDepartment("Dipartimento 1");
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(15)
 	public void testFindStudentsByFaculty() {
-		
-		final Faculty faculty = new Faculty();
-		faculty.setName("Facoltà 1");
-		
-		final List<Student> students = this.service.findAllByFaculty(faculty);
+		final List<Student> students = this.service.findAllByFaculty("Facoltà 1");
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(16)
 	public void testFindStudentsByExam() {
-		
-		final Exam exam = new Exam();
-		exam.setId(1);
-		exam.setDate(Date.valueOf(LocalDate.now()));
-		
-		final Course course = new Course();
-		course.setId(1);
-		course.setName("Analisi 1");
-		
-		exam.setCourse(course);
-		
-		final List<Student> students = this.service.findAllByExam(exam);
+		final List<Student> students = this.service.findAllByExam(1);
 		assertEquals(students.size(), 0);		
 		
 	}
 	
 	@Test @Order(17)
 	public void testFindStudentsByExamPresent() {
-		final Exam exam = new Exam();
-		exam.setId(1);
-		exam.setDate(Date.valueOf(LocalDate.now()));
-		
-		final Course course = new Course();
-		course.setId(1);
-		course.setName("Analisi 1");
-		
-		exam.setCourse(course);
-		
-		final List<Student> students = this.service.findAllByExamPresent(exam);
+		final List<Student> students = this.service.findAllByExamPresent(1);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(18)
 	public void testFindStudentsByExamAbsent() {
-		final Exam exam = new Exam();
-		exam.setId(1);
-		exam.setDate(Date.valueOf(LocalDate.now()));
-		
-		final Course course = new Course();
-		course.setId(1);
-		course.setName("Analisi 1");
-		
-		exam.setCourse(course);
-		
-		final List<Student> students = this.service.findAllByExamAbsente(exam);
+		final List<Student> students = this.service.findAllByExamAbsente(1);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(19)
 	public void testFindStudentsByExamVote() {
-		final Exam exam = new Exam();
-		exam.setId(1);
-		exam.setVote((byte)28);
-		exam.setDate(Date.valueOf(LocalDate.now()));
-		
-		final Course course = new Course();
-		course.setId(1);
-		course.setName("Analisi 1");
-		
-		exam.setCourse(course);
-		
-		final List<Student> students = this.service.findAllByExam(exam);
+		final List<Student> students = this.service.findAllByExam(1);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(20)
 	public void testFindStudentsByExamPassed() {
-		final Exam exam = new Exam();
-		exam.setId(1);
-		exam.setDate(Date.valueOf(LocalDate.now()));
-		
-		final Course course = new Course();
-		course.setId(1);
-		course.setName("Analisi 1");
-		
-		exam.setCourse(course);
-		
-		final List<Student> students = this.service.findAllByExamVoteGreaterThan(exam, (byte)18);
+		final List<Student> students = this.service.findAllByExamVoteGreaterThan(1, (byte)18);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(21)
 	public void testFindStudentsByExamNotPassed() {
-		final Exam exam = new Exam();
-		exam.setId(1);
-		exam.setDate(Date.valueOf(LocalDate.now()));
-		
-		final Course course = new Course();
-		course.setId(1);
-		course.setName("Analisi 1");
-		
-		exam.setCourse(course);
-		
-		final List<Student> students = this.service.findAllByExamVoteLowerThan(exam, (byte)18);
+		final List<Student> students = this.service.findAllByExamVoteLowerThan(1, (byte)18);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(22)
 	public void testSaveStudent() {
 		
-		final Student student = new Student();
-		student.setId("AB123CD");
-		student.setName("Mario");
-		student.setSurname("Rossi");
-		student.setSex('M');
-		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1990-01-01")));
-		student.setDiplomaGrade((byte)79);
-		student.setBachelorGrade((byte)105);
+		final Address address = this.addressBuilder
+				.setStreet("Via Nazionale")
+				.setNumber(123)
+				.setCity("Milano")
+				.setProvince("Milano")
+				.setRegion("Lombardia")
+				.setNation("Italia")
+				.build();
 		
-		final Address address = new Address();
-		address.setStreet("Via Nazionale");
-		address.setNumber(123);
-		address.setCity("Milano");
-		address.setProvince("Milano");
-		address.setRegion("Lombardia");
-		address.setNation("Italia");
+		final Faculty faculty = this.facultyBuilder
+				.setName("Facoltà 1")
+				.build();
 		
-		student.setAddress(address);
+		final Department department = this.departmentBuilder
+				.setName("Dipartimento 1")
+				.setFaculty(faculty)
+				.build();
 		
-		final Department department = new Department();
-		department.setName("Dipartimento 1");
-		department.setAddress(address);
+		final Professor professor = this.professorBuilder
+				.setId("XK123JH")
+				.setName("Maria")
+				.setSurname("Rossi")
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.build();
 		
-		final Professor professor = new Professor();
-		professor.setId("XK123JH");
-		professor.setName("Maria");
-		professor.setSurname("Rossi");
-		professor.setDepartment(department);
+		final Course course = this.courseBuilder
+				.setName("Analisi 1")
+				.setDate(Date.valueOf(LocalDate.now()))
+				.addProfessor(professor)
+				.build();
 		
-		department.setDirector(professor);
+		final Exam exam = this.examBuilder
+				.setDate(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.setVote((byte)21)
+				.setCourse(course)
+				.build();
 		
-		final Faculty faculty = new Faculty();
-		faculty.setName("Facoltà 1");
-		faculty.setDirector(professor);
-		
-		department.setFaculty(faculty);
-		
-		Set<Professor> professors = new HashSet<>();
-		professors.add(professor);
-		
-		final Course course = new Course();
-		course.setName("Analisi 1");
-		course.setDate(Date.valueOf(LocalDate.now()));
-		course.setProfessors(professors);
-		
-		final Exam exam = new Exam();
-		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
-		exam.setVote((byte)21);
-		exam.setCourse(course);
-		
-		Set<Exam> exams = new HashSet<>();
-		exams.add(exam);
-		
-		student.setExams(exams);
+		final Student student = this.studentBuilder
+				.setId("AB123CD")
+				.setName("Mario")
+				.setSurname("Rossi")
+				.setSex('M')
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("1990-01-01")))
+				.setDiplomaGrade((byte)79)
+				.setBachelorGrade((byte)105)
+				.setAddress(address)
+				.setDeparment(department)
+				.addExam(exam)
+				.build();
 		
 		this.service.save(student);
 		
@@ -317,56 +245,53 @@ public class TestStudentRepository {
 	@Test @Order(23)
 	public void testSaveStudentExamAbsent() {
 		
-		final Student student = new Student();
-		student.setId("AB456CD");
-		student.setName("Federica");
-		student.setSurname("Gialli");
-		student.setSex('F');
-		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1995-01-01")));
-		student.setDiplomaGrade((byte)100);
+		final Address address = this.addressBuilder
+				.setStreet("Dam Square")
+				.setNumber(123)
+				.setCity("Amsterdam")
+				.setProvince("Amsterdam")
+				.setRegion("Amsterdam")
+				.setNation("Holland")
+				.build();
 		
-		final Address address = new Address();
-		address.setStreet("Via Nazionale");
-		address.setNumber(123);
-		address.setCity("Torino");
-		address.setProvince("Torino");
-		address.setRegion("Piemonte");
-		address.setNation("Italia");
+		final Faculty faculty = this.facultyBuilder
+				.setName("Facoltà 2")
+				.build();
 		
-		student.setAddress(address);
+		final Department department = this.departmentBuilder
+				.setName("Dipartimento 2")
+				.setFaculty(faculty)
+				.build();
 		
-		final Department department = new Department();
-		department.setName("Dipartimento 1");
-		department.setAddress(address);
+		final Professor professor = this.professorBuilder
+				.setId("KL091OK")
+				.setName("Federico")
+				.setSurname("Rossi")
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.build();
 		
-		final Professor professor = new Professor();
-		professor.setName("Maria");
-		professor.setSurname("Rossi");
-		professor.setDepartment(department);
+		final Course course = this.courseBuilder
+				.setName("Analisi 2")
+				.setDate(Date.valueOf(LocalDate.now()))
+				.addProfessor(professor)
+				.build();
 		
-		department.setDirector(professor);
+		final Exam exam = this.examBuilder
+				.setDate(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.setCourse(course)
+				.build();
 		
-		final Faculty faculty = new Faculty();
-		faculty.setName("Facoltà 1");
-		faculty.setDirector(professor);
-		
-		department.setFaculty(faculty);
-		
-		Set<Professor> professors = new HashSet<>();
-		professors.add(professor);
-		
-		final Course course = new Course();
-		course.setName("Analisi 1");
-		course.setProfessors(professors);
-		
-		final Exam exam = new Exam();
-		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
-		exam.setCourse(course);
-		
-		Set<Exam> exams = new HashSet<>();
-		exams.add(exam);
-		
-		student.setExams(exams);
+		final Student student = this.studentBuilder
+				.setId("OL019AS")
+				.setName("John")
+				.setSurname("Von Ghogh")
+				.setSex('F')
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("1994-01-01")))
+				.setDiplomaGrade((byte)98)
+				.setAddress(address)
+				.setDeparment(department)
+				.addExam(exam)
+				.build();
 		
 		this.service.save(student);
 		
@@ -378,58 +303,54 @@ public class TestStudentRepository {
 	@Test @Order(24)
 	public void testSaveStudentExamPassed() {
 		
-		final Student student = new Student();
-		student.setId("AB456KJ");
-		student.setName("John");
-		student.setSurname("Black");
-		student.setSex('M');
-		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1997-01-01")));
-		student.setDiplomaGrade((byte)100);
+		final Address address = this.addressBuilder
+				.setStreet("Via Rosa")
+				.setNumber(12)
+				.setCity("Avellino")
+				.setProvince("Salerno")
+				.setRegion("Campania")
+				.setNation("Italia")
+				.build();
 		
-		final Address address = new Address();
-		address.setStreet("Groove Street");
-		address.setNumber(123);
-		address.setCity("Los Angeles");
-		address.setProvince("Los Angeles");
-		address.setRegion("California");
-		address.setNation("USA");
+		final Faculty faculty = this.facultyBuilder
+				.setName("Facoltà 2")
+				.build();
 		
-		student.setAddress(address);
+		final Department department = this.departmentBuilder
+				.setName("Dipartimento 2")
+				.setFaculty(faculty)
+				.build();
 		
-		final Department department = new Department();
-		department.setName("Dipartimento 2");
-		department.setAddress(address);
+		final Professor professor = this.professorBuilder
+				.setId("KL091OK")
+				.setName("Federico")
+				.setSurname("Rossi")
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.build();
 		
-		final Professor professor = new Professor();
-		professor.setId("OP321PP");
-		professor.setName("Federico");
-		professor.setSurname("Gialli");
-		professor.setDepartment(department);
+		final Course course = this.courseBuilder
+				.setName("Algoritmi e Strutture Dati")
+				.setDate(Date.valueOf(LocalDate.now()))
+				.addProfessor(professor)
+				.build();
 		
-		department.setDirector(professor);
-		
-		final Faculty faculty = new Faculty();
-		faculty.setName("Facoltà 2");
-		faculty.setDirector(professor);
-		
-		department.setFaculty(faculty);
-		
-		Set<Professor> professors = new HashSet<>();
-		professors.add(professor);
-		
-		final Course course = new Course();
-		course.setName("Programmazione");
-		course.setProfessors(professors);
-		
-		final Exam exam = new Exam();
-		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
-		exam.setVote((byte)30);
-		exam.setCourse(course);
-		
-		Set<Exam> exams = new HashSet<>();
-		exams.add(exam);
-		
-		student.setExams(exams);
+		final Exam exam = this.examBuilder
+				.setDate(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.setVote((byte)26)
+				.setCourse(course)
+				.build();
+
+		final Student student = this.studentBuilder
+				.setId("OL019AS")
+				.setName("John")
+				.setSurname("Von Ghogh")
+				.setSex('F')
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("1994-01-01")))
+				.setDiplomaGrade((byte)98)
+				.setAddress(address)
+				.setDeparment(department)
+				.addExam(exam)
+				.build();
 		
 		this.service.save(student);
 		
@@ -441,59 +362,56 @@ public class TestStudentRepository {
 	@Test @Order(25)
 	public void testSaveStudentExamNotPassed() {
 		
-		final Student student = new Student();
-		student.setId("AB456KJ");
-		student.setName("John");
-		student.setSurname("Black");
-		student.setSex('M');
-		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1997-01-01")));
-		student.setDiplomaGrade((byte)100);
+		final Address address = this.addressBuilder
+				.setStreet("Via Rosa")
+				.setNumber(12)
+				.setCity("Avellino")
+				.setProvince("Salerno")
+				.setRegion("Campania")
+				.setNation("Italia")
+				.build();
 		
-		final Address address = new Address();
-		address.setStreet("Groove Street");
-		address.setNumber(123);
-		address.setCity("Los Angeles");
-		address.setProvince("Los Angeles");
-		address.setRegion("California");
-		address.setNation("USA");
+		final Faculty faculty = this.facultyBuilder
+				.setName("Facoltà 2")
+				.build();
 		
-		student.setAddress(address);
+		final Department department = this.departmentBuilder
+				.setName("Dipartimento 1")
+				.setFaculty(faculty)
+				.build();
 		
-		final Department department = new Department();
-		department.setName("Dipartimento 2");
-		department.setAddress(address);
+		final Professor professor = this.professorBuilder
+				.setId("KL091OK")
+				.setName("Federico")
+				.setSurname("Rossi")
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.build();
 		
-		final Professor professor = new Professor();
-		professor.setName("Federico");
-		professor.setSurname("Gialli");
-		professor.setDepartment(department);
+		final Course course = this.courseBuilder
+				.setName("Algoritmi e Strutture Dati")
+				.setDate(Date.valueOf(LocalDate.now()))
+				.addProfessor(professor)
+				.build();
 		
-		department.setDirector(professor);
+		final Exam exam = this.examBuilder
+				.setDate(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.setVote((byte)16)
+				.setCourse(course)
+				.build();
+
+		final Student student = this.studentBuilder
+				.setId("OL019AL")
+				.setName("Federico")
+				.setSurname("Di Svevia")
+				.setSex('M')
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("1994-01-01")))
+				.setDiplomaGrade((byte)98)
+				.setAddress(address)
+				.setDeparment(department)
+				.addExam(exam)
+				.build();
 		
-		final Faculty faculty = new Faculty();
-		faculty.setName("Facoltà 2");
-		faculty.setDirector(professor);
-		
-		department.setFaculty(faculty);
-		
-		Set<Professor> professors = new HashSet<>();
-		professors.add(professor);
-		
-		final Course course = new Course();
-		course.setName("Programmazione");
-		course.setProfessors(professors);
-		
-		final Exam exam = new Exam();
-		exam.setDate(Date.valueOf(LocalDate.parse("2022-01-01")));
-		exam.setVote((byte)15);
-		exam.setCourse(course);
-		
-		Set<Exam> exams = new HashSet<>();
-		exams.add(exam);
-		
-		student.setExams(exams);
-		
-		this.service.save(student);		
+		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
 			.extracting(Student::getId)
@@ -502,18 +420,15 @@ public class TestStudentRepository {
 	
 	@Test @Order(26)
 	public void testUpdateStudent() {
-		final Student student = new Student();
-		student.setId("AB456KJ");
-		student.setName("John");
-		student.setSurname("Black");
-		student.setSex('M');
-		student.setDateOfBirth(Date.valueOf(LocalDate.parse("1998-01-01")));
-		student.setDiplomaGrade((byte)100);
-		
-		final Department department = new Department();
-		department.setName("Dipartimento 1");
-		
-		student.setDepartment(department);
+
+		final Student student = this.studentBuilder
+				.setId("OL019AS")
+				.setName("John")
+				.setSurname("Von Ghogh")
+				.setSex('M')
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("1994-01-01")))
+				.setDiplomaGrade((byte)98)
+				.build();
 		
 		this.service.save(student);		
 		
@@ -529,8 +444,6 @@ public class TestStudentRepository {
 	
 	@Test @Order(28)
 	public void testDeleteStudent() {
-		final Student student = new Student();
-		student.setId("AB456KJ");
-		this.service.deleteStudent(student);
+		this.service.deleteStudent("OL019AS");
 	}
 }
