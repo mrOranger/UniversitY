@@ -341,12 +341,12 @@ public class TestStudentRepository {
 				.build();
 
 		final Student student = this.studentBuilder
-				.setId("OL019AS")
-				.setName("John")
-				.setSurname("Von Ghogh")
-				.setSex('F')
+				.setId("OL222AS")
+				.setName("Michele")
+				.setSurname("De Siena")
+				.setSex('M')
 				.setDateOfBirth(Date.valueOf(LocalDate.parse("1994-01-01")))
-				.setDiplomaGrade((byte)98)
+				.setDiplomaGrade((byte)76)
 				.setAddress(address)
 				.setDeparment(department)
 				.addExam(exam)
@@ -442,12 +442,26 @@ public class TestStudentRepository {
 	}
 	
 	@Test @Order(27)
-	public void testDeleteStudents() {
-		this.service.deleteAll();
+	public void testFullDatabase() {
+		final List<Student> students = this.service.findAll();
+		assertEquals(students.size(), 4);		
 	}
 	
 	@Test @Order(28)
 	public void testDeleteStudent() {
 		this.service.deleteStudent("OL019AS");
+		assertNull(this.service.findById("OL019AS"));
+	}
+	
+	@Test @Order(29)
+	public void testDeleteStudents() {
+		this.service.deleteAll();	
+		assertNull(this.service.findById("OL019AS"));
+	}
+	
+	@Test @Order(30)
+	public void testEmptyDatabase() {
+		final List<Student> students = this.service.findAll();
+		assertEquals(students.size(), 0);		
 	}
 }
