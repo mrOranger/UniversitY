@@ -59,23 +59,23 @@ public class Professor implements Serializable {
 	@EqualsAndHashCode.Exclude
 	private Address address;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department")
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Department department;
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "director", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "director", orphanRemoval = true)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Department director;
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "director", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "director", orphanRemoval = true)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Faculty faculty;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(
 			name = "join_course",
 			joinColumns = { @JoinColumn(name = "professor") },

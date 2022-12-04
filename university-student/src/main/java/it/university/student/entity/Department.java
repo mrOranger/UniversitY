@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,11 +36,11 @@ public class Department implements Serializable{
 	@Size(max = 15, message = "{Size.Department.Name.Validation}")
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "address")
 	private Address address;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "director")
 	private Professor director;
 	
@@ -54,7 +53,7 @@ public class Department implements Serializable{
 	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "faculty")
 	private Faculty faculty; 
 
