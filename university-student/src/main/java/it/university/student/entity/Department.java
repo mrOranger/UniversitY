@@ -45,7 +45,7 @@ public class Department implements Serializable{
 	@JoinColumn(name = "director")
 	private Professor director;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();

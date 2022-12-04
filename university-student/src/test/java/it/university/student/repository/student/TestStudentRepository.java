@@ -435,6 +435,10 @@ public class TestStudentRepository {
 		assertThat(this.service.findById(student.getId()))
 			.extracting(Student::getDateOfBirth)
 			.isEqualTo(student.getDateOfBirth());
+		
+		assertThat(this.service.findById(student.getId()))
+			.extracting(Student::getSex)
+			.isEqualTo(student.getSex());
 	}
 	
 	@Test @Order(27)

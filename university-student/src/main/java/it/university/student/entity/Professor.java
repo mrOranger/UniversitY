@@ -75,7 +75,7 @@ public class Professor implements Serializable {
 	@EqualsAndHashCode.Exclude
 	private Faculty faculty;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	@JoinTable(
 			name = "join_course",
 			joinColumns = { @JoinColumn(name = "professor") },
