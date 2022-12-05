@@ -161,7 +161,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(6)
 	public void testGetStudentsBySexError() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/sex/M")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/sex/F")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

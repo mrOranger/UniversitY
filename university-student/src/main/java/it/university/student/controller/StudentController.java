@@ -3,39 +3,54 @@ package it.university.student.controller;
 import java.sql.Date;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.university.student.entity.Student;
 
-@RestController 
+@RestController @RequestMapping(path = "api/students/")
 public class StudentController {
 	
+	@RequestMapping(path = "find/")
 	public ResponseEntity<List<Student>> getStudents() {
 		return null;
 	}
 	
-	public ResponseEntity<Student> getStudent(String id) {
+	@RequestMapping(path = "find/{id}")
+	public ResponseEntity<Student> getStudent(@PathParam("id") String id) {
 		return null;
 	}
 	
-	public ResponseEntity<List<Student>> getStudentsByDateOfBirth(Date start, Date end) {
+	@RequestMapping(path = "find/date/{start}/{end}")
+	public ResponseEntity<List<Student>> getStudentsByDateOfBirth(@PathParam("start") Date start, @PathParam("end") Date end) {
 		return null;
 	}
 	
-	public ResponseEntity<List<Student>> getStudentsBySex(char sex) {
+	@RequestMapping(path = "find/sex/{sex}")
+	public ResponseEntity<List<Student>> getStudentsBySex(@PathParam("sex") char sex) {
 		return null;
 	}
 	
+	@RequestMapping(path = "find/bachelor/has")
 	public ResponseEntity<List<Student>> getStudentsHavingBachelorDegreee() {
 		return null;
 	}
 	
-	public ResponseEntity<List<Student>> getStudentsByDiplomaGrade(byte grade) {
+	@RequestMapping(path = "find/bachelor/has/not")
+	public ResponseEntity<List<Student>> getStudentsNotHavingBachelorDegreee() {
 		return null;
 	}
 	
-	public ResponseEntity<List<Student>> getStudentsByBachelorGrade(byte grade) {
+	@RequestMapping(path = "find/diploma/grade/{grade}")
+	public ResponseEntity<List<Student>> getStudentsByDiplomaGrade(@PathParam("grade") byte grade) {
+		return null;
+	}
+	
+	@RequestMapping(path = "find/diploma/bachelor/grade/{grade}")
+	public ResponseEntity<List<Student>> getStudentsByBachelorGrade(@PathParam("grade") byte grade) {
 		return null;
 	}
 	
