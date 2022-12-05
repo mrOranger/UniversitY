@@ -464,4 +464,65 @@ public class TestStudentRepository {
 		final List<Student> students = this.service.findAll();
 		assertEquals(students.size(), 0);		
 	}
+	
+	@Test @Order(31)
+	public void testSaveUniqueStudent() {
+		
+		final Address address = this.addressBuilder
+				.setStreet("Via Nazionale")
+				.setNumber(123)
+				.setCity("Milano")
+				.setProvince("Milano")
+				.setRegion("Lombardia")
+				.setNation("Italia")
+				.build();
+		
+		final Faculty faculty = this.facultyBuilder
+				.setName("Facoltà 1")
+				.build();
+		
+		final Department department = this.departmentBuilder
+				.setName("Dipartimento 1")
+				.setFaculty(faculty)
+				.build();
+		
+		final Professor professor = this.professorBuilder
+				.setId("XK123JH")
+				.setName("Maria")
+				.setSurname("Rossi")
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.build();
+		
+		final Course course = this.courseBuilder
+				.setName("Analisi 1")
+				.setDate(Date.valueOf(LocalDate.now()))
+				.addProfessor(professor)
+				.build();
+		
+		final Exam exam = this.examBuilder
+				.setDate(Date.valueOf(LocalDate.parse("2022-01-01")))
+				.setVote((byte)21)
+				.setCourse(course)
+				.build();
+		
+		final Student student = this.studentBuilder
+				.setId("AB123CD")
+				.setName("Mario")
+				.setSurname("Rossi")
+				.setSex('M')
+				.setDateOfBirth(Date.valueOf(LocalDate.parse("1990-01-01")))
+				.setDiplomaGrade((byte)79)
+				.setBachelorGrade((byte)105)
+				.setAddress(address)
+				.setDeparment(department)
+				.addExam(exam)
+				.build();
+		
+		this.service.save(student);
+		
+		assertThat(this.service.findById(student.getId()))
+			.extracting(Student::getId)
+			.isEqualTo(student.getId());
+		
+	}
 }
