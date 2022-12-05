@@ -12,8 +12,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -105,6 +107,7 @@ public class TestStudentControllerSelect {
 		
 	}
 	
+	@Test @Order(1)
 	public void testGetStudentById() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/AB123CD")
 				.accept(MediaType.APPLICATION_JSON))
@@ -114,6 +117,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());		
 	}
 	
+	@Test @Order(2)
 	public void testGetStudentByIdError() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/UNKNOWN")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -123,6 +127,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(3)
 	public void testGetStudentsByDateOfBirth() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/date/1980-01-01/2000-01-01")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -133,6 +138,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(4)
 	public void testGetStudentsByDateOfBirthError() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/date/2020-01/2022-01-01")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -142,6 +148,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(5)
 	public void testGetStudentsBySex() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/sex/M")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -152,6 +159,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(6)
 	public void testGetStudentsBySexError() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/sex/M")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -161,6 +169,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(7)
 	public void testGetStudentsByBachelorDegree() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/bachelor/has")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -171,6 +180,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());			
 	}
 	
+	@Test @Order(8)
 	public void testGetStudentsByBachelorDegreeError() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/bachelor/has/not")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -180,6 +190,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());			
 	}
 	
+	@Test @Order(9)
 	public void testGetStudentsByDiplomaGrade() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/diploma/grade/60")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -190,6 +201,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(10)
 	public void testGetStudentsByDiplomaGradeError() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/diploma/grade/100")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -199,6 +211,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(11)
 	public void testGetStudentsByBachelorGrade() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/bachelor/grade/70")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -209,6 +222,7 @@ public class TestStudentControllerSelect {
 				.andDo(print());	
 	}
 	
+	@Test @Order(12)
 	public void testGetStudentsByBachelorGradeError() throws Exception {
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/bachelor/grade/110")
 				.contentType(MediaType.APPLICATION_JSON))
