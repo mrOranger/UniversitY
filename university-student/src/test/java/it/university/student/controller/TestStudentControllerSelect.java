@@ -64,7 +64,7 @@ public class TestStudentControllerSelect {
 		
 		this.errorNotFound
 			.put("code", 404)
-			.put("message", "Non è stato trovato alcun studente!");
+			.put("message", "Non è stato trovato alcuno studente!");
 		
 		address.put("id", 6)
 			.put("street", "Via Nazionale")
