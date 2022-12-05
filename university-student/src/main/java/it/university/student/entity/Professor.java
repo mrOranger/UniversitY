@@ -54,7 +54,7 @@ public class Professor implements Serializable {
 	@NotNull(message = "{NotNull.Professor.DateOfBirth.Validation}")
 	private Date dateOfBirth;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "address")
 	@EqualsAndHashCode.Exclude
 	private Address address;
