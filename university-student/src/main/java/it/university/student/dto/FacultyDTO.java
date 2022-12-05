@@ -1,5 +1,12 @@
 package it.university.student.dto;
 
-public class FacultyDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data @AllArgsConstructor @NoArgsConstructor
+public final class FacultyDTO {
+	
+	private String name;
 
 }
