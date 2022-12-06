@@ -1,6 +1,6 @@
 package it.university.student.dao;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 import it.university.student.dto.StudentDTO;
@@ -10,9 +10,10 @@ public interface StudentDao {
 
 	public abstract List<StudentDTO> findAll();
 	public abstract StudentDTO findById(String id);
-	public abstract List<StudentDTO> findAllByDate(LocalDate start, LocalDate end);
+	public abstract List<StudentDTO> findAllByDate(Date start, Date end);
 	public abstract List<StudentDTO> findAllBySex(char sex);
 	public abstract List<StudentDTO> findAllByBachelorDegree();
+	public abstract List<StudentDTO> findAllByBachelorDegreeNot();
 	public abstract List<StudentDTO> findAllByDiplomaGrade(byte diplomaGrade);
 	public abstract List<StudentDTO> findAllByBachelorGrade(byte bachelorGrade);
 	

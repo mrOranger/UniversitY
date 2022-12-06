@@ -1,7 +1,6 @@
 package it.university.student.dao.impl;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,9 +33,9 @@ public class StudentService implements StudentDao{
 	}
 
 	@Override
-	public List<StudentDTO> findAllByDate(LocalDate start, LocalDate end) {
+	public List<StudentDTO> findAllByDate(Date start, Date end) {
 		return this.convertToDto(this.repository
-				.findByDateOfBirthBetween(Date.valueOf(start), Date.valueOf(end)));
+				.findByDateOfBirthBetween(start, end));
 	}
 
 	@Override
@@ -47,6 +46,11 @@ public class StudentService implements StudentDao{
 	@Override
 	public List<StudentDTO> findAllByBachelorDegree() {
 		return this.convertToDto(this.repository.findByBachelorGradeNotNull());
+	}
+	
+	@Override
+	public List<StudentDTO> findAllByBachelorDegreeNot() {
+		return this.convertToDto(this.repository.findByBachelorGradeIsNull());
 	}
 
 	@Override

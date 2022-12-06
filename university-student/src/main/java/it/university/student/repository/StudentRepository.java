@@ -12,6 +12,7 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, S
 	public abstract List<Student> findByDateOfBirthBetween(Date start, Date end);
 	public abstract List<Student> findBySex(char sex);
 	public abstract List<Student> findByBachelorGradeNotNull();
+	public abstract List<Student> findByBachelorGradeIsNull();
 	public abstract List<Student> findByDiplomaGrade(byte diplomaGrade);
 	public abstract List<Student> findByBachelorGrade(byte bachelorGrade);
 	
