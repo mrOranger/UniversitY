@@ -241,4 +241,109 @@ public class TestStudentControllerSelect {
 				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());
 	}
+	
+	@Test @Order(13)
+	public void testGetStudentsByCity() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/city/Milano")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(14)
+	public void testGetStudentsByCityError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/city/Torino")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());		
+	}
+	
+	@Test @Order(15)
+	public void testGetStudentsByProvince() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/province/Milano")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(16)
+	public void testGetStudentsByProvinceError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/province/Torino")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(17)
+	public void testGetStudentsByRegion() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/region/Lombardia")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(18)
+	public void testGetStudentsByRegionError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/province/Piemonte")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(19)
+	public void testGetStudentsByNation() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/nation/Italia")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());				
+	}
+	
+	@Test @Order(20)
+	public void testGetStudentsByNationError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/province/USA")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());		
+	}
+	
+	@Test @Order(21)
+	public void testGetStudentsByAddressId() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/id/6")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(22)
+	public void testGetStudentsByAddressIdError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/id/6")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());		
+	}
 }
