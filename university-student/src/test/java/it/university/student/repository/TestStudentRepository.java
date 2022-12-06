@@ -238,7 +238,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 		
 	}
@@ -297,7 +297,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 	}
 	
@@ -356,7 +356,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 	}
 	
@@ -415,7 +415,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 	}
 	
@@ -434,11 +434,11 @@ public class TestStudentRepository {
 		this.service.save(student);		
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getDateOfBirth)
+			.extracting(StudentDTO::getDateOfBirth)
 			.isEqualTo(student.getDateOfBirth());
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getSex)
+			.extracting(StudentDTO::getSex)
 			.isEqualTo(student.getSex());
 	}
 	
@@ -522,7 +522,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 		
 	}

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import it.university.student.dto.StudentDTO;
+import it.university.student.entity.Student;
 
 public interface StudentDao {
 
@@ -31,7 +32,7 @@ public interface StudentDao {
 	public abstract List<StudentDTO> findAllByExamVoteGreaterThan(int exam, byte vote);
 	public abstract List<StudentDTO> findAllByExamVoteLowerThan(int exam, byte vote);
 	
-	public abstract StudentDTO save(StudentDTO student);
+	public abstract StudentDTO save(Student student);
 	
 	public abstract void deleteAll();
 	public abstract void deleteStudent(String id);
