@@ -339,7 +339,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(22)
 	public void testGetStudentsByAddressIdError() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/id/6")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/address/id/10")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

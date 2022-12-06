@@ -98,23 +98,48 @@ public final class StudentController {
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
 	
-	public final ResponseEntity<List<StudentDTO>> getStudentsByCity(String city) {
-		return null;
+	@GetMapping(path = "find/address/city/{city}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByCity(@PathVariable("city") String city) {
+		final List<StudentDTO> students = this.service.findAllByCity(city);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
 	
-	public final ResponseEntity<List<StudentDTO>> getStudentsByProvince(String province) {
-		return null;
+	@GetMapping(path = "find/address/province/{province}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByProvince(@PathVariable("province") String province) {
+		final List<StudentDTO> students = this.service.findAllByProvince(province);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
 	
-	public final ResponseEntity<List<StudentDTO>> getStudentsByRegion(String region) {
-		return null;
+	@GetMapping(path = "find/address/region/{region}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByRegion(@PathVariable("region") String region) {
+		final List<StudentDTO> students = this.service.findAllByRegion(region);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
 	
-	public final ResponseEntity<List<StudentDTO>> getStudentsByNation(String nation) {
-		return null;
+	@GetMapping(path = "find/address/nation/{nation}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByNation(@PathVariable("nation") String nation) {
+		final List<StudentDTO> students = this.service.findAllByNation(nation);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
 	
-	public final ResponseEntity<List<StudentDTO>> getStudentsByAddress(int address) {
-		return null;	
+	@GetMapping(path = "find/address/id/{address}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByAddress(@PathVariable("address") int address) {
+		final List<StudentDTO> students = this.service.findAllByAddress(address);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
 }
