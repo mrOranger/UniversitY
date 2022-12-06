@@ -40,14 +40,14 @@ public class Exam {
 	@Max(value = (byte)30, message = "{Max.Exam.Date.Validation}")
 	private byte vote;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "student")
 	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Student.class)
+	@JoinColumn(name = "student", referencedColumnName = "id", updatable = true, insertable = true)
 	@EqualsAndHashCode.Exclude
 	private Student student;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "course")
+	@JoinColumn(name = "course", referencedColumnName = "id")
 	private Course course;
 	
 }

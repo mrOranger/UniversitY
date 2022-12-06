@@ -82,10 +82,10 @@ public class TestStudentControllerSelect {
 		professor.put("id", "XK123JH")
 			.put("name", "Maria")
 			.put("surname", "Rossi")
-			.put("date_of_birth", "2022-01-01");
+			.put("dateOfBirth", "2022-01-01");
 		
 		course.put("name", "Analisi 1")
-			.put("start_date", "2022-12-05")
+			.put("startDate", "2022-12-05")
 			.put("professor", professor);
 		
 		exam.put("date", "2022-01-01")
@@ -98,9 +98,9 @@ public class TestStudentControllerSelect {
 			.put("name", "Mario")
 			.put("surname", "Rossi")
 			.put("sex", 'M')
-			.put("date_of_birth", "1990-01-01")
-			.put("diploma_grade", (byte)79)
-			.put("bachelor_grade", (byte)105)
+			.put("dateOfBirth", "1990-01-01")
+			.put("diplomaGrade", (byte)79)
+			.put("bachelorGrade", (byte)105)
 			.put("address", address)
 			.put("department", department)
 			.put("exams", exams);

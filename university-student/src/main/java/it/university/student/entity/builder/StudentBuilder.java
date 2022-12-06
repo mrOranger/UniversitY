@@ -62,6 +62,7 @@ public class StudentBuilder implements Builder<Student>{
 	
 	public StudentBuilder addExam(Exam exam) {
 		this.student.getExams().add(exam);
+		exam.setStudent(this.student);
 		return this;
 	}
 

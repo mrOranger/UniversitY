@@ -69,15 +69,15 @@ public class Student implements Serializable {
 	private byte bachelorGrade;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "address")
+	@JoinColumn(name = "address", referencedColumnName = "id")
 	private Address address;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "department")
+	@JoinColumn(name = "department", referencedColumnName = "name")
 	private Department department;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
 	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Exam> exams = new HashSet<>();
 
 }

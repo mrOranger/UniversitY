@@ -55,7 +55,7 @@ public class Department implements Serializable{
 	private Set<Professor> professors = new HashSet<>();
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "faculty")
+	@JoinColumn(name = "faculty", referencedColumnName = "name")
 	private Faculty faculty; 
 
 }

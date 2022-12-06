@@ -75,11 +75,12 @@ public class Professor implements Serializable {
 	@EqualsAndHashCode.Exclude
 	private Faculty faculty;
 	
-	@ManyToMany(cascade = CascadeType.REMOVE)
+	@ManyToMany(cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
 	@JoinTable(
 			name = "join_course",
 			joinColumns = { @JoinColumn(name = "professor") },
 			inverseJoinColumns = { @JoinColumn(name = "course") })
 	@JsonBackReference
+	@EqualsAndHashCode.Exclude
 	private Set<Course> courses = new HashSet<>();
 }

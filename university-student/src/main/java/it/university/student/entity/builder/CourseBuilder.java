@@ -30,6 +30,7 @@ public class CourseBuilder implements Builder<Course>{
 	
 	public CourseBuilder addProfessor(Professor professor) {
 		this.course.getProfessors().add(professor);
+		professor.getCourses().add(course);
 		return this;
 	}
 

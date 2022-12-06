@@ -47,7 +47,7 @@ public class Course {
 	@EqualsAndHashCode.Exclude
 	private Set<Exam> exams = new HashSet<>();
 	
-	@ManyToMany(mappedBy = "courses", cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<Professor> professors = new HashSet<>();
 

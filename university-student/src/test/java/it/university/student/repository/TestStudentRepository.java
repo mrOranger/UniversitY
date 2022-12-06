@@ -502,7 +502,6 @@ public class TestStudentRepository {
 		
 		final Exam exam = this.examBuilder
 				.setDate(Date.valueOf(LocalDate.parse("2022-01-01")))
-				.setVote((byte)21)
 				.setCourse(course)
 				.build();
 		
