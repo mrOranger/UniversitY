@@ -388,4 +388,88 @@ public class TestStudentControllerSelect {
 				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());			
 	}
+	
+	@Test @Order(27)
+	public void testGetUsersByExamId() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(28)
+	public void testGetUsersByExamIdError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/7")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());				
+	}
+	
+	@Test @Order(29)
+	public void testGetUsersByExamPresent() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/present")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());					
+	}
+	
+	@Test @Order(30)
+	public void testGetUsersByExamAbsent() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/absent")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());				
+	}
+	
+	@Test @Order(31)
+	public void testGetUsesByExamGreaterThan() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/greater/18")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());				
+	}
+	
+	@Test @Order(32)
+	public void testGetUsesByExamGreaterThanError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/greater/27")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());		
+	}
+	
+	@Test @Order(33)
+	public void testGetUsesByExamLessThan() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/less/30")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(34)
+	public void testGetUsesByExamLessThanError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/less/18")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());		
+	}
 }
