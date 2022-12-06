@@ -144,7 +144,7 @@ public final class StudentController {
 	}
 	
 	@GetMapping(path = "find/department/{department}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByDepartment(String department) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByDepartment(@PathVariable("department") String department) {
 		final List<StudentDTO> students = this.service.findAllByDepartment(department);
 		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
@@ -153,7 +153,7 @@ public final class StudentController {
 	}
 	
 	@GetMapping(path = "find/faculty/{faculty}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByFaculty(String faculty) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByFaculty(@PathVariable("faculty") String faculty) {
 		final List<StudentDTO> students = this.service.findAllByFaculty(faculty);
 		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
