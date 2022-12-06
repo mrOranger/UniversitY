@@ -56,6 +56,7 @@ public class Professor implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "address")
+	@JsonBackReference
 	@EqualsAndHashCode.Exclude
 	private Address address;
 	
