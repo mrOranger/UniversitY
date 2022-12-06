@@ -142,4 +142,22 @@ public final class StudentController {
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
+	
+	@GetMapping(path = "find/department/{department}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByDepartment(String department) {
+		final List<StudentDTO> students = this.service.findAllByDepartment(department);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);		
+	}
+	
+	@GetMapping(path = "find/faculty/{faculty}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByFaculty(String faculty) {
+		final List<StudentDTO> students = this.service.findAllByFaculty(faculty);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);		
+	}
 }
