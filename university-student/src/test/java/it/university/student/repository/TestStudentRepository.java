@@ -59,8 +59,8 @@ public class TestStudentRepository {
 	
 	@Test @Order(3)
 	public void testFindStudentsByDateOfBirth() {
-		final LocalDate startDate = LocalDate.parse("1990-01-01");
-		final LocalDate endDate   = LocalDate.now();
+		final Date startDate = Date.valueOf(LocalDate.parse("1990-01-01"));
+		final Date endDate   = Date.valueOf(LocalDate.now());
 		final List<StudentDTO> students = this.service.findAllByDate(startDate, endDate);
 		assertEquals(students.size(), 0);
 	}
