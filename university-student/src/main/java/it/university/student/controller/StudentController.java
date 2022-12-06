@@ -160,4 +160,49 @@ public final class StudentController {
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);		
 	}
+	
+	@GetMapping(path = "find/exams/{id}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByExamId(@PathVariable("id") int id) {
+		final List<StudentDTO> students = this.service.findAllByExam(id);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
+	}
+	
+	@GetMapping(path = "find/exams/{id}/present") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByExamPresent(@PathVariable("id") int id) {
+		final List<StudentDTO> students = this.service.findAllByExamPresent(id);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
+	}
+	
+	@GetMapping(path = "find/exams/{id}/absent") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByExamAbsent(@PathVariable("id") int id) {
+		final List<StudentDTO> students = this.service.findAllByExamAbsente(id);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
+	}
+	
+	@GetMapping(path = "find/exams/{id}/vote/greater/{vote}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByExamVoteGreater(@PathVariable("id") int id, @PathVariable("vote") byte vote) {
+		final List<StudentDTO> students = this.service.findAllByExamVoteGreaterThan(id, vote);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
+	}
+	
+	@GetMapping(path = "find/exams/{id}/vote/less/{vote}") @SneakyThrows
+	public final ResponseEntity<List<StudentDTO>> getStudentsByExamVoteLess(@PathVariable("id") int id, @PathVariable("vote") byte vote) {
+		final List<StudentDTO> students = this.service.findAllByExamVoteLowerThan(id, vote);
+		if(students.isEmpty()) {
+			throw new EmptyCollectionException();
+		}
+		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
+	}
 }

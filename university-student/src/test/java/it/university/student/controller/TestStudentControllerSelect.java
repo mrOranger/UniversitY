@@ -391,7 +391,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(27)
 	public void testGetUsersByExamId() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/6")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -402,7 +402,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(28)
 	public void testGetUsersByExamIdError() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/7")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/7")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -412,7 +412,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(29)
 	public void testGetUsersByExamPresent() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/present")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/6/present")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -423,7 +423,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(30)
 	public void testGetUsersByExamAbsent() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/absent")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/6/absent")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -433,7 +433,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(31)
 	public void testGetUsesByExamGreaterThan() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/greater/18")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/6/vote/greater/15")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -444,7 +444,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(32)
 	public void testGetUsesByExamGreaterThanError() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/greater/27")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/6/vote/greater/18")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -454,7 +454,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(33)
 	public void testGetUsesByExamLessThan() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/less/30")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/6/vote/less/18")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -465,7 +465,7 @@ public class TestStudentControllerSelect {
 	
 	@Test @Order(34)
 	public void testGetUsesByExamLessThanError() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/id/6/vote/less/18")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/exams/6/vote/less/15")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
