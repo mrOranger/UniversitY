@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import it.university.student.dao.impl.StudentService;
+import it.university.student.dto.StudentDTO;
 import it.university.student.entity.Address;
 import it.university.student.entity.Course;
 import it.university.student.entity.Department;
@@ -46,7 +47,7 @@ public class TestStudentRepository {
 	
 	@Test @Order(1)
 	public void testFindStudents() {
-		final List<Student> students = this.service.findAll();
+		final List<StudentDTO> students = this.service.findAll();
 		assertEquals(students.size(), 0);
 	}
 	
@@ -60,124 +61,124 @@ public class TestStudentRepository {
 	public void testFindStudentsByDateOfBirth() {
 		final LocalDate startDate = LocalDate.parse("1990-01-01");
 		final LocalDate endDate   = LocalDate.now();
-		final List<Student> students = this.service.findAllByDate(startDate, endDate);
+		final List<StudentDTO> students = this.service.findAllByDate(startDate, endDate);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(4)
 	public void testFindStudentsBySexMale() {
 		final char sex = 'M';
-		final List<Student> students = this.service.findAllBySex(sex);
+		final List<StudentDTO> students = this.service.findAllBySex(sex);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(5)
 	public void testFindStudentsBySexFemale() {
 		final char sex = 'F';
-		final List<Student> students = this.service.findAllBySex(sex);
+		final List<StudentDTO> students = this.service.findAllBySex(sex);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(6)
 	public void testFindStudentByBachelorDegree() {
-		final List<Student> students = this.service.findAllByBachelorDegree();
+		final List<StudentDTO> students = this.service.findAllByBachelorDegree();
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(7)
 	public void testFindStudentsByDiplomaGrade() {
 		final byte diplomaGrade = 60;
-		final List<Student> students = this.service.findAllByDiplomaGrade(diplomaGrade);
+		final List<StudentDTO> students = this.service.findAllByDiplomaGrade(diplomaGrade);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(8)
 	public void testFindStudentsByBachelorGrade() {
 		final byte bacherlorGrade = 100;
-		final List<Student> students = this.service.findAllByBachelorGrade(bacherlorGrade);
+		final List<StudentDTO> students = this.service.findAllByBachelorGrade(bacherlorGrade);
 		assertEquals(students.size(), 0);		
 	}
 
 	@Test @Order(9)
 	public void testFindStudentsByCity() {
 		final String city = "Roma";
-		final List<Student> students = this.service.findAllByCity(city);
+		final List<StudentDTO> students = this.service.findAllByCity(city);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(10)
 	public void testFindStudentsByProvince() {
 		final String province = "Roma";
-		final List<Student> students = this.service.findAllByProvince(province);
+		final List<StudentDTO> students = this.service.findAllByProvince(province);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(11)
 	public void testFindStudentsByRegion() {
 		final String region = "Lazio";
-		final List<Student> students = this.service.findAllByRegion(region);
+		final List<StudentDTO> students = this.service.findAllByRegion(region);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(12)
 	public void testFindStudentsByNation() {
 		final String nation = "Italia";
-		final List<Student> students = this.service.findAllByNation(nation);
+		final List<StudentDTO> students = this.service.findAllByNation(nation);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(13)
 	public void testFindStudentsByAddress() {
-		final List<Student> students = this.service.findAllByAddress(1);
+		final List<StudentDTO> students = this.service.findAllByAddress(1);
 		assertEquals(students.size(), 0);
 	}
 	
 	@Test @Order(14)
 	public void testFindStudentsByDepartment() {
-		final List<Student> students = this.service.findAllByDepartment("Dipartimento 1");
+		final List<StudentDTO> students = this.service.findAllByDepartment("Dipartimento 1");
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(15)
 	public void testFindStudentsByFaculty() {
-		final List<Student> students = this.service.findAllByFaculty("Facoltà 1");
+		final List<StudentDTO> students = this.service.findAllByFaculty("Facoltà 1");
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(16)
 	public void testFindStudentsByExam() {
-		final List<Student> students = this.service.findAllByExam(1);
+		final List<StudentDTO> students = this.service.findAllByExam(1);
 		assertEquals(students.size(), 0);		
 		
 	}
 	
 	@Test @Order(17)
 	public void testFindStudentsByExamPresent() {
-		final List<Student> students = this.service.findAllByExamPresent(1);
+		final List<StudentDTO> students = this.service.findAllByExamPresent(1);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(18)
 	public void testFindStudentsByExamAbsent() {
-		final List<Student> students = this.service.findAllByExamAbsente(1);
+		final List<StudentDTO> students = this.service.findAllByExamAbsente(1);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(19)
 	public void testFindStudentsByExamVote() {
-		final List<Student> students = this.service.findAllByExam(1);
+		final List<StudentDTO> students = this.service.findAllByExam(1);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(20)
 	public void testFindStudentsByExamPassed() {
-		final List<Student> students = this.service.findAllByExamVoteGreaterThan(1, (byte)18);
+		final List<StudentDTO> students = this.service.findAllByExamVoteGreaterThan(1, (byte)18);
 		assertEquals(students.size(), 0);		
 	}
 	
 	@Test @Order(21)
 	public void testFindStudentsByExamNotPassed() {
-		final List<Student> students = this.service.findAllByExamVoteLowerThan(1, (byte)18);
+		final List<StudentDTO> students = this.service.findAllByExamVoteLowerThan(1, (byte)18);
 		assertEquals(students.size(), 0);
 	}
 	
@@ -237,7 +238,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 		
 	}
@@ -296,7 +297,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 	}
 	
@@ -355,7 +356,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 	}
 	
@@ -414,7 +415,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 	}
 	
@@ -433,17 +434,17 @@ public class TestStudentRepository {
 		this.service.save(student);		
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getDateOfBirth)
+			.extracting(StudentDTO::getDateOfBirth)
 			.isEqualTo(student.getDateOfBirth());
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getSex)
+			.extracting(StudentDTO::getSex)
 			.isEqualTo(student.getSex());
 	}
 	
 	@Test @Order(27)
 	public void testFullDatabase() {
-		final List<Student> students = this.service.findAll();
+		final List<StudentDTO> students = this.service.findAll();
 		assertEquals(students.size(), 4);		
 	}
 	
@@ -461,7 +462,7 @@ public class TestStudentRepository {
 	
 	@Test @Order(30)
 	public void testEmptyDatabase() {
-		final List<Student> students = this.service.findAll();
+		final List<StudentDTO> students = this.service.findAll();
 		assertEquals(students.size(), 0);		
 	}
 	
@@ -521,7 +522,7 @@ public class TestStudentRepository {
 		this.service.save(student);
 		
 		assertThat(this.service.findById(student.getId()))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo(student.getId());
 		
 	}
