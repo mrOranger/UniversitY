@@ -9,7 +9,7 @@ public final class AddressDTO {
 	
 	private int id;
 	private String street;
-	private String number;
+	private int number;
 	private String city;
 	private String province;
 	private String region;

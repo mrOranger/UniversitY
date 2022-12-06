@@ -12,71 +12,71 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.university.student.dao.impl.StudentService;
-import it.university.student.entity.Student;
+import it.university.student.dto.StudentDTO;
 import lombok.SneakyThrows;
 
-@RestController @RequestMapping(path = "api/students/", produces = MediaType.APPLICATION_JSON_VALUE)
+@RestController @RequestMapping(path = "api/StudentDTOs/", produces = MediaType.APPLICATION_JSON_VALUE)
 public final class StudentController {
 	
 	@Autowired private StudentService service;
 	
 	@RequestMapping(path = "find/") @SneakyThrows
-	public final ResponseEntity<List<Student>> getStudents() {
+	public final ResponseEntity<List<StudentDTO>> getStudents() {
 		return null;
 	}
 	
 	@RequestMapping(path = "find/{id}") @SneakyThrows
-	public final ResponseEntity<Student> getStudent(@PathParam("id") String id) {
+	public final ResponseEntity<StudentDTO> getStudent(@PathParam("id") String id) {
 		return null;
 	}
 	
 	@RequestMapping(path = "find/date/{start}/{end}") @SneakyThrows
-	public final ResponseEntity<List<Student>> getStudentsByDateOfBirth(@PathParam("start") Date start, @PathParam("end") Date end) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByDateOfBirth(@PathParam("start") Date start, @PathParam("end") Date end) {
 		return null;
 	}
 	
 	@RequestMapping(path = "find/sex/{sex}") @SneakyThrows
-	public final ResponseEntity<List<Student>> getStudentsBySex(@PathParam("sex") char sex) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsBySex(@PathParam("sex") char sex) {
 		return null;
 	}
 	
 	@RequestMapping(path = "find/bachelor/has") @SneakyThrows
-	public final ResponseEntity<List<Student>> getStudentsHavingBachelorDegreee() {
+	public final ResponseEntity<List<StudentDTO>> getStudentsHavingBachelorDegreee() {
 		return null;
 	}
 	
 	@RequestMapping(path = "find/bachelor/has/not") @SneakyThrows
-	public final ResponseEntity<List<Student>> getStudentsNotHavingBachelorDegreee() {
+	public final ResponseEntity<List<StudentDTO>> getStudentsNotHavingBachelorDegreee() {
 		return null;
 	}
 	
 	@RequestMapping(path = "find/diploma/grade/{grade}") @SneakyThrows
-	public final ResponseEntity<List<Student>> getStudentsByDiplomaGrade(@PathParam("grade") byte grade) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByDiplomaGrade(@PathParam("grade") byte grade) {
 		return null;
 	}
 	
 	@RequestMapping(path = "find/diploma/bachelor/grade/{grade}") @SneakyThrows
-	public final ResponseEntity<List<Student>> getStudentsByBachelorGrade(@PathParam("grade") byte grade) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByBachelorGrade(@PathParam("grade") byte grade) {
 		return null;
 	}
 	
-	public final ResponseEntity<List<Student>> getStudentsByCity(String city) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByCity(String city) {
 		return null;
 	}
 	
-	public final ResponseEntity<List<Student>> getStudentsByProvince(String province) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByProvince(String province) {
 		return null;
 	}
 	
-	public final ResponseEntity<List<Student>> getStudentsByRegion(String region) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByRegion(String region) {
 		return null;
 	}
 	
-	public final ResponseEntity<List<Student>> getStudentsByNation(String nation) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByNation(String nation) {
 		return null;
 	}
 	
-	public final ResponseEntity<List<Student>> getStudentsByAddress(int address) {
+	public final ResponseEntity<List<StudentDTO>> getStudentsByAddress(int address) {
 		return null;	
 	}
 }
