@@ -3,35 +3,35 @@ package it.university.student.dao;
 import java.time.LocalDate;
 import java.util.List;
 
-import it.university.student.entity.Student;
+import it.university.student.dto.StudentDTO;
 
 public interface StudentDao {
 
-	public abstract List<Student> findAll();
-	public abstract Student findById(String id);
-	public abstract List<Student> findAllByDate(LocalDate start, LocalDate end);
-	public abstract List<Student> findAllBySex(char sex);
-	public abstract List<Student> findAllByBachelorDegree();
-	public abstract List<Student> findAllByDiplomaGrade(byte diplomaGrade);
-	public abstract List<Student> findAllByBachelorGrade(byte bachelorGrade);
+	public abstract List<StudentDTO> findAll();
+	public abstract StudentDTO findById(String id);
+	public abstract List<StudentDTO> findAllByDate(LocalDate start, LocalDate end);
+	public abstract List<StudentDTO> findAllBySex(char sex);
+	public abstract List<StudentDTO> findAllByBachelorDegree();
+	public abstract List<StudentDTO> findAllByDiplomaGrade(byte diplomaGrade);
+	public abstract List<StudentDTO> findAllByBachelorGrade(byte bachelorGrade);
 	
-	public abstract List<Student> findAllByCity(String city);
-	public abstract List<Student> findAllByProvince(String province);
-	public abstract List<Student> findAllByRegion(String region);
-	public abstract List<Student> findAllByNation(String nation);
-	public abstract List<Student> findAllByAddress(int address);
+	public abstract List<StudentDTO> findAllByCity(String city);
+	public abstract List<StudentDTO> findAllByProvince(String province);
+	public abstract List<StudentDTO> findAllByRegion(String region);
+	public abstract List<StudentDTO> findAllByNation(String nation);
+	public abstract List<StudentDTO> findAllByAddress(int address);
 	
-	public abstract List<Student> findAllByDepartment(String department);
+	public abstract List<StudentDTO> findAllByDepartment(String department);
 	
-	public abstract List<Student> findAllByFaculty(String faculty);
+	public abstract List<StudentDTO> findAllByFaculty(String faculty);
 	
-	public abstract List<Student> findAllByExam(int exam);
-	public abstract List<Student> findAllByExamPresent(int exam);
-	public abstract List<Student> findAllByExamAbsente(int exam);
-	public abstract List<Student> findAllByExamVoteGreaterThan(int exam, byte vote);
-	public abstract List<Student> findAllByExamVoteLowerThan(int exam, byte vote);
+	public abstract List<StudentDTO> findAllByExam(int exam);
+	public abstract List<StudentDTO> findAllByExamPresent(int exam);
+	public abstract List<StudentDTO> findAllByExamAbsente(int exam);
+	public abstract List<StudentDTO> findAllByExamVoteGreaterThan(int exam, byte vote);
+	public abstract List<StudentDTO> findAllByExamVoteLowerThan(int exam, byte vote);
 	
-	public abstract Student save(Student student);
+	public abstract StudentDTO save(StudentDTO student);
 	
 	public abstract void deleteAll();
 	public abstract void deleteStudent(String id);
