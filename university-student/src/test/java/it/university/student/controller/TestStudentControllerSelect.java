@@ -346,4 +346,46 @@ public class TestStudentControllerSelect {
 				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());		
 	}
+	
+	@Test @Order(23)
+	public void testGetStudentsByDepartment() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/department/Dipartimento 1")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(24)
+	public void testGetStudentsByDepartmentError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/department/Dipartimento 12")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());			
+	}
+	
+	@Test @Order(25)
+	public void testGetStudentsByFaculty() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/faculty/Facoltà 1")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
+				.andDo(print());		
+	}
+	
+	@Test @Order(26)
+	public void testGetStudentsByFacultyError() throws Exception {
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/faculty/Facoltà 33")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(this.emptyCollection.toString()))
+				.andDo(print());			
+	}
 }
