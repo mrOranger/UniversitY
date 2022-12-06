@@ -42,9 +42,11 @@ public class TestStudentControllerSelect {
 	private JSONArray exams;
 	private JSONObject exam;
 	private JSONObject course;
+	private JSONArray professors;
 	private JSONObject professor;
 	
 	private JSONObject errorNotFound;
+	private JSONObject emptyCollection;
 	
 	@BeforeEach
 	public void setup() throws JSONException, IOException {
@@ -58,13 +60,19 @@ public class TestStudentControllerSelect {
 		this.exams = new JSONArray();
 		this.exam = new JSONObject();
 		this.course = new JSONObject();
+		this.professors = new JSONArray();
 		this.professor = new JSONObject();
 		
 		this.errorNotFound = new JSONObject();
+		this.emptyCollection = new JSONObject();
 		
 		this.errorNotFound
 			.put("code", 404)
 			.put("message", "Non è stato trovato alcuno studente!");
+		
+		this.emptyCollection
+			.put("code", 404)
+			.put("message", "Nessuno studente presente nel database!");
 		
 		address.put("id", 6)
 			.put("street", "Via Nazionale")
@@ -84,12 +92,14 @@ public class TestStudentControllerSelect {
 			.put("surname", "Rossi")
 			.put("dateOfBirth", "2022-01-01");
 		
+		professors.put(professor);
+		
 		course.put("name", "Analisi 1")
-			.put("startDate", "2022-12-05")
-			.put("professor", professor);
+			.put("date", "2022-12-06")
+			.put("professors", professors);
 		
 		exam.put("date", "2022-01-01")
-			.put("vote", (byte)21)
+			.put("vote", (byte)16)
 			.put("course", course);
 		
 		exams.put(exam);
@@ -97,7 +107,7 @@ public class TestStudentControllerSelect {
 		student.put("id", "AB123CD")
 			.put("name", "Mario")
 			.put("surname", "Rossi")
-			.put("sex", 'M')
+			.put("sex", "M")
 			.put("dateOfBirth", "1990-01-01")
 			.put("diplomaGrade", (byte)79)
 			.put("bachelorGrade", (byte)105)
@@ -134,17 +144,17 @@ public class TestStudentControllerSelect {
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$", hasSize(1)))
-				.andExpect(content().json(this.student.toString()))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
 				.andDo(print());	
 	}
 	
 	@Test @Order(4)
 	public void testGetStudentsByDateOfBirthError() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/date/2020-01/2022-01-01")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/date/2020-01-01/2022-01-01")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(content().json(this.errorNotFound.toString()))
+				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());	
 	}
 	
@@ -155,7 +165,7 @@ public class TestStudentControllerSelect {
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$", hasSize(1)))
-				.andExpect(content().json(this.student.toString()))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
 				.andDo(print());	
 	}
 	
@@ -165,7 +175,7 @@ public class TestStudentControllerSelect {
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(content().json(this.errorNotFound.toString()))
+				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());	
 	}
 	
@@ -176,7 +186,7 @@ public class TestStudentControllerSelect {
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$", hasSize(1)))
-				.andExpect(content().json(this.student.toString()))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
 				.andDo(print());			
 	}
 	
@@ -186,18 +196,18 @@ public class TestStudentControllerSelect {
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(content().json(this.errorNotFound.toString()))
+				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());			
 	}
 	
 	@Test @Order(9)
 	public void testGetStudentsByDiplomaGrade() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/diploma/grade/60")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/diploma/grade/79")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$", hasSize(1)))
-				.andExpect(content().json(this.student.toString()))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
 				.andDo(print());	
 	}
 	
@@ -207,18 +217,18 @@ public class TestStudentControllerSelect {
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(content().json(this.errorNotFound.toString()))
+				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());	
 	}
 	
 	@Test @Order(11)
 	public void testGetStudentsByBachelorGrade() throws Exception {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/bachelor/grade/70")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/students/find/bachelor/grade/105")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$", hasSize(1)))
-				.andExpect(content().json(this.student.toString()))
+				.andExpect(content().json(new JSONArray().put(this.student).toString()))
 				.andDo(print());	
 	}
 	
@@ -228,7 +238,7 @@ public class TestStudentControllerSelect {
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(content().json(this.errorNotFound.toString()))
+				.andExpect(content().json(this.emptyCollection.toString()))
 				.andDo(print());
 	}
 }

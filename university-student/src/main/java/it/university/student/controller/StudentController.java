@@ -28,7 +28,7 @@ public final class StudentController {
 	@GetMapping(path = "find/") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudents() {
 		final List<StudentDTO> students = this.service.findAll();
-		if(students == null) {
+		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
@@ -47,7 +47,7 @@ public final class StudentController {
 	@GetMapping(path = "find/date/{start}/{end}") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudentsByDateOfBirth(@PathVariable("start") Date start, @PathVariable("end") Date end) {
 		final List<StudentDTO> students = this.service.findAllByDate(start, end);
-		if(students == null) {
+		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
@@ -56,7 +56,7 @@ public final class StudentController {
 	@GetMapping(path = "find/sex/{sex}") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudentsBySex(@PathVariable("sex") char sex) {
 		final List<StudentDTO> students = this.service.findAllBySex(sex);
-		if(students == null) {
+		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
@@ -65,7 +65,7 @@ public final class StudentController {
 	@GetMapping(path = "find/bachelor/has") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudentsHavingBachelorDegreee() {
 		final List<StudentDTO> students = this.service.findAllByBachelorDegree();
-		if(students == null) {
+		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
@@ -74,7 +74,7 @@ public final class StudentController {
 	@GetMapping(path = "find/bachelor/has/not") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudentsNotHavingBachelorDegreee() {
 		final List<StudentDTO> students = this.service.findAllByBachelorDegreeNot();
-		if(students == null) {
+		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
@@ -83,16 +83,16 @@ public final class StudentController {
 	@GetMapping(path = "find/diploma/grade/{grade}") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudentsByDiplomaGrade(@PathVariable("grade") byte grade) {
 		final List<StudentDTO> students = this.service.findAllByDiplomaGrade(grade);
-		if(students == null) {
+		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "find/diploma/bachelor/grade/{grade}") @SneakyThrows
+	@GetMapping(path = "find/bachelor/grade/{grade}") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudentsByBachelorGrade(@PathVariable("grade") byte grade) {
 		final List<StudentDTO> students = this.service.findAllByBachelorGrade(grade);
-		if(students == null) {
+		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
