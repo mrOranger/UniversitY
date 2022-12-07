@@ -2,11 +2,13 @@ package it.university.student.controller;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +27,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import it.university.student.UniversityStudentApplication;
+import it.university.student.entity.Student;
+import it.university.student.repository.StudentRepository;
 
 @ContextConfiguration(classes = UniversityStudentApplication.class)
 @SpringBootTest
@@ -33,6 +37,7 @@ public class TestStudentControllerInsert {
 	
 	private MockMvc mockMcv;
 	@Autowired private WebApplicationContext context;
+	@Autowired private StudentRepository repository;
 	
 	private JSONObject student;
 	private JSONObject address;
@@ -72,6 +77,10 @@ public class TestStudentControllerInsert {
 				.andExpect(jsonPath("$.message").value("Studente inserito con successo!"))
 				.andDo(print());
 		
+		assertThat(this.repository.findById(this.student.get("id").toString()).get())
+			.extracting(Student::getDateOfBirth)
+			.isEqualTo(Date.valueOf(LocalDate.parse(this.student.getString("dateOfBirth"))));
+		
 	}
 	
 	@Test @Order(2)
@@ -85,6 +94,10 @@ public class TestStudentControllerInsert {
 				.andExpect(jsonPath("$.date").value(LocalDate.now().toString()))
 				.andExpect(jsonPath("$.message").value("Studente già presente nel database!"))
 				.andDo(print());
+		
+		assertThat(this.repository.findById(this.student.get("id").toString()).get())
+			.extracting(Student::getDateOfBirth)
+			.isEqualTo(Date.valueOf(LocalDate.parse(this.student.getString("dateOfBirth"))));
 	}
 	
 	@Test @Order(3)
@@ -101,5 +114,9 @@ public class TestStudentControllerInsert {
 				.andExpect(jsonPath("$.date").value(LocalDate.now().toString()))
 				.andExpect(jsonPath("$.message").value("La data di nascita dello studente non può essere nulla"))
 				.andDo(print());
+		
+		assertThat(this.repository.findById(this.student.get("id").toString()).get())
+			.extracting(Student::getDateOfBirth)
+			.isEqualTo(Date.valueOf(LocalDate.parse("1996-11-01")));
 	}
 }
