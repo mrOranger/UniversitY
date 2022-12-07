@@ -4,12 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,17 +17,15 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity @Table(name = "Addresses")
+@Entity @Table(name = "address")
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Address implements Serializable{
 	
 	private static final long serialVersionUID = -3040216250095742667L;
 
 	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	@NotNull(message = "{NotNull.Address.Id.Validation}")
 	private int id;
@@ -62,19 +57,7 @@ public class Address implements Serializable{
 	@NotNull(message = "{NotNull.Address.Nation.Validation}")
 	private String nation;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JsonBackReference
-	@EqualsAndHashCode.Exclude
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", orphanRemoval = true)
 	private Set<Student> students = new HashSet<>();
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@JsonBackReference
-	@EqualsAndHashCode.Exclude
-	private Set<Professor> professors = new HashSet<>();
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@JsonBackReference
-	@EqualsAndHashCode.Exclude
-	private Set<Department> departments = new HashSet<>();
-
 }

@@ -17,10 +17,8 @@ import it.university.student.dto.StudentDTO;
 import it.university.student.exception.EmptyCollectionException;
 import it.university.student.exception.NotFoundException;
 import lombok.SneakyThrows;
-import lombok.extern.java.Log;
 
 @RestController @RequestMapping(path = "api/students/", produces = MediaType.APPLICATION_JSON_VALUE)
-@Log
 public final class StudentController {
 	
 	@Autowired private StudentService service;
@@ -36,7 +34,6 @@ public final class StudentController {
 	
 	@GetMapping(path = "find/{id}") @SneakyThrows
 	public final ResponseEntity<StudentDTO> getStudent(@PathVariable("id") String id) {
-		log.info("Richiesto studente con id".concat(id));
 		final StudentDTO student = this.service.findById(id);
 		if(student == null) {
 			throw new NotFoundException();
@@ -47,15 +44,6 @@ public final class StudentController {
 	@GetMapping(path = "find/date/{start}/{end}") @SneakyThrows
 	public final ResponseEntity<List<StudentDTO>> getStudentsByDateOfBirth(@PathVariable("start") Date start, @PathVariable("end") Date end) {
 		final List<StudentDTO> students = this.service.findAllByDate(start, end);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
-	}
-	
-	@GetMapping(path = "find/sex/{sex}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsBySex(@PathVariable("sex") char sex) {
-		final List<StudentDTO> students = this.service.findAllBySex(sex);
 		if(students.isEmpty()) {
 			throw new EmptyCollectionException();
 		}
@@ -141,68 +129,5 @@ public final class StudentController {
 			throw new EmptyCollectionException();
 		}
 		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);
-	}
-	
-	@GetMapping(path = "find/department/{department}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByDepartment(@PathVariable("department") String department) {
-		final List<StudentDTO> students = this.service.findAllByDepartment(department);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);		
-	}
-	
-	@GetMapping(path = "find/faculty/{faculty}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByFaculty(@PathVariable("faculty") String faculty) {
-		final List<StudentDTO> students = this.service.findAllByFaculty(faculty);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);		
-	}
-	
-	@GetMapping(path = "find/exams/{id}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByExamId(@PathVariable("id") int id) {
-		final List<StudentDTO> students = this.service.findAllByExam(id);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
-	}
-	
-	@GetMapping(path = "find/exams/{id}/present") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByExamPresent(@PathVariable("id") int id) {
-		final List<StudentDTO> students = this.service.findAllByExamPresent(id);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
-	}
-	
-	@GetMapping(path = "find/exams/{id}/absent") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByExamAbsent(@PathVariable("id") int id) {
-		final List<StudentDTO> students = this.service.findAllByExamAbsente(id);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
-	}
-	
-	@GetMapping(path = "find/exams/{id}/vote/greater/{vote}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByExamVoteGreater(@PathVariable("id") int id, @PathVariable("vote") byte vote) {
-		final List<StudentDTO> students = this.service.findAllByExamVoteGreaterThan(id, vote);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
-	}
-	
-	@GetMapping(path = "find/exams/{id}/vote/less/{vote}") @SneakyThrows
-	public final ResponseEntity<List<StudentDTO>> getStudentsByExamVoteLess(@PathVariable("id") int id, @PathVariable("vote") byte vote) {
-		final List<StudentDTO> students = this.service.findAllByExamVoteLowerThan(id, vote);
-		if(students.isEmpty()) {
-			throw new EmptyCollectionException();
-		}
-		return new ResponseEntity<List<StudentDTO>>(students, HttpStatus.OK);				
 	}
 }

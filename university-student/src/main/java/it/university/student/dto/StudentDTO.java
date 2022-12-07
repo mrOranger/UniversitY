@@ -1,8 +1,6 @@
 package it.university.student.dto;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,8 +18,4 @@ public final class StudentDTO {
 	private byte bachelorGrade;
 	
 	private AddressDTO address;
-	private DepartmentDTO department;
-	
-	private Set<ExamDTO> exams = new HashSet<ExamDTO>();
-
 }

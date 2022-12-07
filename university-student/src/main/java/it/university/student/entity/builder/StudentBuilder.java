@@ -3,8 +3,6 @@ package it.university.student.entity.builder;
 import java.sql.Date;
 
 import it.university.student.entity.Address;
-import it.university.student.entity.Department;
-import it.university.student.entity.Exam;
 import it.university.student.entity.Student;
 
 public class StudentBuilder implements Builder<Student>{
@@ -35,34 +33,19 @@ public class StudentBuilder implements Builder<Student>{
 		return this;
 	}
 	
-	public StudentBuilder setSex(char sex) {
-		this.student.setSex(sex);
-		return this;
-	}
-	
-	public StudentBuilder setDiplomaGrade(byte grade) {
+	public StudentBuilder setDiplomaGrade(Integer grade) {
 		this.student.setDiplomaGrade(grade);
 		return this;
 	}
 	
-	public StudentBuilder setBachelorGrade(byte grade) {
+	public StudentBuilder setBachelorGrade(Integer grade) {
 		this.student.setBachelorGrade(grade);
 		return this;
 	}
 	
 	public StudentBuilder setAddress(Address address) {
 		this.student.setAddress(address);
-		return this;
-	}
-	
-	public StudentBuilder setDeparment(Department department) {
-		this.student.setDepartment(department);
-		return this;
-	}
-	
-	public StudentBuilder addExam(Exam exam) {
-		this.student.getExams().add(exam);
-		exam.setStudent(this.student);
+		address.getStudents().add(student);
 		return this;
 	}
 

@@ -39,11 +39,6 @@ public class StudentService implements StudentDao{
 	}
 
 	@Override
-	public List<StudentDTO> findAllBySex(char sex) {
-		return this.convertToDto(this.repository.findBySex(sex));
-	}
-
-	@Override
 	public List<StudentDTO> findAllByBachelorDegree() {
 		return this.convertToDto(this.repository.findByBachelorGradeNotNull());
 	}
@@ -54,12 +49,12 @@ public class StudentService implements StudentDao{
 	}
 
 	@Override
-	public List<StudentDTO> findAllByDiplomaGrade(byte diplomaGrade) {
+	public List<StudentDTO> findAllByDiplomaGrade(int diplomaGrade) {
 		return this.convertToDto(this.repository.findByDiplomaGrade(diplomaGrade));
 	}
 
 	@Override
-	public List<StudentDTO> findAllByBachelorGrade(byte bachelorGrade) {
+	public List<StudentDTO> findAllByBachelorGrade(int bachelorGrade) {
 		return this.convertToDto(this.repository.findByBachelorGrade(bachelorGrade));
 	}
 
@@ -86,41 +81,6 @@ public class StudentService implements StudentDao{
 	@Override
 	public List<StudentDTO> findAllByAddress(int address) {
 		return this.convertToDto(this.repository.findByAddressId(address));
-	}
-
-	@Override
-	public List<StudentDTO> findAllByDepartment(String department) {
-		return this.convertToDto(this.repository.findByDepartmentName(department));
-	}
-
-	@Override
-	public List<StudentDTO> findAllByFaculty(String faculty) {
-		return this.convertToDto(this.repository.findByDepartmentFacultyName(faculty));
-	}
-
-	@Override
-	public List<StudentDTO> findAllByExam(int exam) {
-		return this.convertToDto(this.repository.findByExamsId(exam));
-	}
-
-	@Override
-	public List<StudentDTO> findAllByExamPresent(int exam) {
-		return this.convertToDto(this.repository.findByExamsIdAndExamsVoteNotNull(exam));
-	}
-
-	@Override
-	public List<StudentDTO> findAllByExamAbsente(int exam) {
-		return this.convertToDto(this.repository.findByExamsIdAndExamsVoteIsNull(exam));
-	}
-	
-	@Override
-	public List<StudentDTO> findAllByExamVoteGreaterThan(int exam, byte vote) {
-		return this.convertToDto(this.repository.findByExamsIdAndExamsVoteGreaterThan(exam, vote));
-	}
-
-	@Override
-	public List<StudentDTO> findAllByExamVoteLowerThan(int exam, byte vote) {
-		return this.convertToDto(this.repository.findByExamsIdAndExamsVoteLessThan(exam, vote));
 	}
 
 	@Override @Transactional
