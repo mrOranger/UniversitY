@@ -151,14 +151,11 @@ public final class StudentController {
 	
 	@PostMapping(path = "post") @SneakyThrows
 	public final ResponseEntity<InfoMessage> postStudent(@Valid @RequestBody Student student, BindingResult bindingResult) {
-		log.info("Inserimento studente ".concat(student.toString()));
 		if(bindingResult.hasErrors()) {
-			log.info("Lo studente deve avere necessariamente una data di nascita!");
-			throw new BindingException("Lo studente deve avere necessariamente una data di nascita!");
+			throw new BindingException(this.errorMessage.getMessage(bindingResult.getFieldError(), LocaleContextHolder.getLocale()));
 		}
 		final StudentDTO studentFound = this.service.findById(student.getId());
 		if(studentFound != null) {
-			log.info("Studente già presente nel database!");
 			throw new DuplicateException("Studente già presente nel database!");
 		}
 		

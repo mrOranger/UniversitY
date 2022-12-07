@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,7 +57,7 @@ public class Address implements Serializable{
 	@NotNull(message = "{NotNull.Address.Nation.Validation}")
 	private String nation;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", orphanRemoval = true)
 	private Set<Student> students = new HashSet<>();
 }
