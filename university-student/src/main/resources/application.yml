@@ -4,7 +4,6 @@ server:
 spring:
   application:
     name: UniversityStudent
-# -------- PostgresSQL -------------------------------------------    
   sql:
     init:
       mode: always
@@ -13,7 +12,6 @@ spring:
     password: root
     url: jdbc:postgresql://localhost:5433/UniversitY
     username: postgres
-# -------- Hibernate -------------------------------------------    
   jpa:
     hibernate:
       ddl-auto: none
@@ -21,11 +19,5 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-# -------- Redis -------------------------------------------    
-  redis:
-    connect-timeout: 2s
-    host: localhost
-    port: 8001
-    timeout: 1s  
 
 
