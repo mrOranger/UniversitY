@@ -20,4 +20,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
-
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: UniversitY
+  resource: UniversityStudent
+  public-client: true
