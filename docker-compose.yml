@@ -1,12 +1,12 @@
 version: '3.3'
 
 networks: 
-  ntpgsql:
+  ntkeyclk:
     driver: bridge
     ipam:
       driver: default
       config:
-        - subnet: 172.21.0.0/24
+        - subnet: 172.30.0.0/24
 
 services:
   pgsql:
@@ -16,32 +16,57 @@ services:
     volumes: 
       - psdb-volume:/var/lib/postgresql/data
     networks: 
-      ntpgsql:
-        ipv4_address: 172.21.0.2
+      ntkeyclk:
+        ipv4_address: 172.30.0.2
     ports:
       - target: 5432
-        published: 5433 
+        published: 5432 
         protocol: tcp
         mode: host
     environment:
       - POSTGRES_PASSWORD=root
+
   pgadmin:
     image: dpage/pgadmin4
     restart: unless-stopped
     container_name: pgadmin4
     
     networks:
-      ntpgsql:
-        ipv4_address: 172.21.0.3
+      ntkeyclk:
+        ipv4_address: 172.30.0.3
     ports:
       - target: 80
-        published: 80
+        published: 8081
         protocol: tcp
         mode: host
     environment:
       - PGADMIN_CONFIG_SERVER_MODE=True
       - PGADMIN_DEFAULT_EMAIL=edoardo@email.com
       - PGADMIN_DEFAULT_PASSWORD=root
+
+  keycloak:
+    image: bitnami/keycloak:latest
+    restart: unless-stopped
+    container_name: keycloak
+
+    networks: 
+      ntkeyclk:
+        ipv4_address: 172.30.0.5
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    environment:
+      - KEYCLOAK_DATABASE_HOST=172.30.0.2
+      - KEYCLOAK_DATABASE_PORT=5432
+      - KEYCLOAK_DATABASE_USER=postgres
+      - KEYCLOAK_DATABASE_PASSWORD=root
+      - KEYCLOAK_ADMIN_USER=root
+      - KEYCLOAK_ADMIN_PASSWORD=root
+    depends_on:
+      - pgsql
+
 
 volumes:
   psdb-volume:
