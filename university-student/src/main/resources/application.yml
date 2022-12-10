@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8000
   
 spring:
   application:
@@ -10,7 +10,7 @@ spring:
       platform: postgres
   datasource:
     password: root
-    url: jdbc:postgresql://localhost:5433/UniversitY
+    url: jdbc:postgresql://localhost:5432/UniversitY
     username: postgres
   jpa:
     hibernate:
