@@ -1,9 +1,12 @@
 server:
   port: 8000
-  
+ 
 spring:
   application:
     name: UniversityStudent
+  banner:
+    image:
+      location: classpath:banner.txt
   sql:
     init:
       mode: always
