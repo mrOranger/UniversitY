@@ -72,18 +72,48 @@ public class SelectTest {
 	}
 	
 	@Test @Order(5)
+	public void testFindDepartmentsByAddressStreet() {
+		final List<Department> departments = this.departmentService.findAllByAddressStreet("Via Nazionale");
+		assertEquals(departments.size(), 4);
+	}
+	
+	@Test @Order(6)
+	public void testFindDepartmentsByAddressCity() {
+		final List<Department> departments = this.departmentService.findAllByAddressCity("Milano");
+		assertEquals(departments.size(), 1);
+	}
+	
+	@Test @Order(7)
+	public void testFindDepartmentsByAddressProvince() {
+		final List<Department> departments = this.departmentService.findAllByAddressProvince("Milano");
+		assertEquals(departments.size(), 1);
+	}
+	
+	@Test @Order(8)
+	public void testFindDepartmentsByAddressRegion() {
+		final List<Department> departments = this.departmentService.findAllByAddressRegion("Lombardia");
+		assertEquals(departments.size(), 1);
+	}
+	
+	@Test @Order(9)
+	public void testFindDepartmentsByAddressNation() {
+		final List<Department> departments = this.departmentService.findAllByAddressStreet("Italia");
+		assertEquals(departments.size(), 4);
+	}
+	
+	@Test @Order(10)
 	public void testFindDepartmentsByAddressFail() {
 		final List<Department> departments = this.departmentService.findAllByAddress(10);
 		assertEquals(departments.size(), 0);
 	}
 	
-	@Test @Order(6)
+	@Test @Order(11)
 	public void testFindDepartmentsByFaculty() {
 		final List<Department> departments = this.departmentService.findAllByFaculty("Ingegneria");
 		assertEquals(departments.size(), 3);
 	}
 	
-	@Test @Order(7)
+	@Test @Order(12)
 	public void testFindDepartmentsByFacultyFail() {
 		final List<Department> departments = this.departmentService.findAllByFaculty("Medicina");
 		assertEquals(departments.size(), 0);
