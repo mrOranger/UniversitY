@@ -3,5 +3,5 @@
   //   / /     //   ) )   / /   ||  / /   //___) )   //  ) )   ((   ) )   / /     / /      \\/ /   
  //   / /     //   / /   / /    || / /   //         //          \ \      / /     / /        / /    
 ((___/ /     //   / /   / /     ||/ /   ((____     //        //   ) )   / /     / /        / /     
-${application.title} ${application.version} - Microservizio per gli Studenti dell'univeristà
+Microservizio per gli Studenti dell'univeristà
 Powered by Spring Boot ${spring-boot.version}
