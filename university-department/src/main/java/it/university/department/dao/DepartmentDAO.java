@@ -18,5 +18,7 @@ public interface DepartmentDAO {
 	public abstract List<DepartmentDTO> findAllByFaculty(String faculty);
 	
 	public abstract DepartmentDTO save(Department department);
+	
+	public abstract void delete(String department);
 
 }

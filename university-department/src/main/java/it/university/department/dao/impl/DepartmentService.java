@@ -69,6 +69,11 @@ public class DepartmentService implements DepartmentDAO, Converter<Department, D
 	public DepartmentDTO save(Department department) {
 		return this.convertToDto(this.repository.save(department));
 	}
+	
+	@Override
+	public void delete(String department) {
+		this.repository.deleteById(department);
+	}
 
 	@Override
 	public DepartmentDTO convertToDto(Department f) {
