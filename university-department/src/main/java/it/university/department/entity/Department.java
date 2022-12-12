@@ -57,7 +57,7 @@ public class Department implements Serializable {
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinTable(name = "join_department",
-			joinColumns = {@JoinColumn(referencedColumnName = "department")},
-			inverseJoinColumns = {@JoinColumn(referencedColumnName = "student")})
+			joinColumns = {@JoinColumn(name = "student")},
+			inverseJoinColumns = {@JoinColumn(name = "department")})
 	private Set<Student> students  = new HashSet<>();
 }
