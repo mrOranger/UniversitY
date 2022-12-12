@@ -7,6 +7,6 @@ import it.university.department.dto.ProfessorDTO;
 public interface ProfessorDAO {
 	
 	public abstract List<ProfessorDTO> findAllByDepartment(String department);
-	public abstract ProfessorDTO findDirectorByDepartment(String department);
+	public abstract List<ProfessorDTO> findDirectorsByDepartment(String department);
 
 }

@@ -80,7 +80,7 @@ public class SelectTest {
 	@Test @Order(5)
 	public void testFindDepartmentsByAddressStreet() {
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressStreet("Via Nazionale");
-		assertEquals(departments.size(), 4);
+		assertEquals(departments.size(), 5);
 	}
 	
 	@Test @Order(6)
@@ -103,8 +103,8 @@ public class SelectTest {
 	
 	@Test @Order(9)
 	public void testFindDepartmentsByAddressNation() {
-		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressStreet("Italia");
-		assertEquals(departments.size(), 4);
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressNation("Italia");
+		assertEquals(departments.size(), 5);
 	}
 	
 	@Test @Order(10)

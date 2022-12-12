@@ -2,7 +2,6 @@ package it.university.department.repository.professor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class SelectTest {
 	
 	@Test @Order(1)
 	public void testFindDirector() {
-		final ProfessorDTO director = this.professorService.findDirectorByDepartment("Ingegneria Informatica");
+		final List<ProfessorDTO> director = this.professorService.findDirectorsByDepartment("Ingegneria Informatica");
 		assertThat(director)
 			.extracting(ProfessorDTO::getId)
 			.isEqualTo("123AB");
@@ -31,19 +30,19 @@ public class SelectTest {
 	
 	@Test @Order(2)
 	public void testFindDirectorFail() {
-		final ProfessorDTO director = this.professorService.findDirectorByDepartment("Medicina");
-		assertNull(director);
+		final List<ProfessorDTO> directors = this.professorService.findDirectorsByDepartment("Medicina");
+		assertEquals(directors, 0);
 	}
 	
 	@Test @Order(1)
 	public void testFindProfessors() {
 		final List<ProfessorDTO> professors = this.professorService.findAllByDepartment("Ingegneria Informatica");
-		assertEquals(professors.size(), 2);
+		assertEquals(professors.size(), 1);
 	}
 	
 	@Test @Order(2)
 	public void testFindProfessorsFail() {
 		final List<ProfessorDTO> professors = this.professorService.findAllByDepartment("Medicina");
-		assertEquals(professors.size(), 2);
+		assertEquals(professors.size(), 0);
 	}
 }

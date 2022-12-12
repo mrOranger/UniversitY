@@ -9,6 +9,6 @@ import it.university.department.entity.Professor;
 public interface ProfessorRepository extends JpaRepository<Professor, String>{
 
 	public abstract List<Professor> findByWorksInName(String department);
-	public abstract Professor findByDirectorName(String department);
+	public abstract List<Professor> findByDirectorName(String department);
 	
 }
