@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: UniversityDepartment
+  banner:
+    image:
+      location: classpath:banner.txt    
   sql:
     init:
       mode: always
