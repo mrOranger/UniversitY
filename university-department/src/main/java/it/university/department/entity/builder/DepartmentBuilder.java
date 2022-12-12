@@ -15,6 +15,7 @@ public final class DepartmentBuilder implements Builder<Department> {
 	}
 	
 	public DepartmentBuilder setName(String name) {
+		this.department.setName(name);
 		return this;
 	}
 	
