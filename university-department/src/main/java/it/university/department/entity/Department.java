@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,19 +44,11 @@ public class Department implements Serializable {
 	@JoinColumn(name = "faculty", referencedColumnName = "name")
 	@EqualsAndHashCode.Exclude
 	private Faculty faculty;
-	
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "worksIn")
-	private Set<Professor> professors = new HashSet<>();
 
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "director")
-	private Set<Professor> directors = new HashSet<>();
-
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinTable(name = "join_department", 
 		joinColumns = { @JoinColumn(name = "department", referencedColumnName = "name") },
 		inverseJoinColumns = { @JoinColumn(name = "student", referencedColumnName = "id") }) 
+	@EqualsAndHashCode.Exclude
 	private Set<Student> students = new HashSet<>();
 }
