@@ -64,4 +64,8 @@ public class Address implements Serializable{
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", orphanRemoval = true)
 	private Set<Faculty> faculties = new HashSet<>();
+	
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", orphanRemoval = true)
+	private Set<Student> students = new HashSet<>();
 }
