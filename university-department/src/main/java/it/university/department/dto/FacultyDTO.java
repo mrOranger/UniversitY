@@ -8,6 +8,5 @@ import lombok.NoArgsConstructor;
 public final class FacultyDTO {
 	
 	private String name;
-	private AddressDTO address;
-
+	
 }
