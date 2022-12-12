@@ -20,6 +20,7 @@ import it.university.department.entity.Faculty;
 import it.university.department.entity.builder.AddressBuilder;
 import it.university.department.entity.builder.DepartmentBuilder;
 import it.university.department.entity.builder.FacultyBuilder;
+import it.university.department.entity.builder.ProfessorBuilder;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(3)
 public class UpdateTest implements Setup {
@@ -29,11 +30,13 @@ public class UpdateTest implements Setup {
 	@Autowired private DepartmentBuilder departmentBuilder;
 	@Autowired private AddressBuilder addressBuilder;
 	@Autowired private FacultyBuilder facultyBuilder;
+	@Autowired private ProfessorBuilder professorBuilder;
 	
 	private Department department;
 	
 	@Override @BeforeEach
 	public void setup() {
+		
 		final Address address = this.addressBuilder.setId(4)
 				.setStreet("Via Nazionale")
 				.setNumber(4)
@@ -44,12 +47,22 @@ public class UpdateTest implements Setup {
 				.build();
 		
 		final Faculty faculty = this.facultyBuilder.setName("IMF")
+				.setAddress(this.addressBuilder.setId(2)
+					.setStreet("Via Nazionale")
+					.setNumber(2)
+					.setCity("Torino")
+					.setProvince("Torino")
+					.setRegion("Piemonte")
+					.setNation("Italia")
+					.build())
 				.build();
 		
 		this.department = this.departmentBuilder
-				.setName("Informatica")
+				.setName("Informatica & TPS")
 				.setAddress(address)
 				.setFaculty(faculty)
+				.addDirector(this.professorBuilder.setId("123NO").build())
+				.addProfessor(this.professorBuilder.setId("123NO").build())
 				.build();
 	}
 	
