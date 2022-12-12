@@ -10,7 +10,7 @@ import it.university.department.entity.Student;
 
 public interface StudentRepository extends JpaRepository<Student, String>{
 	
-	@Query(value = "SELECT S.* FROM student S, join_department jd WHERE S.id = jd.student AND jd.department = :department")
+	@Query(value = "SELECT S.* FROM student S, join_department jd WHERE S.id = jd.student AND jd.department = :department", nativeQuery = true)
 	public List<Student> findAllByDepartment(@Param("department") String department);
 	
 }
