@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -29,6 +30,7 @@ public class Faculty implements Serializable {
 	private static final long serialVersionUID = -497193358975253887L;
 	
 	@Id @Column(name = "name")
+	@NotNull(message = "{NotNull.Faculty.Name.Validation}")
 	private String name;
 	
 	@JsonBackReference

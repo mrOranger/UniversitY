@@ -27,6 +27,7 @@ public class Professor implements Serializable {
 	private static final long serialVersionUID = 433865263822636447L;
 	
 	@Id @Column(name = "id")
+	@NotNull(message = "{NotNull.Professor.Id.Validation}")
 	private String id;
 	
 	@Column(name =  "name")
