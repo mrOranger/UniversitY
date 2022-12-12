@@ -2,7 +2,6 @@ package it.university.department.entity.builder;
 
 import java.sql.Date;
 
-import it.university.department.entity.Address;
 import it.university.department.entity.Student;
 
 public class StudentBuilder implements Builder<Student>{
@@ -40,12 +39,6 @@ public class StudentBuilder implements Builder<Student>{
 	
 	public StudentBuilder setBachelorGrade(Integer grade) {
 		this.student.setBachelorGrade(grade);
-		return this;
-	}
-	
-	public StudentBuilder setAddress(Address address) {
-		this.student.setAddress(address);
-		address.getStudents().add(this.student);
 		return this;
 	}
 

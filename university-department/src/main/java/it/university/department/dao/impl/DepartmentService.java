@@ -80,6 +80,7 @@ public class DepartmentService implements DepartmentDAO, Converter<Department, D
 		DepartmentDTO departmentDto = null;
 		if(f != null) {
 			departmentDto = this.modelMapper.map(f, DepartmentDTO.class);
+			System.out.println(departmentDto);
 		}
 		return departmentDto;
 	}

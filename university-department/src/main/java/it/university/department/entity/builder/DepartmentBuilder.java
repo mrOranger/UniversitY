@@ -3,7 +3,6 @@ package it.university.department.entity.builder;
 import it.university.department.entity.Address;
 import it.university.department.entity.Department;
 import it.university.department.entity.Faculty;
-import it.university.department.entity.Professor;
 import it.university.department.entity.Student;
 
 public final class DepartmentBuilder implements Builder<Department> {
@@ -28,18 +27,6 @@ public final class DepartmentBuilder implements Builder<Department> {
 	public DepartmentBuilder setFaculty(Faculty faculty) {
 		this.department.setFaculty(faculty);
 		faculty.getDepartments().add(this.department);
-		return this;
-	}
-	
-	public DepartmentBuilder addProfessor(Professor professor) {
-		this.department.getProfessors().add(professor);
-		professor.setWorksIn(this.department);
-		return this;
-	}
-	
-	public DepartmentBuilder addDirector(Professor director) {
-		this.department.getDirectors().add(director);
-		director.setDirector(this.department);
 		return this;
 	}
 	
