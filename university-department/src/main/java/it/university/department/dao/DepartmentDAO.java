@@ -3,6 +3,7 @@ package it.university.department.dao;
 import java.util.List;
 
 import it.university.department.dto.DepartmentDTO;
+import it.university.department.entity.Department;
 
 public interface DepartmentDAO {
 	
@@ -15,5 +16,7 @@ public interface DepartmentDAO {
 	public abstract List<DepartmentDTO> findAllByAddressRegion(String region);
 	public abstract List<DepartmentDTO> findAllByAddressNation(String nation);
 	public abstract List<DepartmentDTO> findAllByFaculty(String faculty);
+	
+	public abstract DepartmentDTO save(Department department);
 
 }

@@ -64,6 +64,11 @@ public class DepartmentService implements DepartmentDAO, Converter<Department, D
 	public List<DepartmentDTO> findAllByFaculty(String faculty) {
 		return this.convertToDto(this.repository.findByFacultyName(faculty));
 	}
+	
+	@Override
+	public DepartmentDTO save(Department department) {
+		return this.convertToDto(this.repository.save(department));
+	}
 
 	@Override
 	public DepartmentDTO convertToDto(Department f) {
