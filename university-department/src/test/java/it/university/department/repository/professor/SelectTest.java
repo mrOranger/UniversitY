@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -25,13 +26,13 @@ public class SelectTest {
 		final List<ProfessorDTO> director = this.professorService.findDirectorsByDepartment("Ingegneria Informatica");
 		assertThat(director)
 			.extracting(ProfessorDTO::getId)
-			.isEqualTo("123AB");
+			.isEqualTo(Lists.newArrayList("123AB", "123EF"));
 	}
 	
 	@Test @Order(2)
 	public void testFindDirectorFail() {
 		final List<ProfessorDTO> directors = this.professorService.findDirectorsByDepartment("Medicina");
-		assertEquals(directors, 0);
+		assertEquals(directors.size(), 0);
 	}
 	
 	@Test @Order(1)

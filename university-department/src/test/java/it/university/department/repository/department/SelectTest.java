@@ -15,18 +15,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import it.university.department.dao.impl.DepartmentService;
 import it.university.department.dto.DepartmentDTO;
-import it.university.department.entity.Address;
-import it.university.department.entity.Faculty;
-import it.university.department.entity.builder.AddressBuilder;
-import it.university.department.entity.builder.FacultyBuilder;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(1)
 public class SelectTest {
 	
 	@Autowired private DepartmentService departmentService;
-	
-	@Autowired private AddressBuilder addressBuilder;
-	@Autowired private FacultyBuilder facultyBuilder;
 
 	@Test @Order(1)
 	public void testfindDepartments() {
@@ -37,32 +30,10 @@ public class SelectTest {
 	@Test @Order(2)
 	public void testFindDepartmentByName() {
 		
-		final Address address = this.addressBuilder
-				.setStreet("Via Nazionale")
-				.setNumber(123)
-				.setCity("Milano")
-				.setProvince("Milano")
-				.setRegion("Lombardia")
-				.setNation("Italia")
-				.build();
-		
-		final Faculty faculty = this.facultyBuilder
-				.setName("Ingegneria")
-				.setAddress(address)
-				.build();
-		
 		final DepartmentDTO department = this.departmentService.findById("Ingegneria Informatica");
 		assertThat(department)
 			.extracting(DepartmentDTO::getName)
 			.isEqualTo("Ingegneria Informatica");
-		
-		assertThat(department)
-			.extracting(DepartmentDTO::getAddress)
-			.isEqualTo(address);
-		
-		assertThat(department)
-			.extracting(DepartmentDTO::getFaculty)
-			.isEqualTo(faculty);
 	}
 	
 	@Test @Order(3)
