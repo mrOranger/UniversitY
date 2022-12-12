@@ -20,6 +20,7 @@ import it.university.department.entity.Faculty;
 import it.university.department.entity.builder.AddressBuilder;
 import it.university.department.entity.builder.DepartmentBuilder;
 import it.university.department.entity.builder.FacultyBuilder;
+import it.university.department.entity.builder.ProfessorBuilder;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(2)
 public class InsertTest implements Setup{
@@ -29,6 +30,7 @@ public class InsertTest implements Setup{
 	@Autowired private DepartmentBuilder departmentBuilder;
 	@Autowired private AddressBuilder addressBuilder;
 	@Autowired private FacultyBuilder facultyBuilder;
+	@Autowired private ProfessorBuilder professorBuilder;
 	
 	private Department department;
 	
@@ -59,6 +61,8 @@ public class InsertTest implements Setup{
 				.setName("Informatica")
 				.setAddress(address)
 				.setFaculty(faculty)
+				.addDirector(this.professorBuilder.setId("123NO").build())
+				.addProfessor(this.professorBuilder.setId("123NO").build())
 				.build();
 	}
 
@@ -67,9 +71,7 @@ public class InsertTest implements Setup{
 		
 		this.departmentService.save(this.department);
 		
-		DepartmentDTO department = this.departmentService.findById("Informatica");
-		
-		assertThat(department)
+		assertThat(this.departmentService.findById("Informatica"))
 			.extracting(DepartmentDTO::getName)
 			.isEqualTo(this.department.getName());
 	}
