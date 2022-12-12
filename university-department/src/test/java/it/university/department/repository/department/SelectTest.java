@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import it.university.department.dao.impl.DepartmentService;
+import it.university.department.dto.DepartmentDTO;
 import it.university.department.entity.Address;
-import it.university.department.entity.Department;
 import it.university.department.entity.Faculty;
 import it.university.department.entity.builder.AddressBuilder;
 import it.university.department.entity.builder.FacultyBuilder;
@@ -30,7 +30,7 @@ public class SelectTest {
 
 	@Test @Order(1)
 	public void testfindDepartments() {
-		final List<Department> departments = this.departmentService.findAll();
+		final List<DepartmentDTO> departments = this.departmentService.findAll();
 		assertEquals(departments.size(), 8);
 	}
 	
@@ -51,77 +51,77 @@ public class SelectTest {
 				.setAddress(address)
 				.build();
 		
-		final Department department = this.departmentService.findById("Ingegneria Informatica");
+		final DepartmentDTO department = this.departmentService.findById("Ingegneria Informatica");
 		assertThat(department)
-			.extracting(Department::getName)
+			.extracting(DepartmentDTO::getName)
 			.isEqualTo("Ingegneria Informatica");
 		
 		assertThat(department)
-			.extracting(Department::getAddress)
+			.extracting(DepartmentDTO::getAddress)
 			.isEqualTo(address);
 		
 		assertThat(department)
-			.extracting(Department::getFaculty)
+			.extracting(DepartmentDTO::getFaculty)
 			.isEqualTo(faculty);
 	}
 	
 	@Test @Order(3)
 	public void testFindDepartmentByNameFail() {
-		final Department department = this.departmentService.findById("Ingegneria Matematica");
+		final DepartmentDTO department = this.departmentService.findById("Ingegneria Matematica");
 		assertNull(department);
 	}
 	
 	@Test @Order(4)
 	public void testFindDepartmentsByAddress() {
-		final List<Department> departments = this.departmentService.findAllByAddress(1);
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddress(1);
 		assertEquals(departments.size(), 1);
 	}
 	
 	@Test @Order(5)
 	public void testFindDepartmentsByAddressStreet() {
-		final List<Department> departments = this.departmentService.findAllByAddressStreet("Via Nazionale");
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressStreet("Via Nazionale");
 		assertEquals(departments.size(), 4);
 	}
 	
 	@Test @Order(6)
 	public void testFindDepartmentsByAddressCity() {
-		final List<Department> departments = this.departmentService.findAllByAddressCity("Milano");
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressCity("Milano");
 		assertEquals(departments.size(), 1);
 	}
 	
 	@Test @Order(7)
 	public void testFindDepartmentsByAddressProvince() {
-		final List<Department> departments = this.departmentService.findAllByAddressProvince("Milano");
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressProvince("Milano");
 		assertEquals(departments.size(), 1);
 	}
 	
 	@Test @Order(8)
 	public void testFindDepartmentsByAddressRegion() {
-		final List<Department> departments = this.departmentService.findAllByAddressRegion("Lombardia");
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressRegion("Lombardia");
 		assertEquals(departments.size(), 1);
 	}
 	
 	@Test @Order(9)
 	public void testFindDepartmentsByAddressNation() {
-		final List<Department> departments = this.departmentService.findAllByAddressStreet("Italia");
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressStreet("Italia");
 		assertEquals(departments.size(), 4);
 	}
 	
 	@Test @Order(10)
 	public void testFindDepartmentsByAddressFail() {
-		final List<Department> departments = this.departmentService.findAllByAddress(10);
+		final List<DepartmentDTO> departments = this.departmentService.findAllByAddress(10);
 		assertEquals(departments.size(), 0);
 	}
 	
 	@Test @Order(11)
 	public void testFindDepartmentsByFaculty() {
-		final List<Department> departments = this.departmentService.findAllByFaculty("Ingegneria");
+		final List<DepartmentDTO> departments = this.departmentService.findAllByFaculty("Ingegneria");
 		assertEquals(departments.size(), 3);
 	}
 	
 	@Test @Order(12)
 	public void testFindDepartmentsByFacultyFail() {
-		final List<Department> departments = this.departmentService.findAllByFaculty("Medicina");
+		final List<DepartmentDTO> departments = this.departmentService.findAllByFaculty("Medicina");
 		assertEquals(departments.size(), 0);
 	}
 }
