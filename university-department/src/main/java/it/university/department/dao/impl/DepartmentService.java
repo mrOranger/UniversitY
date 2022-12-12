@@ -3,60 +3,60 @@ package it.university.department.dao.impl;
 import java.util.List;
 
 import it.university.department.dao.DepartmentDAO;
-import it.university.department.dto.Department;
+import it.university.department.dto.DepartmentDTO;
 
 public class DepartmentService implements DepartmentDAO {
 
 	@Override
-	public List<Department> findAll() {
+	public List<DepartmentDTO> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Department findById(String id) {
+	public DepartmentDTO findById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Department> findAllByAddress(int id) {
+	public List<DepartmentDTO> findAllByAddress(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Department> findAllByAddressStreet(String street) {
+	public List<DepartmentDTO> findAllByAddressStreet(String street) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Department> findAllByAddressCity(String city) {
+	public List<DepartmentDTO> findAllByAddressCity(String city) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Department> findAllByAddressProvince(String province) {
+	public List<DepartmentDTO> findAllByAddressProvince(String province) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Department> findAllByAddressRegion(String region) {
+	public List<DepartmentDTO> findAllByAddressRegion(String region) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Department> findAllByAddressNation(String nation) {
+	public List<DepartmentDTO> findAllByAddressNation(String nation) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Department> findAllByFaculty(String faculty) {
+	public List<DepartmentDTO> findAllByFaculty(String faculty) {
 		// TODO Auto-generated method stub
 		return null;
 	}

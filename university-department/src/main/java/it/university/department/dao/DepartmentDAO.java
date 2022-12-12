@@ -2,18 +2,18 @@ package it.university.department.dao;
 
 import java.util.List;
 
-import it.university.department.dto.Department;
+import it.university.department.dto.DepartmentDTO;
 
 public interface DepartmentDAO {
 	
-	public abstract List<Department> findAll();
-	public abstract Department findById(String id);
-	public abstract List<Department> findAllByAddress(int id);
-	public abstract List<Department> findAllByAddressStreet(String street);
-	public abstract List<Department> findAllByAddressCity(String city);
-	public abstract List<Department> findAllByAddressProvince(String province);
-	public abstract List<Department> findAllByAddressRegion(String region);
-	public abstract List<Department> findAllByAddressNation(String nation);
-	public abstract List<Department> findAllByFaculty(String faculty);
+	public abstract List<DepartmentDTO> findAll();
+	public abstract DepartmentDTO findById(String id);
+	public abstract List<DepartmentDTO> findAllByAddress(int id);
+	public abstract List<DepartmentDTO> findAllByAddressStreet(String street);
+	public abstract List<DepartmentDTO> findAllByAddressCity(String city);
+	public abstract List<DepartmentDTO> findAllByAddressProvince(String province);
+	public abstract List<DepartmentDTO> findAllByAddressRegion(String region);
+	public abstract List<DepartmentDTO> findAllByAddressNation(String nation);
+	public abstract List<DepartmentDTO> findAllByFaculty(String faculty);
 
 }

@@ -13,11 +13,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import it.university.department.dto.Department;
-import it.university.department.dto.Faculty;
-import it.university.department.dto.Professor;
-import it.university.department.dto.Student;
-import it.university.department.repository.department.DepartmentService;
+import it.university.department.dao.impl.ProfessorService;
+import it.university.department.dto.ProfessorDTO;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(5)
 public class SelectTest {
@@ -26,27 +23,27 @@ public class SelectTest {
 	
 	@Test @Order(1)
 	public void testFindDirector() {
-		final Professor director = this.professorService.findDirectorByDepartment("Ingegneria Informatica");
+		final ProfessorDTO director = this.professorService.findDirectorByDepartment("Ingegneria Informatica");
 		assertThat(director)
-			.extracting(Professor::getId)
+			.extracting(ProfessorDTO::getId)
 			.isEqualTo("123AB");
 	}
 	
 	@Test @Order(2)
 	public void testFindDirectorFail() {
-		final Professor director = this.professorService.findDirectorByDepartment("Medicina");
+		final ProfessorDTO director = this.professorService.findDirectorByDepartment("Medicina");
 		assertNull(director);
 	}
 	
 	@Test @Order(1)
 	public void testFindProfessors() {
-		final List<Professor> professors = this.professorService.findAllByDepartment("Ingegneria Informatica");
+		final List<ProfessorDTO> professors = this.professorService.findAllByDepartment("Ingegneria Informatica");
 		assertEquals(professors.size(), 2);
 	}
 	
 	@Test @Order(2)
 	public void testFindProfessorsFail() {
-		final List<Professor> professors = this.professorService.findAllByDepartment("Medicina");
+		final List<ProfessorDTO> professors = this.professorService.findAllByDepartment("Medicina");
 		assertEquals(professors.size(), 2);
 	}
 }

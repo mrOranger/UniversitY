@@ -6,14 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor @AllArgsConstructor
-public final class Professor {
-
+@Data @AllArgsConstructor @NoArgsConstructor
+public final class StudentDTO {
+	
 	private String id;
 	private String name;
 	private String surname;
 	private Date dateOfBirth;
-	private Department worksIn;
-	private Department director;
-	
+	private byte diplomaGrade;
+	private byte bachelorGrade;
+
 }

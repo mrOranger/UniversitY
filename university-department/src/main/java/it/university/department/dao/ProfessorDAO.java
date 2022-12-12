@@ -2,11 +2,11 @@ package it.university.department.dao;
 
 import java.util.List;
 
-import it.university.department.dto.Professor;
+import it.university.department.dto.ProfessorDTO;
 
 public interface ProfessorDAO {
 	
-	public abstract List<Professor> findAllByDepartment(String department);
-	public abstract Professor findDirectorByDepartment(String department);
+	public abstract List<ProfessorDTO> findAllByDepartment(String department);
+	public abstract ProfessorDTO findDirectorByDepartment(String department);
 
 }

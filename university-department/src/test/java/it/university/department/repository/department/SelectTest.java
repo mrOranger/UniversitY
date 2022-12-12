@@ -13,20 +13,20 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import it.university.department.dto.Department;
-import it.university.department.dto.Faculty;
-import it.university.department.dto.Professor;
-import it.university.department.dto.Student;
+import it.university.department.dao.impl.DepartmentService;
+import it.university.department.entity.Address;
+import it.university.department.entity.Department;
+import it.university.department.entity.Faculty;
+import it.university.department.entity.builder.AddressBuilder;
+import it.university.department.entity.builder.FacultyBuilder;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(1)
 public class SelectTest {
 	
 	@Autowired private DepartmentService departmentService;
 	
-	@Autowired private DepartmentBuilder departmentBuilder;
 	@Autowired private AddressBuilder addressBuilder;
 	@Autowired private FacultyBuilder facultyBuilder;
-	@Autowired private StudentBuilder studentBuilder;
 
 	@Test @Order(1)
 	public void testfindDepartments() {

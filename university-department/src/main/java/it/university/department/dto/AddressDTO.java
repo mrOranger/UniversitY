@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-public final class Address {
+public final class AddressDTO {
 	
 	private int id;
 	private String street;

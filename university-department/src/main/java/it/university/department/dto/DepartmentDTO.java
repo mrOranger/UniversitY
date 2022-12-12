@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-public final class Department {
+public final class DepartmentDTO {
 	
 	private String name;
 	private Address address;

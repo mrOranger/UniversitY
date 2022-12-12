@@ -2,7 +2,6 @@ package it.university.department.repository.student;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -13,10 +12,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import it.university.department.dto.Department;
-import it.university.department.dto.Faculty;
-import it.university.department.dto.Professor;
-import it.university.department.dto.Student;
+import it.university.department.dao.impl.StudentService;
+import it.university.department.dto.StudentDTO;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(9)
 public class SelectTest {
@@ -25,21 +22,21 @@ public class SelectTest {
 	
 	@Test @Order(1)
 	public void testFindStudentsByDepartment() {
-		final List<Student> students = this.studentService.findAllByDepartment("Ingegneria Informatica");
+		final List<StudentDTO> students = this.studentService.findAllByDepartment("Ingegneria Informatica");
 		assertEquals(students.size(), 2);
 		
 		assertThat(students.get(0))
-			.extracting(Student::getId)
+			.extracting(StudentDTO::getId)
 			.isEqualTo("AB123");
 		
 		assertThat(students.get(1))
-			.extracting(Student::getId)	
+			.extracting(StudentDTO::getId)	
 			.isEqualTo("CD123");
 	}
 	
 	@Test @Order(2)
 	public void testFindStudentsByDepartmentFail() {
-		final List<Student> students = this.studentService.findAllByDepartment("Medicia");
+		final List<StudentDTO> students = this.studentService.findAllByDepartment("Medicia");
 		assertEquals(students.size(), 0);
 	}
 }
