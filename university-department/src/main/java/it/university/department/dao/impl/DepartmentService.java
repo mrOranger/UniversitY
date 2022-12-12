@@ -2,10 +2,17 @@ package it.university.department.dao.impl;
 
 import java.util.List;
 
-import it.university.department.dao.DepartmentDAO;
-import it.university.department.dto.DepartmentDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class DepartmentService implements DepartmentDAO {
+import it.university.department.dao.DepartmentDAO;
+import it.university.department.dao.impl.converter.Converter;
+import it.university.department.dto.DepartmentDTO;
+import it.university.department.entity.Department;
+import it.university.department.repository.DepartmentRepository;
+
+public class DepartmentService implements DepartmentDAO, Converter<Department, DepartmentDTO> {
+	
+	@Autowired private DepartmentRepository repository;
 
 	@Override
 	public List<DepartmentDTO> findAll() {
@@ -61,4 +68,15 @@ public class DepartmentService implements DepartmentDAO {
 		return null;
 	}
 
+	@Override
+	public DepartmentDTO convertToDto(Department f) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DepartmentDTO> convertToDto(List<Department> f) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
