@@ -65,12 +65,12 @@ public class DepartmentService implements DepartmentDAO, Converter<Department, D
 		return this.convertToDto(this.repository.findByFacultyName(faculty));
 	}
 	
-	@Override
+	@Override @Transactional
 	public DepartmentDTO save(Department department) {
 		return this.convertToDto(this.repository.save(department));
 	}
 	
-	@Override
+	@Override @Transactional
 	public void delete(String department) {
 		this.repository.deleteById(department);
 	}
@@ -80,7 +80,6 @@ public class DepartmentService implements DepartmentDAO, Converter<Department, D
 		DepartmentDTO departmentDto = null;
 		if(f != null) {
 			departmentDto = this.modelMapper.map(f, DepartmentDTO.class);
-			System.out.println(departmentDto);
 		}
 		return departmentDto;
 	}

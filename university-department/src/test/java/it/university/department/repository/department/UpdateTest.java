@@ -3,10 +3,8 @@ package it.university.department.repository.department;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -16,11 +14,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import it.university.department.Setup;
 import it.university.department.dao.impl.DepartmentService;
 import it.university.department.dto.DepartmentDTO;
+import it.university.department.entity.Address;
 import it.university.department.entity.Department;
+import it.university.department.entity.Faculty;
 import it.university.department.entity.builder.AddressBuilder;
 import it.university.department.entity.builder.DepartmentBuilder;
 import it.university.department.entity.builder.FacultyBuilder;
-import it.university.department.entity.builder.StudentBuilder;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(3)
 public class UpdateTest implements Setup {
@@ -29,50 +28,29 @@ public class UpdateTest implements Setup {
 	
 	@Autowired private DepartmentBuilder departmentBuilder;
 	@Autowired private AddressBuilder addressBuilder;
-	@Autowired private StudentBuilder studentBuilder;
 	@Autowired private FacultyBuilder facultyBuilder;
 	
 	private Department department;
 	
-	@Override
+	@Override @BeforeEach
 	public void setup() {
+		final Address address = this.addressBuilder.setId(4)
+				.setStreet("Via Nazionale")
+				.setNumber(4)
+				.setCity("Palermo")
+				.setProvince("Palermo")
+				.setRegion("Sicilia")
+				.setNation("Italia")
+				.build();
+		
+		final Faculty faculty = this.facultyBuilder.setName("IMF")
+				.build();
+		
 		this.department = this.departmentBuilder
-				.setName("Informatica & TPS")
-				.setAddress(this.addressBuilder.setId(12)
-					.setStreet("Via delle Calendule")
-					.setNumber(91)
-					.setCity("Foggia")
-					.setProvince("Foggia")
-					.setRegion("Puglia")
-					.setNation("Italia")
-					.build())
-				.setFaculty(this.facultyBuilder
-						.setName("IMF")
-						.setAddress(this.addressBuilder.setId(12)
-								.setStreet("Via delle Calendule")
-								.setNumber(91)
-								.setCity("Foggia")
-								.setProvince("Foggia")
-								.setRegion("Puglia")
-								.setNation("Italia")
-								.build())
-						.build())
-				.addStudent(this.studentBuilder.setId("OK901")
-						.setName("Ludovica")
-						.setSurname("Magalli")
-						.setDateOfBirth(Date.valueOf(LocalDate.parse("1998-10-09")))
-						.setDiplomaGrade(89)
-						.setBachelorGrade(100)
-						.setAddress(this.addressBuilder.setId(11)
-								.setStreet("Via delle Calende")
-								.setNumber(90)
-								.setCity("Foggia")
-								.setProvince("Foggia")
-								.setRegion("Puglia")
-								.setNation("Italia")
-								.build())
-						.build())
-				.build();		
+				.setName("Informatica")
+				.setAddress(address)
+				.setFaculty(faculty)
+				.build();
 	}
 	
 	@Test @Order(1)
