@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -52,4 +53,11 @@ public class Department implements Serializable {
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "director")
 	private Set<Professor> directors = new HashSet<>();
+	
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinTable(name = "join_department",
+			joinColumns = {@JoinColumn(referencedColumnName = "department")},
+			inverseJoinColumns = {@JoinColumn(referencedColumnName = "student")})
+	private Set<Student> students  = new HashSet<>();
 }
