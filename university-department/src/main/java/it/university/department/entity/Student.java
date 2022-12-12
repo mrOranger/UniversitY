@@ -62,5 +62,4 @@ public class Student implements Serializable {
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	@EqualsAndHashCode.Exclude
 	private Address address;
-
 }
