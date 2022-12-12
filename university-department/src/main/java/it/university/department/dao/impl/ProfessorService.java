@@ -27,7 +27,7 @@ public class ProfessorService implements ProfessorDAO, Converter<Professor, Prof
 
 	@Override
 	public ProfessorDTO findDirectorByDepartment(String department) {
-		return this.convertToDto(this.professorRepository.findByDirectorId(department));
+		return this.convertToDto(this.professorRepository.findByDirectorName(department));
 	}
 
 	@Override
