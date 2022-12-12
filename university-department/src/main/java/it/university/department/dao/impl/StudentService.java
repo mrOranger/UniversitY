@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.university.department.dao.StudentDAO;
 import it.university.department.dao.impl.converter.Converter;
@@ -12,6 +14,7 @@ import it.university.department.dto.StudentDTO;
 import it.university.department.entity.Student;
 import it.university.department.repository.StudentRepository;
 
+@Service @Transactional(readOnly = true)
 public class StudentService implements StudentDAO, Converter<Student, StudentDTO> {
 	
 	@Autowired private StudentRepository studentRepository;
