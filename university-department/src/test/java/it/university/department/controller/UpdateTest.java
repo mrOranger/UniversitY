@@ -5,7 +5,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(3)
+@SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(15)
 public class UpdateTest {
 
 }

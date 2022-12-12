@@ -1,4 +1,4 @@
-package it.university.department.repository;
+package it.university.department.repository.department;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,8 +22,6 @@ import it.university.department.entity.Student;
 public class SelectTest {
 	
 	@Autowired private DepartmentService departmentService;
-	@Autowired private StudentService studentService;
-	@Autowired private ProfessorService professorService;
 	
 	@Autowired private DepartmentBuilder departmentBuilder;
 	@Autowired private AddressBuilder addressBuilder;
@@ -125,39 +123,5 @@ public class SelectTest {
 	public void testFindDepartmentsByFacultyFail() {
 		final List<Department> departments = this.departmentService.findAllByFaculty("Medicina");
 		assertEquals(departments.size(), 0);
-	}
-	
-	@Test @Order(13)
-	public void testFindStudentsByDepartment() {
-		final List<Student> students = this.studentService.findAllByDepartment("Ingegneria Informatica");
-		assertEquals(students.size(), 2);
-		
-		assertThat(students.get(0))
-			.extracting(Student::getId)
-			.isEqualTo("AB123");
-		
-		assertThat(students.get(1))
-			.extracting(Student::getId)	
-			.isEqualTo("CD123");
-	}
-	
-	@Test @Order(14)
-	public void testFindStudentsByDepartmentFail() {
-		final List<Student> students = this.studentService.findAllByDepartment("Medicia");
-		assertEquals(students.size(), 0);
-	}
-	
-	@Test @Order(15)
-	public void testFindDirector() {
-		final Professor director = this.departmentService.findByDepartment("Ingegneria Informatica");
-		assertThat(director)
-			.extracting(Professor::getId)
-			.isEqualTo("123AB");
-	}
-	
-	@Test @Order(16)
-	public void testFindDirectorFail() {
-		final Professor director = this.departmentService.findByDepartment("Medicina");
-		assertNull(director);
 	}
 }
