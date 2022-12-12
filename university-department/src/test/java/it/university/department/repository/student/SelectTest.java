@@ -13,10 +13,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import it.university.department.entity.Department;
-import it.university.department.entity.Faculty;
-import it.university.department.entity.Professor;
-import it.university.department.entity.Student;
+import it.university.department.dto.Department;
+import it.university.department.dto.Faculty;
+import it.university.department.dto.Professor;
+import it.university.department.dto.Student;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(9)
 public class SelectTest {
