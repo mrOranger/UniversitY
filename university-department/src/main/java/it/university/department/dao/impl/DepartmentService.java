@@ -1,7 +1,9 @@
 package it.university.department.dao.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import it.university.department.dao.DepartmentDAO;
@@ -13,70 +15,66 @@ import it.university.department.repository.DepartmentRepository;
 public class DepartmentService implements DepartmentDAO, Converter<Department, DepartmentDTO> {
 	
 	@Autowired private DepartmentRepository repository;
-
+	@Autowired private ModelMapper modelMapper;
+	
 	@Override
 	public List<DepartmentDTO> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findAll());
 	}
 
 	@Override
 	public DepartmentDTO findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findById(id).orElse(null));
 	}
 
 	@Override
 	public List<DepartmentDTO> findAllByAddress(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findByAddressId(id));
 	}
 
 	@Override
 	public List<DepartmentDTO> findAllByAddressStreet(String street) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findByAddressStreet(street));
 	}
 
 	@Override
 	public List<DepartmentDTO> findAllByAddressCity(String city) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findByAddressCity(city));
 	}
 
 	@Override
 	public List<DepartmentDTO> findAllByAddressProvince(String province) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findByAddressProvince(province));
 	}
 
 	@Override
 	public List<DepartmentDTO> findAllByAddressRegion(String region) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findByAddressRegion(region));
 	}
 
 	@Override
 	public List<DepartmentDTO> findAllByAddressNation(String nation) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findByAddressNation(nation));
 	}
 
 	@Override
 	public List<DepartmentDTO> findAllByFaculty(String faculty) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.convertToDto(this.repository.findByFacultyName(faculty));
 	}
 
 	@Override
 	public DepartmentDTO convertToDto(Department f) {
-		// TODO Auto-generated method stub
-		return null;
+		DepartmentDTO departmentDto = null;
+		if(f != null) {
+			departmentDto = this.modelMapper.map(f, DepartmentDTO.class);
+		}
+		return departmentDto;
 	}
 
 	@Override
 	public List<DepartmentDTO> convertToDto(List<Department> f) {
-		// TODO Auto-generated method stub
-		return null;
+		return f.stream()
+				.map((source) -> this.modelMapper.map(source, DepartmentDTO.class))
+				.collect(Collectors.toList());
 	}
 }
