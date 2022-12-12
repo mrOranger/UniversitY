@@ -13,6 +13,9 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import it.university.department.entity.Department;
+import it.university.department.entity.Faculty;
+import it.university.department.entity.Professor;
 import it.university.department.entity.Student;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(1)
@@ -20,6 +23,7 @@ public class SelectTest {
 	
 	@Autowired private DepartmentService departmentService;
 	@Autowired private StudentService studentService;
+	@Autowired private ProfessorService professorService;
 	
 	@Autowired private DepartmentBuilder departmentBuilder;
 	@Autowired private AddressBuilder addressBuilder;
@@ -141,5 +145,19 @@ public class SelectTest {
 	public void testFindStudentsByDepartmentFail() {
 		final List<Student> students = this.studentService.findAllByDepartment("Medicia");
 		assertEquals(students.size(), 0);
+	}
+	
+	@Test @Order(15)
+	public void testFindDirector() {
+		final Professor director = this.departmentService.findByDepartment("Ingegneria Informatica");
+		assertThat(director)
+			.extracting(Professor::getId)
+			.isEqualTo("123AB");
+	}
+	
+	@Test @Order(16)
+	public void testFindDirectorFail() {
+		final Professor director = this.departmentService.findByDepartment("Medicina");
+		assertNull(director);
 	}
 }
