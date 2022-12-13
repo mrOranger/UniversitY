@@ -5,10 +5,13 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +19,9 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import it.university.department.dao.impl.DepartmentService;
 import it.university.department.dto.DepartmentDTO;
 import it.university.department.entity.Address;
+import it.university.department.exception.NotFoundException;
 import it.university.department.message.Message;
+import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 
 @RestController @Log
@@ -25,60 +30,85 @@ public final class AddressController {
 	
 	@Autowired private DepartmentService departmentService;
 	
-	@RequestMapping(path = "street/:street")
+	@GetMapping(path = "street/{street}") @SneakyThrows
 	public final ResponseEntity<List<DepartmentDTO>> getDepartmentsByStreet(@PathVariable("street") String street) {
 		log.info("[GET] - api/departments/address/street/ ".concat(street));
 		
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressStreet(street);
 		
-		return null;
+		if(departments.isEmpty()) {
+			throw new NotFoundException();
+		}
+		
+		return new ResponseEntity<List<DepartmentDTO>>(departments, HttpStatus.OK);
 	}
 	
-	@RequestMapping(path = "city/:city")
+	@GetMapping(path = "city/{city}") @SneakyThrows
 	public final ResponseEntity<List<DepartmentDTO>> getDepartmentsByCity(@PathVariable("city") String city) {
 		log.info("[GET] - api/departments/address/city/ ".concat(city));
 		
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressCity(city);
-		return null;
+		
+		if(departments.isEmpty()) {
+			throw new NotFoundException();
+		}
+		
+		return new ResponseEntity<List<DepartmentDTO>>(departments, HttpStatus.OK);
 	}
 	
-	@RequestMapping(path = "province/:province")
+	@GetMapping(path = "province/{province}") @SneakyThrows
 	public final ResponseEntity<List<DepartmentDTO>> getDepartmentsByProvince(@PathVariable("province") String province) {
 		log.info("[GET] - api/departments/address/province/ ".concat(province));
 		
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressProvince(province);
 		
-		return null;
+		if(departments.isEmpty()) {
+			throw new NotFoundException();
+		}
+		
+		return new ResponseEntity<List<DepartmentDTO>>(departments, HttpStatus.OK);
 	}
 	
-	@RequestMapping(path = "region/:region")
+	@GetMapping(path = "region/{region}") @SneakyThrows
 	public final ResponseEntity<List<DepartmentDTO>> getDepartmentsByRegion(@PathVariable("region") String region) {
 		log.info("[GET] - api/departments/address/region/ ".concat(region));
 		
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressRegion(region);
 		
-		return null;
+		if(departments.isEmpty()) {
+			throw new NotFoundException();
+		}
+		
+		return new ResponseEntity<List<DepartmentDTO>>(departments, HttpStatus.OK);
 	}
 	
-	@RequestMapping(path = "nation/:nation")
+	@GetMapping(path = "nation/{nation}") @SneakyThrows
 	public final ResponseEntity<List<DepartmentDTO>> getDepartmentsByNation(@PathVariable("nation") String nation) {
 		log.info("[GET] - api/departments/address/nation/ ".concat(nation));
 		
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressNation(nation);
 		
-		return null;
+		if(departments.isEmpty()) {
+			throw new NotFoundException();
+		}
+		
+		return new ResponseEntity<List<DepartmentDTO>>(departments, HttpStatus.OK);
 	}
 	
-	@RequestMapping(path = "id/:id")
+	@GetMapping(path = "id/{id}") @SneakyThrows
 	public final ResponseEntity<List<DepartmentDTO>> getDepartmentsByAddress(@PathVariable("id") int id) {
 		log.info("[GET] - api/departments/address/id/ " + id);
 		
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddress(id);
 		
-		return null;
+		if(departments.isEmpty()) {
+			throw new NotFoundException();
+		}
+		
+		return new ResponseEntity<List<DepartmentDTO>>(departments, HttpStatus.OK);
 	}
 	
-	@RequestMapping(path = "department/:department")
+	@PutMapping(path = "department/{department}")
 	public final ResponseEntity<Message> putDepartmentAddress(
 			@PathVariable("department") String department, 
 			@Valid @RequestBody Address address,
