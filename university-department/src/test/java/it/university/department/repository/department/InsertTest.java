@@ -3,9 +3,6 @@ package it.university.department.repository.department;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -24,7 +21,6 @@ import it.university.department.entity.Faculty;
 import it.university.department.entity.builder.AddressBuilder;
 import it.university.department.entity.builder.DepartmentBuilder;
 import it.university.department.entity.builder.FacultyBuilder;
-import it.university.department.entity.builder.ProfessorBuilder;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(2)
 public class InsertTest implements Setup{
@@ -34,7 +30,6 @@ public class InsertTest implements Setup{
 	@Autowired private DepartmentBuilder departmentBuilder;
 	@Autowired private AddressBuilder addressBuilder;
 	@Autowired private FacultyBuilder facultyBuilder;
-	@Autowired private ProfessorBuilder professorBuilder;
 	
 	private Department department;
 	
@@ -50,33 +45,14 @@ public class InsertTest implements Setup{
 				.setNation("Italia")
 				.build();
 		
-		final Faculty faculty = this.facultyBuilder.setName("IMF")
-				.setAddress(this.addressBuilder.setId(2)
-					.setStreet("Via Nazionale")
-					.setNumber(2)
-					.setCity("Torino")
-					.setProvince("Torino")
-					.setRegion("Piemonte")
-					.setNation("Italia")
-					.build())
+		final Faculty faculty = this.facultyBuilder
+				.setName("IMF")
 				.build();
 		
 		this.department = this.departmentBuilder
 				.setName("Informatica")
 				.setAddress(address)
 				.setFaculty(faculty)
-				.addDirector(this.professorBuilder.setId("123NO")
-						.setName("Adrian")
-						.setSurname("Gialli")
-						.setDateOfBirth(Date.valueOf(LocalDate.parse("1981-09-10")))
-						.setAddress(address)
-						.build())
-				.addProfessor(this.professorBuilder.setId("123NO")
-						.setName("Adrian")
-						.setSurname("Gialli")
-						.setDateOfBirth(Date.valueOf(LocalDate.parse("1981-09-10")))
-						.setAddress(address)
-						.build())
 				.build();
 	}
 
