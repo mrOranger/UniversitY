@@ -144,7 +144,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(11) @SneakyThrows
 	public void testSelectDepartmentByNationFail() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/city/Canada")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/nation/Canada")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
