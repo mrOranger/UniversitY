@@ -13,7 +13,5 @@ public final class ProfessorDTO {
 	private String name;
 	private String surname;
 	private Date dateOfBirth;
-	private DepartmentDTO worksIn;
-	private DepartmentDTO director;
 	
 }
