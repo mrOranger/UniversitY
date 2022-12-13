@@ -3,21 +3,14 @@ package it.university.department.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "professor")
@@ -41,23 +34,4 @@ public class Professor implements Serializable {
 	@Column(name = "dateOfBirth")
 	@NotNull(message = "{NotNull.Professor.DateOfBirth.Validation}")
 	private Date dateOfBirth;
-	
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "department")
-	@EqualsAndHashCode.Exclude
-	private Department worksIn;
-	
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "director")
-	@EqualsAndHashCode.Exclude
-	private Department director;
-	
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name = "address")
-	@EqualsAndHashCode.Exclude
-	private Address address;
-	
 }

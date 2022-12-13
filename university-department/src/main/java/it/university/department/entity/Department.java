@@ -1,8 +1,6 @@
 package it.university.department.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,14 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,19 +40,4 @@ public class Department implements Serializable {
 	@JoinColumn(name = "faculty", referencedColumnName = "name")
 	@EqualsAndHashCode.Exclude
 	private Faculty faculty;
-	
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "worksIn")
-	private Set<Professor> professors = new HashSet<>();
-
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "director")
-	private Set<Professor> directors = new HashSet<>();
-	
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "join_department",
-			joinColumns = {@JoinColumn(name = "student")},
-			inverseJoinColumns = {@JoinColumn(name = "department")})
-	private Set<Student> students  = new HashSet<>();
 }
