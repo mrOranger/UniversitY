@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import it.university.department.dao.impl.StudentService;
 import it.university.department.dto.StudentDTO;
 
-@SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(9)
+@SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(6)
 public class SelectTest {
 	
 	@Autowired private StudentService studentService;
@@ -27,11 +27,11 @@ public class SelectTest {
 		
 		assertThat(students.get(0))
 			.extracting(StudentDTO::getId)
-			.isEqualTo("AB123");
+			.isEqualTo("EF123");
 		
 		assertThat(students.get(1))
 			.extracting(StudentDTO::getId)	
-			.isEqualTo("CD123");
+			.isEqualTo("IJ123");
 	}
 	
 	@Test @Order(2)
