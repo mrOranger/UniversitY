@@ -2,9 +2,11 @@ package it.university.department.message;
 
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 public final class Message {
 	
 	private LocalDate date;
