@@ -22,7 +22,7 @@ public class SelectTest {
 	@Autowired private ProfessorService professorService;
 	
 	@Test @Order(1)
-	public void testFindDirector() {
+	public void testFindDirectors() {
 		final List<ProfessorDTO> director = this.professorService.findDirectorsByDepartment("Ingegneria Informatica");
 		assertThat(director)
 			.extracting(ProfessorDTO::getId)
@@ -30,7 +30,7 @@ public class SelectTest {
 	}
 	
 	@Test @Order(2)
-	public void testFindDirectorFail() {
+	public void testFindDirectorsFail() {
 		final List<ProfessorDTO> directors = this.professorService.findDirectorsByDepartment("Medicina");
 		assertEquals(directors.size(), 0);
 	}
