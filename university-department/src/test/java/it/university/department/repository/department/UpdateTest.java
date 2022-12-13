@@ -1,19 +1,19 @@
 package it.university.department.repository.department;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.TransactionSystemException;
 
 import it.university.department.Setup;
 import it.university.department.dao.impl.DepartmentService;
-import it.university.department.dto.DepartmentDTO;
 import it.university.department.entity.Address;
 import it.university.department.entity.Department;
 import it.university.department.entity.Faculty;
@@ -37,8 +37,8 @@ public class UpdateTest implements Setup {
 	@Override @BeforeEach
 	public void setup() {
 		
-		final Address address = this.addressBuilder.setId(4)
-				.setStreet("Via Nazionale")
+		final Address address = this.addressBuilder.setId(11)
+				.setStreet("Via Primula")
 				.setNumber(4)
 				.setCity("Palermo")
 				.setProvince("Palermo")
@@ -58,7 +58,7 @@ public class UpdateTest implements Setup {
 				.build();
 		
 		this.department = this.departmentBuilder
-				.setName("Informatica & TPS")
+				.setName("Informatica")
 				.setAddress(address)
 				.setFaculty(faculty)
 				.addDirector(this.professorBuilder.setId("123NO").build())
@@ -70,19 +70,17 @@ public class UpdateTest implements Setup {
 	public void updateDepartment() {
 		this.departmentService.save(this.department);
 		
-		assertThat(this.departmentService.findById("Informatica & TPS"))
-			.extracting(DepartmentDTO::getName)
-			.isEqualTo(this.department.getName());
+		assertEquals(this.departmentService.findAllByAddress(11).size(), 1);
 	}
 	
 	@Test @Order(2)
 	public void updateDepartmentWithFailure() {
 		this.department.getAddress().setCity(null);
-		assertThrows(IllegalArgumentException.class, () -> this.departmentService.save(this.department));
+		assertThrows(TransactionSystemException.class, () -> this.departmentService.save(this.department));
 	}
 	
 	@Test @Order(3)
 	public void updateDepartmentNullWithFailure() {
-		assertThrows(IllegalArgumentException.class, () -> this.departmentService.save(null));
+		assertThrows(TransactionSystemException.class, () -> this.departmentService.save(null));
 	}
 }

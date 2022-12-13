@@ -35,27 +35,27 @@ public class Department implements Serializable {
 	private String name;
 	
 	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	@EqualsAndHashCode.Exclude
 	private Address address;
 	
 	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "faculty", referencedColumnName = "name")
 	@EqualsAndHashCode.Exclude
 	private Faculty faculty;
 	
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "worksIn")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "worksIn")
 	private Set<Professor> professors = new HashSet<>();
 
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "director")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "director")
 	private Set<Professor> directors = new HashSet<>();
 	
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "join_department",
 			joinColumns = {@JoinColumn(name = "student")},
 			inverseJoinColumns = {@JoinColumn(name = "department")})

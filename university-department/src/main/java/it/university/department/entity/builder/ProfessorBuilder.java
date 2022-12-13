@@ -2,6 +2,7 @@ package it.university.department.entity.builder;
 
 import java.sql.Date;
 
+import it.university.department.entity.Address;
 import it.university.department.entity.Department;
 import it.university.department.entity.Professor;
 
@@ -42,6 +43,12 @@ public final class ProfessorBuilder implements Builder<Professor>{
 	public ProfessorBuilder setDirector(Department department) {
 		this.professor.setDirector(department);
 		department.getDirectors().add(this.professor);
+		return this;
+	}
+	
+	public ProfessorBuilder setAddress(Address address) {
+		this.professor.setAddress(address);
+		address.getProfessors().add(this.professor);
 		return this;
 	}
 

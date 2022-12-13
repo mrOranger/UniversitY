@@ -3,6 +3,9 @@ package it.university.department.repository.department;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -10,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.TransactionSystemException;
 
 import it.university.department.Setup;
 import it.university.department.dao.impl.DepartmentService;
@@ -61,8 +65,18 @@ public class InsertTest implements Setup{
 				.setName("Informatica")
 				.setAddress(address)
 				.setFaculty(faculty)
-				.addDirector(this.professorBuilder.setId("123NO").build())
-				.addProfessor(this.professorBuilder.setId("123NO").build())
+				.addDirector(this.professorBuilder.setId("123NO")
+						.setName("Adrian")
+						.setSurname("Gialli")
+						.setDateOfBirth(Date.valueOf(LocalDate.parse("1981-09-10")))
+						.setAddress(address)
+						.build())
+				.addProfessor(this.professorBuilder.setId("123NO")
+						.setName("Adrian")
+						.setSurname("Gialli")
+						.setDateOfBirth(Date.valueOf(LocalDate.parse("1981-09-10")))
+						.setAddress(address)
+						.build())
 				.build();
 	}
 
@@ -79,11 +93,11 @@ public class InsertTest implements Setup{
 	@Test @Order(2)
 	public void addDepartmentWithFailure() {
 		this.department.getAddress().setCity(null);
-		assertThrows(IllegalArgumentException.class, () -> this.departmentService.save(this.department));
+		assertThrows(TransactionSystemException.class, () -> this.departmentService.save(this.department));
 	}
 	
 	@Test @Order(3)
 	public void addDepartmentNullWithFailure() {
-		assertThrows(IllegalArgumentException.class, () -> this.departmentService.save(null));
+		assertThrows(TransactionSystemException.class, () -> this.departmentService.save(null));
 	}
 }

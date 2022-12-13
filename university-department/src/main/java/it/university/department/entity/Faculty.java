@@ -40,6 +40,6 @@ public class Faculty implements Serializable {
 	private Address address;
 	
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty", orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
 	private Set<Department> departments = new HashSet<>();
 }

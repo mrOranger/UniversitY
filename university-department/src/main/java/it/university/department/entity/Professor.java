@@ -53,4 +53,11 @@ public class Professor implements Serializable {
 	@JoinColumn(name = "director")
 	@EqualsAndHashCode.Exclude
 	private Department director;
+	
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn(name = "address")
+	@EqualsAndHashCode.Exclude
+	private Address address;
+	
 }

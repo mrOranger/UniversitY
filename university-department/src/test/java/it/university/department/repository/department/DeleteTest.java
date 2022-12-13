@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.TransactionSystemException;
 
 import it.university.department.dao.impl.DepartmentService;
 
@@ -19,12 +20,12 @@ public class DeleteTest{
 	
 	@Test @Order(1)
 	public void deleteDepartment() {
-		this.departmentService.delete("Informatica & TPS");
-		assertNull(this.departmentService.findById("Informatica & TPS"));
+		this.departmentService.delete("Informatica");
+		assertNull(this.departmentService.findById("Informatica"));
 	}
 	
 	@Test @Order(2)
 	public void deleteDepartmentNullWithFailure() {
-		assertThrows(IllegalArgumentException.class, () -> this.departmentService.findById(null));
+		assertThrows(TransactionSystemException.class, () -> this.departmentService.findById(null));
 	}
 }
