@@ -1,6 +1,14 @@
 package it.university.department.message;
 
-// TODO: complete definition of message (error, info) for responses
+import java.time.LocalDate;
+
+import lombok.Data;
+
+@Data
 public final class Message {
+	
+	private LocalDate date;
+	private String message;
+	private int code;
 
 }
