@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.transaction.TransactionSystemException;
 
 import it.university.department.Setup;
@@ -74,6 +75,6 @@ public class InsertTest implements Setup{
 	
 	@Test @Order(3)
 	public void addDepartmentNullWithFailure() {
-		assertThrows(TransactionSystemException.class, () -> this.departmentService.save(null));
+		assertThrows(InvalidDataAccessApiUsageException.class, () -> this.departmentService.save(null));
 	}
 }
