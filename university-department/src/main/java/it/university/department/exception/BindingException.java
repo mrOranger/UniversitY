@@ -1,5 +1,5 @@
 package it.university.department.exception;
 
-public class BindingException {
+public final class BindingException {
 
 }
