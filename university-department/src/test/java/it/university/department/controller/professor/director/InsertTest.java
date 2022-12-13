@@ -1,11 +1,11 @@
-package it.university.department.controller.address;
+package it.university.department.controller.professor.director;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(8)
-public class UpdateTest {
+@SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(20)
+public class InsertTest {
 
 }
