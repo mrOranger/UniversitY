@@ -4,11 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 
-import it.university.department.entity.Address;
-import it.university.department.entity.Department;
-import it.university.department.entity.Faculty;
 import it.university.department.entity.builder.AddressBuilder;
-import it.university.department.entity.builder.Builder;
 import it.university.department.entity.builder.DepartmentBuilder;
 import it.university.department.entity.builder.FacultyBuilder;
 
@@ -16,17 +12,17 @@ import it.university.department.entity.builder.FacultyBuilder;
 public class BuilderConfiguration {
 
 	@Bean @Description("Builder per generare un indirizzo")
-	public Builder<Address> getAddressBuilder() {
+	public AddressBuilder getAddressBuilder() {
 		return new AddressBuilder();
 	}
 	
 	@Bean @Description("Builder per generare una facoltà")
-	public Builder<Faculty> getFacultyBuilder() {
+	public FacultyBuilder getFacultyBuilder() {
 		return new FacultyBuilder();
 	}
 	
 	@Bean @Description("Builder per generare un dipartimento")
-	public Builder<Department> getDeparmentBuilder() {
+	public DepartmentBuilder getDeparmentBuilder() {
 		return new DepartmentBuilder();
 	}
 }
