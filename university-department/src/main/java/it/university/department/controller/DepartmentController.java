@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -86,7 +87,7 @@ public final class DepartmentController {
 			BindingResult bindingResult) {
 		
 		log.info("[POST] - api/departments/");
-		
+
 		if(bindingResult.hasErrors()) {
 			throw new BindingException(this.errorMessage.getMessage(bindingResult.getFieldError(), LocaleContextHolder.getLocale()));
 		}
@@ -98,6 +99,28 @@ public final class DepartmentController {
 		this.departmentService.save(department);
 		
 		return new ResponseEntity<Message>(new Message(LocalDate.now(), "Dipartimento inserito con successo!", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	@PutMapping(path = "/{department}") @SneakyThrows
+	public final ResponseEntity<Message> putDepartment(
+			@PathVariable("department") String name,
+			@Valid @RequestBody Department department,
+			BindingResult bindingResult
+			){
+		
+		log.info("[PUT] - api/departments/".concat(name));
+		
+		if(bindingResult.hasErrors()) {
+			throw new BindingException(this.errorMessage.getMessage(bindingResult.getFieldError(), LocaleContextHolder.getLocale()));
+		}
+		
+		if(this.departmentService.findById(name) == null) {
+			throw new NotFoundException();
+		}
+		
+		this.departmentService.save(department);
+		
+		return new ResponseEntity<Message>(new Message(LocalDate.now(), "Dipartimento modificato con successo!", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 
 }
