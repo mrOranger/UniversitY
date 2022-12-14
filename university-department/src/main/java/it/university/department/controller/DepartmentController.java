@@ -1,19 +1,31 @@
 package it.university.department.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.university.department.dao.impl.DepartmentService;
 import it.university.department.dto.DepartmentDTO;
+import it.university.department.entity.Department;
+import it.university.department.exception.BindingException;
+import it.university.department.exception.DuplicateException;
 import it.university.department.exception.NotFoundException;
+import it.university.department.message.Message;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 
@@ -46,6 +58,7 @@ import lombok.extern.java.Log;
 public final class DepartmentController {
 	
 	@Autowired private DepartmentService departmentService;
+	@Autowired private ResourceBundleMessageSource errorMessage;
 	
 	@GetMapping @SneakyThrows
 	public final ResponseEntity<List<DepartmentDTO>> getDepartments() {
@@ -65,6 +78,26 @@ public final class DepartmentController {
 			throw new NotFoundException();
 		}
 		return new ResponseEntity<DepartmentDTO>(department, HttpStatus.OK);
+	}
+	
+	@PostMapping @SneakyThrows
+	public final ResponseEntity<Message> postDepartment(
+			@Valid @RequestBody Department department,
+			BindingResult bindingResult) {
+		
+		log.info("[POST] - api/departments/");
+		
+		if(bindingResult.hasErrors()) {
+			throw new BindingException(this.errorMessage.getMessage(bindingResult.getFieldError(), LocaleContextHolder.getLocale()));
+		}
+		
+		if(this.departmentService.findById(department.getName()) != null) {
+			throw new DuplicateException();
+		}
+		
+		this.departmentService.save(department);
+		
+		return new ResponseEntity<Message>(new Message(LocalDate.now(), "Dipartimenti inserito con successo", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 
 }
