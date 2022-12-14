@@ -23,16 +23,3 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     
-management:
-  endpoint:
-    health:
-      show-details: WHEN_AUTHORIZED
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-keycloak:
-  auth-server-url: http://localhost:8080
-  realm: UniversitY
-  resource: UniversityStudent
-  public-client: true
