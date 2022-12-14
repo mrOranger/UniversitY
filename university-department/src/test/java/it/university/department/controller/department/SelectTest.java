@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.json.JSONObject;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public final class SelectTest implements Setup {
 	private JSONObject notFoundError;
 	private JSONObject department;
 
-	@Override @SneakyThrows
+	@Override @SneakyThrows @BeforeEach
 	public void setup() {
 		this.mockMcv = MockMvcBuilders.webAppContextSetup(context).build();
 		
@@ -44,11 +45,11 @@ public final class SelectTest implements Setup {
 		this.department.put("name", "Lettere")
 						.put("address", new JSONObject()
 								.put("id", 6)
+								.put("street", "Dam Square")
 								.put("number", 6)
-								.put("address", "Dam Square")
 								.put("city", "Amsterdam")
-								.put("province", null)
-								.put("region", null)
+								.put("province", "")
+								.put("region", "")
 								.put("nation", "Holland"))
 						.put("faculty", new JSONObject()
 											.put("name", "LESU"));
@@ -56,6 +57,7 @@ public final class SelectTest implements Setup {
 	
 	@Test @Order(1) @SneakyThrows
 	public void testSelectDepartments() {
+		
 		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
