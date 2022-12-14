@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity @Table(name = "address")
 @Data @AllArgsConstructor @NoArgsConstructor 
@@ -58,8 +57,7 @@ public class Address implements Serializable{
 	@NotNull(message = "{NotNull.Address.Nation.Validation}")
 	private String nation;
 	
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
-	@ToString.Exclude
+	@JsonManagedReference(value = "department-address")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", orphanRemoval = true)
 	private Set<Department> departments = new HashSet<>();
 }

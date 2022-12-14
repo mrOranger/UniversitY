@@ -29,7 +29,7 @@ public class Department implements Serializable {
 	@NotNull(message = "{NotNull.Department.Name.Validation}")
 	private String name;
 	
-	@JsonBackReference
+	@JsonBackReference(value = "department-address")
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "address", referencedColumnName = "id")
 	@EqualsAndHashCode.Exclude

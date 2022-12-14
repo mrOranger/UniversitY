@@ -38,7 +38,8 @@ public final class UpdateTest implements Setup{
 		
 		this.address = new JSONObject();
 		
-		address.put("street", "Via delle Rose")
+		address.put("id", 2)
+			.put("street", "Via Nazionale")
 			.put("number", 12)
 			.put("city", "Torino")
 			.put("province", "Torino")
@@ -48,7 +49,7 @@ public final class UpdateTest implements Setup{
 	
 	@Test @Order(1) @SneakyThrows
 	public void testUpdateDepartmentAddress() {
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/Ingegneria Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/department/Ingegneria Informatica")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.address.toString())
 				.accept(MediaType.APPLICATION_JSON))
@@ -61,7 +62,7 @@ public final class UpdateTest implements Setup{
 	
 	@Test @Order(2) @SneakyThrows
 	public void testUpdateDepartmentAddressNotFound() {
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/Ingegneria Matematica")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/department/Ingegneria Matematica")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.address.toString())
 				.accept(MediaType.APPLICATION_JSON))
@@ -77,14 +78,14 @@ public final class UpdateTest implements Setup{
 		
 		this.address.remove("nation");
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/Ingegneria Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/department/Ingegneria Informatica")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.address.toString())
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest())
 				.andExpect(jsonPath("$.code").value(HttpStatus.BAD_REQUEST.value()))
 				.andExpect(jsonPath("$.date").value(LocalDate.now().toString()))
-				.andExpect(jsonPath("$.message").value("La nazione di un Dipartimento non può essere nulla!"))
+				.andExpect(jsonPath("$.message").value("La nazione dell'indirizzo non può essere nulla"))
 				.andDo(print());	
 	}
 
