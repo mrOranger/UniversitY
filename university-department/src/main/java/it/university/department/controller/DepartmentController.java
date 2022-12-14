@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -121,6 +122,16 @@ public final class DepartmentController {
 		this.departmentService.save(department);
 		
 		return new ResponseEntity<Message>(new Message(LocalDate.now(), "Dipartimento modificato con successo!", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	@DeleteMapping(path = "/{department}") @SneakyThrows
+	public final ResponseEntity<Message> deleteDepartment(@PathVariable("department") String department) {
+		log.info("[DELETE] - api/departments/".concat(department));
+		if(this.departmentService.findById(department) == null) {
+			throw new NotFoundException();
+		}
+		this.departmentService.delete(department);
+		return new ResponseEntity<Message>(new Message(LocalDate.now(), "Dipartimento eliminato con successo!", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 
 }

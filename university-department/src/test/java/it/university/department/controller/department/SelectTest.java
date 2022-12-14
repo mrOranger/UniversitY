@@ -46,7 +46,7 @@ public final class SelectTest implements Setup {
 						.put("address", new JSONObject()
 								.put("id", 6)
 								.put("street", "Dam Square")
-								.put("number", 6)
+								.put("number", 10)
 								.put("city", "Amsterdam")
 								.put("province", "")
 								.put("region", "")
