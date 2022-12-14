@@ -97,7 +97,7 @@ public final class DepartmentController {
 		
 		this.departmentService.save(department);
 		
-		return new ResponseEntity<Message>(new Message(LocalDate.now(), "Dipartimenti inserito con successo", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<Message>(new Message(LocalDate.now(), "Dipartimento inserito con successo!", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 
 }
