@@ -38,7 +38,7 @@ public final class SelectTest implements Setup {
 	public void setup() {
 		this.mockMcv = MockMvcBuilders.webAppContextSetup(context).build();
 		this.notFoundErrorDepartment = JSONResponse.generateResponse(HttpStatus.NOT_FOUND.value(), "Non è stato trovato alcun Dipartimento!");
-		this.notFoundErrorProfessor = JSONResponse.generateResponse(HttpStatus.NOT_FOUND.value(), "Nessun professore è iscritto a questo dipartimento");
+		this.notFoundErrorProfessor = JSONResponse.generateResponse(HttpStatus.NOT_FOUND.value(), "Nessun professore è iscritto a questo dipartimento!");
 	}
 	
 	@Test @Order(1) @SneakyThrows
