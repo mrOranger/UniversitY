@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,17 +17,18 @@ import it.university.department.entity.Professor;
 import it.university.department.repository.ProfessorRepository;
 
 @Service @Transactional(readOnly = true)
+@CacheConfig(cacheNames = { "professori" })
 public class ProfessorService implements ProfessorDAO, Converter<Professor, ProfessorDTO> {
 	
 	@Autowired private ProfessorRepository professorRepository;
 	@Autowired private ModelMapper modelMapper;
 
-	@Override
+	@Override @Cacheable(value = "professori.department", key = "#department", sync = true)
 	public List<ProfessorDTO> findAllByDepartment(String department) {
 		return this.convertToDto(this.professorRepository.findByWorksInName(department));
 	}
 
-	@Override
+	@Override @Cacheable(value = "professori.director.department", key = "#department", sync = true)
 	public List<ProfessorDTO> findDirectorsByDepartment(String department) {
 		return this.convertToDto(this.professorRepository.findByDirectorName(department));
 	}
