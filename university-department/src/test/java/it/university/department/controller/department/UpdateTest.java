@@ -59,7 +59,7 @@ public class UpdateTest implements Setup {
 		
 		this.department.put("name", "Informatica & TPS");
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/Informatica & TPS")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/university/api/departments/update/Informatica & TPS")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.department.toString())
 				.accept(MediaType.APPLICATION_JSON))
@@ -74,7 +74,7 @@ public class UpdateTest implements Setup {
 
 		this.department.put("name", "Medicina");
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/Medicia")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/university/api/departments/update/Medicia")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.department.toString())
 				.accept(MediaType.APPLICATION_JSON))

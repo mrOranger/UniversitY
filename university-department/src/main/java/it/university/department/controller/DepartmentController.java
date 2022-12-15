@@ -41,7 +41,7 @@ import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 
 @RestController
-@Log @RequestMapping(path = "api/departments", produces = MediaType.APPLICATION_JSON_VALUE)
+@Log @RequestMapping(path = "university/api/departments", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "DepartmentController", description = "Controller per le operazioni di ricerca dei Dipartimenti")
 public final class DepartmentController {
 	
@@ -113,7 +113,7 @@ public final class DepartmentController {
 			@ApiResponse(responseCode = "403", description = "Richiesta non valida, utente non autorizzato.",
 			content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Message.class)))
 	})
-	@PostMapping @SneakyThrows
+	@PostMapping(path = "/insert") @SneakyThrows
 	public final ResponseEntity<Message> postDepartment(
 			@Parameter(description = "Dipartimento da inserire nella base di dati") @Valid @RequestBody Department department,
 			BindingResult bindingResult) {
@@ -149,7 +149,7 @@ public final class DepartmentController {
 			@ApiResponse(responseCode = "403", description = "Richiesta non valida, utente non autorizzato.",
 			content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Message.class)))
 	})
-	@PutMapping(path = "/{department}") @SneakyThrows
+	@PutMapping(path = "/update/{department}") @SneakyThrows
 	public final ResponseEntity<Message> putDepartment(
 			@Parameter(description = "Nome del Dipartimento da modificare") @PathVariable("department") String name,
 			@Parameter(description = "Valori del Dipartimento da modificare") @Valid @RequestBody Department department,
@@ -185,7 +185,7 @@ public final class DepartmentController {
 			@ApiResponse(responseCode = "403", description = "Richiesta non valida, utente non autorizzato.",
 			content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Message.class)))
 	})
-	@DeleteMapping(path = "/{department}") @SneakyThrows
+	@DeleteMapping(path = "/delete/{department}") @SneakyThrows
 	public final ResponseEntity<Message> deleteDepartment(
 			@Parameter(description = "Nome del Dipartimento da eliminare") @PathVariable("department") String department) {
 		log.info("[DELETE] - api/departments/".concat(department));

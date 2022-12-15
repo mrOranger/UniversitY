@@ -41,7 +41,7 @@ import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 
 @RestController @Log
-@RequestMapping(path = "api/departments/address/", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "university/api/departments/address/", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "AddressController", description = "Controller per le operazioni di ricerca basate sull'indirizzo")
 public final class AddressController {
 	
@@ -233,7 +233,7 @@ public final class AddressController {
 			@ApiResponse(responseCode = "403", description = "Richiesta non valida, utente non autorizzato.",
 			content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Message.class)))
 	})
-	@PutMapping(path = "department/{department}") @SneakyThrows
+	@PutMapping(path = "department/update/{department}") @SneakyThrows
 	public final ResponseEntity<Message> putDepartmentAddress(
 			@Parameter(description = "Nome del Dipartimento dal modificare") @PathVariable("department") String department, 
 			@Parameter(description = "Indirizzo modificato del Dipartimento") @Valid @RequestBody Address address,

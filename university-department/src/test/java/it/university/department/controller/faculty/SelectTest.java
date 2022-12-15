@@ -43,7 +43,7 @@ public final class SelectTest implements Setup {
 	
 	@Test @Order(1) @SneakyThrows
 	public void testSelectDepartmentsByFaculty() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/faculty/Ingegneria")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/faculty/Ingegneria")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -53,7 +53,7 @@ public final class SelectTest implements Setup {
 	
 	@Test @Order(2) @SneakyThrows
 	public void testSelectDepartmentsByFacultyNotFound() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/faculty/Medicina")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/faculty/Medicina")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

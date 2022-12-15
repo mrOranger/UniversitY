@@ -44,7 +44,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(1) @SneakyThrows
 	public final void testSelectDirectors() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/professors/directors/Ingegneria Gestionale")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/professors/directors/Ingegneria Gestionale")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -54,7 +54,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(2) @SneakyThrows
 	public final void testSelectDirectorsNotFound() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/professors/directors/Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/professors/directors/Informatica")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -64,7 +64,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(3) @SneakyThrows
 	public final void testSelectDirectorsDepartmentNotFound() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/professors/directors/Medicina")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/professors/directors/Medicina")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

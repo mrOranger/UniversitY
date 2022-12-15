@@ -68,7 +68,7 @@ public final class InsertTest implements Setup{
 	@Test @Order(1) @SneakyThrows
 	public final void testInsertDepartment() {
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.post("/api/departments")
+		this.mockMcv.perform(MockMvcRequestBuilders.post("/university/api/departments/insert")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.department.toString())
 				.accept(MediaType.APPLICATION_JSON))
@@ -81,7 +81,7 @@ public final class InsertTest implements Setup{
 	@Test @Order(2) @SneakyThrows
 	public final void testInsertDepartmentNotAcceptable() {
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.post("/api/departments")
+		this.mockMcv.perform(MockMvcRequestBuilders.post("/university/api/departments/insert")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.department.toString())
 				.accept(MediaType.APPLICATION_JSON))
@@ -97,7 +97,7 @@ public final class InsertTest implements Setup{
 		
 		this.department.remove("name");
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.post("/api/departments")
+		this.mockMcv.perform(MockMvcRequestBuilders.post("/university/api/departments/insert")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.department.toString())
 				.accept(MediaType.APPLICATION_JSON))

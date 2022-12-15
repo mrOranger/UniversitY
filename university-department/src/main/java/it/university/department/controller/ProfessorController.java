@@ -29,7 +29,7 @@ import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 
 @RestController @Log
-@RequestMapping(path = "api/departments/professors", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "university/api/departments/professors", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "ProfessorController", description = "Controller per le operazioni di ricerca dei Professori afferenti ad un Dipartimento")
 public final class ProfessorController {
 	

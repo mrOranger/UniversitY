@@ -28,7 +28,7 @@ import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 
 @RestController @Log
-@RequestMapping(path = "api/departments/students")
+@RequestMapping(path = "university/api/departments/students")
 @Tag(name = "StudentController", description = "Controller per le operazioni di ricerca degli Studenti afferenti ad un Dipartimento")
 public final class StudentController {
 	

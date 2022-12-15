@@ -44,7 +44,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(1) @SneakyThrows
 	public void testSelectDepartmentByStreet() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/street/Via Nazionale")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/street/Via Nazionale")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -54,7 +54,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(2) @SneakyThrows
 	public void testSelectDepartmentByCity() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/city/Amsterdam")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/city/Amsterdam")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -64,7 +64,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(3) @SneakyThrows
 	public void testSelectDepartmentByProvince() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/province/Bari")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/province/Bari")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -74,7 +74,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(4) @SneakyThrows
 	public void testSelectDepartmentByRegion() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/region/Sicilia")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/region/Sicilia")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -84,7 +84,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(5) @SneakyThrows
 	public void testSelectDepartmentByNation() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/nation/Italia")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/nation/Italia")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -94,7 +94,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(6) @SneakyThrows
 	public void testSelectDepartmentById() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/id/4")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/id/4")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -104,7 +104,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(7) @SneakyThrows
 	public void testSelectDepartmentByStreetFail() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/street/1st Avenue")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/street/1st Avenue")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -114,7 +114,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(8) @SneakyThrows
 	public void testSelectDepartmentByCityFail() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/city/Boston")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/city/Boston")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -124,7 +124,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(9) @SneakyThrows
 	public void testSelectDepartmentByProvinceFail() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/province/Venezia")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/province/Venezia")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -134,7 +134,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(10) @SneakyThrows
 	public void testSelectDepartmentByRegionFail() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/region/Abruzzo")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/region/Abruzzo")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -144,7 +144,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(11) @SneakyThrows
 	public void testSelectDepartmentByNationFail() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/nation/Canada")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/nation/Canada")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -154,7 +154,7 @@ public final class SelectTest implements Setup{
 	
 	@Test @Order(12) @SneakyThrows
 	public void testSelectDepartmentByIdFail() {
-		this.mockMcv.perform(MockMvcRequestBuilders.get("/api/departments/address/id/0")
+		this.mockMcv.perform(MockMvcRequestBuilders.get("/university/api/departments/address/id/0")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

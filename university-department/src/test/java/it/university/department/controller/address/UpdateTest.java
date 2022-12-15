@@ -49,7 +49,7 @@ public final class UpdateTest implements Setup{
 	
 	@Test @Order(1) @SneakyThrows
 	public void testUpdateDepartmentAddress() {
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/department/Ingegneria Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/university/api/departments/address/department/update/Ingegneria Informatica")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.address.toString())
 				.accept(MediaType.APPLICATION_JSON))
@@ -62,7 +62,7 @@ public final class UpdateTest implements Setup{
 	
 	@Test @Order(2) @SneakyThrows
 	public void testUpdateDepartmentAddressNotFound() {
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/department/Ingegneria Matematica")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/university/api/departments/address/department/update/Ingegneria Matematica")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.address.toString())
 				.accept(MediaType.APPLICATION_JSON))
@@ -78,7 +78,7 @@ public final class UpdateTest implements Setup{
 		
 		this.address.remove("nation");
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/address/department/Ingegneria Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/university/api/departments/address/department/update/Ingegneria Informatica")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.address.toString())
 				.accept(MediaType.APPLICATION_JSON))
