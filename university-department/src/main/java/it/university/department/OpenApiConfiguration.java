@@ -19,6 +19,8 @@ import io.swagger.v3.oas.models.info.License;
 		)
 public class OpenApiConfiguration {
 
+	// http://localhost:8001/swagger-ui/index.html#/
+	
 	@Bean
 	public OpenAPI getCustomOpenApi() {
 		return new OpenAPI()
