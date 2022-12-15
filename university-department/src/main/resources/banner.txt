@@ -1,0 +1,7 @@
+    //   / /                                                                             \\    / / 
+   //   / /       __       ( )              ___        __        ___       ( )   __  ___  \\  / /  
+  //   / /     //   ) )   / /   ||  / /   //___) )   //  ) )   ((   ) )   / /     / /      \\/ /   
+ //   / /     //   / /   / /    || / /   //         //          \ \      / /     / /        / /    
+((___/ /     //   / /   / /     ||/ /   ((____     //        //   ) )   / /     / /        / /     
+Microservizio per i Dipartimenti dell'univeristà
+Powered by Spring Boot ${spring-boot.version}
