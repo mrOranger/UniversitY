@@ -27,7 +27,7 @@ public final class ProfessorController {
 	@Autowired private DepartmentService departmentService;
 	 
 	@GetMapping(path = "/{name}") @SneakyThrows
-	public ResponseEntity<List<ProfessorDTO>> getProfessors(@PathVariable("name") String name) {
+	public final ResponseEntity<List<ProfessorDTO>> getProfessors(@PathVariable("name") String name) {
 		log.info("[GET] - api/departments/professors/".concat(name));
 		
 		final DepartmentDTO department = this.departmentService.findById(name);
@@ -38,6 +38,23 @@ public final class ProfessorController {
 		final List<ProfessorDTO> professors = this.professorService.findAllByDepartment(name);
 		if(professors.isEmpty()) {
 			throw new NotFoundException("Nessun professore è iscritto a questo dipartimento!");
+		}
+		
+		return new ResponseEntity<List<ProfessorDTO>>(professors, HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/directors/{name}") @SneakyThrows
+	public final ResponseEntity<List<ProfessorDTO>> getDirectors(@PathVariable("name") String name) {
+		log.info("[GET] - api/departments/professors/directors/".concat(name));
+		
+		final DepartmentDTO department = this.departmentService.findById(name);
+		if(department == null) {
+			throw new NotFoundException("Non è stato trovato alcun Dipartimento!");
+		}
+		
+		final List<ProfessorDTO> professors = this.professorService.findDirectorsByDepartment(name);
+		if(professors.isEmpty()) {
+			throw new NotFoundException("Il dipartimento non ha un direttore!");
 		}
 		
 		return new ResponseEntity<List<ProfessorDTO>>(professors, HttpStatus.OK);

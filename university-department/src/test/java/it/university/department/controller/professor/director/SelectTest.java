@@ -38,7 +38,7 @@ public final class SelectTest implements Setup{
 	public void setup() {
 		this.mockMcv = MockMvcBuilders.webAppContextSetup(context).build();
 		this.notFoundErrorDepartment = JSONResponse.generateResponse(HttpStatus.NOT_FOUND.value(), "Non è stato trovato alcun Dipartimento!");
-		this.notFoundErrorDirector = JSONResponse.generateResponse(HttpStatus.NOT_FOUND.value(), "Il dipartimento non ha un direttore");
+		this.notFoundErrorDirector = JSONResponse.generateResponse(HttpStatus.NOT_FOUND.value(), "Il dipartimento non ha un direttore!");
 	}
 	
 	
