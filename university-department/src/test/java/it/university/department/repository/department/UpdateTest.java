@@ -50,7 +50,7 @@ public class UpdateTest implements Setup {
 				.build();
 		
 		this.department = this.departmentBuilder
-				.setName("Informatica")
+				.setName("Informatica & TPS")
 				.setAddress(address)
 				.setFaculty(faculty)
 				.build();

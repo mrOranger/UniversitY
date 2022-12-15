@@ -42,7 +42,7 @@ public class DeleteTest implements Setup {
 	
 	@Test @Order(1) @SneakyThrows
 	public final void testDeleteDepartment() {
-		this.mockMcv.perform(MockMvcRequestBuilders.delete("/api/departments/Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.delete("/api/departments/Informatica & TPS")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
@@ -53,7 +53,7 @@ public class DeleteTest implements Setup {
 	
 	@Test @Order(2) @SneakyThrows
 	public final void testDeleteDepartmentNotFound() {
-		this.mockMcv.perform(MockMvcRequestBuilders.delete("/api/departments/Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.delete("/api/departments/Informatica & TPS")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound())

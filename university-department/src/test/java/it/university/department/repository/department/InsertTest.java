@@ -51,7 +51,7 @@ public class InsertTest implements Setup{
 				.build();
 		
 		this.department = this.departmentBuilder
-				.setName("Informatica")
+				.setName("Informatica & TPS")
 				.setAddress(address)
 				.setFaculty(faculty)
 				.build();
@@ -62,7 +62,7 @@ public class InsertTest implements Setup{
 		
 		this.departmentService.save(this.department);
 		
-		assertThat(this.departmentService.findById("Informatica"))
+		assertThat(this.departmentService.findById("Informatica & TPS"))
 			.extracting(DepartmentDTO::getName)
 			.isEqualTo(this.department.getName());
 	}

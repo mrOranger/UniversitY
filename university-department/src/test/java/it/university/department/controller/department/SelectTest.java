@@ -62,7 +62,7 @@ public final class SelectTest implements Setup {
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$", hasSize(8)))
+				.andExpect(jsonPath("$", hasSize(9)))
 				.andDo(print());			
 	}
 	

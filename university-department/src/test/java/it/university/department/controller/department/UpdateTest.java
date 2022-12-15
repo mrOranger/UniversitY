@@ -57,9 +57,9 @@ public class UpdateTest implements Setup {
 	@Test @Order(1) @SneakyThrows
 	public final void testUpdateDepartment() {
 		
-		this.department.put("name", "Informatica");
+		this.department.put("name", "Informatica & TPS");
 		
-		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/Informatica")
+		this.mockMcv.perform(MockMvcRequestBuilders.put("/api/departments/Informatica & TPS")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(this.department.toString())
 				.accept(MediaType.APPLICATION_JSON))

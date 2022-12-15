@@ -48,7 +48,7 @@ public final class SelectTest implements Setup{
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$", hasSize(5)))
+				.andExpect(jsonPath("$", hasSize(6)))
 				.andDo(print());	
 	}
 	
@@ -78,7 +78,7 @@ public final class SelectTest implements Setup{
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$", hasSize(2)))
+				.andExpect(jsonPath("$", hasSize(3)))
 				.andDo(print());	
 	}
 	
@@ -88,7 +88,7 @@ public final class SelectTest implements Setup{
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$", hasSize(5)))
+				.andExpect(jsonPath("$", hasSize(6)))
 				.andDo(print());	
 	}
 	
@@ -98,7 +98,7 @@ public final class SelectTest implements Setup{
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$", hasSize(2)))
+				.andExpect(jsonPath("$", hasSize(3)))
 				.andDo(print());	
 	}
 	

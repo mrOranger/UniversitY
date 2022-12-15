@@ -59,5 +59,4 @@ public final class ProfessorController {
 		
 		return new ResponseEntity<List<ProfessorDTO>>(professors, HttpStatus.OK);
 	}
-
 }

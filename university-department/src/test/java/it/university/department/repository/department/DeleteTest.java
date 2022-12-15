@@ -20,8 +20,8 @@ public class DeleteTest{
 	
 	@Test @Order(1)
 	public void deleteDepartment() {
-		this.departmentService.delete("Informatica");
-		assertNull(this.departmentService.findById("Informatica"));
+		this.departmentService.delete("Informatica & TPS");
+		assertNull(this.departmentService.findById("Informatica & TPS"));
 	}
 	
 	@Test @Order(2)

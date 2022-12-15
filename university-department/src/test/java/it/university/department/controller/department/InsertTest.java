@@ -51,7 +51,7 @@ public final class InsertTest implements Setup{
 										.put("code", HttpStatus.BAD_REQUEST.value());
 		
 		this.department = new JSONObject()
-				.put("name", "Informatica")
+				.put("name", "Informatica & TPS")
 				.put("address", new JSONObject()
 						.put("id", 6)
 						.put("street", "Dam Square")

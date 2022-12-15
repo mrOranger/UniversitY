@@ -24,7 +24,7 @@ public class SelectTest {
 	@Test @Order(1)
 	public void testfindDepartments() {
 		final List<DepartmentDTO> departments = this.departmentService.findAll();
-		assertEquals(departments.size(), 8);
+		assertEquals(departments.size(), 9);
 	}
 	
 	@Test @Order(2)
@@ -45,37 +45,37 @@ public class SelectTest {
 	@Test @Order(4)
 	public void testFindDepartmentsByAddress() {
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddress(1);
-		assertEquals(departments.size(), 1);
+		assertEquals(departments.size(), 0);
 	}
 	
 	@Test @Order(5)
 	public void testFindDepartmentsByAddressStreet() {
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressStreet("Via Nazionale");
-		assertEquals(departments.size(), 5);
+		assertEquals(departments.size(), 6);
 	}
 	
 	@Test @Order(6)
 	public void testFindDepartmentsByAddressCity() {
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressCity("Milano");
-		assertEquals(departments.size(), 1);
+		assertEquals(departments.size(), 0);
 	}
 	
 	@Test @Order(7)
 	public void testFindDepartmentsByAddressProvince() {
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressProvince("Milano");
-		assertEquals(departments.size(), 1);
+		assertEquals(departments.size(), 0);
 	}
 	
 	@Test @Order(8)
 	public void testFindDepartmentsByAddressRegion() {
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressRegion("Lombardia");
-		assertEquals(departments.size(), 1);
+		assertEquals(departments.size(), 0);
 	}
 	
 	@Test @Order(9)
 	public void testFindDepartmentsByAddressNation() {
 		final List<DepartmentDTO> departments = this.departmentService.findAllByAddressNation("Italia");
-		assertEquals(departments.size(), 5);
+		assertEquals(departments.size(), 6);
 	}
 	
 	@Test @Order(10)
