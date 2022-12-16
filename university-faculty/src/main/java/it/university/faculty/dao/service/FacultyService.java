@@ -2,7 +2,9 @@ package it.university.faculty.dao.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import it.university.faculty.dao.FacultyDAO;
@@ -13,6 +15,7 @@ import it.university.faculty.repository.FacultyRepository;
 public class FacultyService implements FacultyDAO {
 	
 	@Autowired private FacultyRepository facultyRepository;
+	@Autowired private ModelMapper modelMapper;
 
 	@Override
 	public List<Faculty> findAll() {
@@ -45,10 +48,15 @@ public class FacultyService implements FacultyDAO {
 	}
 	
 	private Faculty convertToDto(Optional<FacultyEntity> faculty) {
+		if(faculty.isPresent()) {
+			return this.modelMapper.map(faculty.get(), Faculty.class);
+		}
 		return null;
 	}
 	
 	private List<Faculty> convertToDto(List<FacultyEntity> faculties){
-		return null;
+		return faculties.stream().map((currFaculty) ->
+					this.modelMapper.map(currFaculty, Faculty.class))
+				.collect(Collectors.toList());
 	}
 }
