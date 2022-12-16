@@ -6,12 +6,15 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.university.faculty.dao.FacultyDAO;
 import it.university.faculty.dto.Faculty;
 import it.university.faculty.entity.FacultyEntity;
 import it.university.faculty.repository.FacultyRepository;
 
+@Service @Transactional(readOnly = true)
 public class FacultyService implements FacultyDAO {
 	
 	@Autowired private FacultyRepository facultyRepository;

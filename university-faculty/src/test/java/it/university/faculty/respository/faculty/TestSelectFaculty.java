@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import it.university.faculty.dao.service.FacultyService;
 import it.university.faculty.dto.Faculty;
 
+
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(1)
 public final class TestSelectFaculty {
 	
@@ -39,7 +40,7 @@ public final class TestSelectFaculty {
 	@Test @Order(4)
 	public final void testSelectFacultyByAddressCity() {
 		assertThat(this.facultyService.findAllByCity("Milano").size())
-			.isEqualTo(3);
+			.isEqualTo(1);
 	}
 	
 	@Test @Order(5)
@@ -51,7 +52,7 @@ public final class TestSelectFaculty {
 	@Test @Order(6)
 	public final void testSelectFacultyByAddressProvince() {
 		assertThat(this.facultyService.findAllByProvince("Milano").size())
-			.isEqualTo(2);
+			.isEqualTo(1);
 	}
 	
 	@Test @Order(7)
@@ -63,7 +64,7 @@ public final class TestSelectFaculty {
 	@Test @Order(8)
 	public final void testSelectFacultyByAddressRegion() {
 		assertThat(this.facultyService.findAllByRegion("Lombardia").size())
-			.isEqualTo(3);		
+			.isEqualTo(1);		
 	}
 	
 	@Test @Order(9)
