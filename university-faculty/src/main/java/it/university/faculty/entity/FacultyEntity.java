@@ -25,7 +25,7 @@ public final class FacultyEntity implements Serializable {
 	private static final long serialVersionUID = 2429376661192847168L;
 
 	@Id @Column(name = "name")
-	@NotNull(message = "{NotNull.Faculty.Name.Validation}")
+	@NotNull(message = "{Faculty.Name.NotNull}")
 	private String name;
 	
 	@JsonBackReference

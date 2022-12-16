@@ -27,38 +27,37 @@ public final class AddressEntity implements Serializable {
 
 	@Id 
 	@Column(name = "id")
-	@NotNull(message = "{NotNull.Address.Id.Validation}")
+	@NotNull(message = "{Address.Id.NotNull}")
 	private int id;
 	
 	@Column(name = "street")
-	@Size(max = 50, message = "Size.Address.Street.Validation")
-	@NotNull(message = "{NotNull.Address.Street.Validation}")
+	@Size(max = 50, message = "Address.Street.Size")
+	@NotNull(message = "{Address.Street.NotNull}")
 	private String street;
 
 	@Column(name = "number")
-	@NotNull(message = "{NotNull.Address.Number.Validation}")
+	@NotNull(message = "{Address.Number.NotNull}")
 	private int number;
 	
 	@Column(name = "city")
-	@NotNull(message = "{NotNull.Address.City.Validation}")
-	@Size(max = 50, message = "{Size.Address.City.Validation}")
+	@NotNull(message = "{Address.City.NotNull}")
+	@Size(max = 50, message = "{Address.City.Size}")
 	private String city;
 	
 	@Column(name = "province")
-	@Size(max = 50, message = "{Size.Address.Province.Validation}")
+	@Size(max = 50, message = "{Address.Province.Size}")
 	private String province;
 	
 	@Column(name = "region")
-	@Size(max = 50, message = "{Size.Address.Region.Validation}")
+	@Size(max = 50, message = "{Address.Region.Size}")
 	private String region;
 	
 	@Column(name = "nation")
-	@Size(max = 50, message = "{Size.Address.Nation.Validation}")
-	@NotNull(message = "{NotNull.Address.Nation.Validation}")
+	@Size(max = 50, message = "{Address.Nation.Size}")
+	@NotNull(message = "{Address.Nation.NotNull}")
 	private String nation;
 	
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address", orphanRemoval = true)
 	private Set<FacultyEntity> departments = new HashSet<>();
-	
 }
