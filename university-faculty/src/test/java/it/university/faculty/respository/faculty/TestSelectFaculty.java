@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import it.university.faculty.dao.service.FacultyService;
-import it.university.faculty.dto.Faculty;
-
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(1)
 public final class TestSelectFaculty {
@@ -27,9 +25,7 @@ public final class TestSelectFaculty {
 	
 	@Test @Order(2)
 	public final void testSelectFaculty() {
-		assertThat(this.facultyService.findById("Ingegneria"))
-			.extracting(Faculty::getName)
-			.isEqualTo("Ingegneria");
+		assertThat(this.facultyService.findById("Ingegneria").isPresent());
 	}
 	
 	@Test @Order(3)
