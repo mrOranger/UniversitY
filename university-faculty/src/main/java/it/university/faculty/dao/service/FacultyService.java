@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import it.university.faculty.dao.FacultyDAO;
 import it.university.faculty.dao.service.converter.FacultyConverter;
 import it.university.faculty.dto.Faculty;
+import it.university.faculty.entity.FacultyEntity;
 import it.university.faculty.repository.FacultyRepository;
 
 @Service @Transactional(readOnly = true)
@@ -46,5 +47,15 @@ public class FacultyService implements FacultyDAO {
 	@Override
 	public List<Faculty> findAllByNation(String nation) {
 		return converter.convertToDto(facultyRepository.findByAddressNation(nation));
+	}
+
+	@Override @Transactional
+	public Optional<Faculty> save(FacultyEntity faculty) throws IllegalArgumentException {
+		return converter.convertToDto(Optional.of(facultyRepository.save(faculty)));
+	}
+
+	@Override @Transactional
+	public void delete(String faculty) throws IllegalArgumentException {
+		facultyRepository.deleteById(faculty);
 	}
 }
