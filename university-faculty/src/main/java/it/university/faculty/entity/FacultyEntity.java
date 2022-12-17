@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "faculty") 
@@ -31,5 +32,6 @@ public final class FacultyEntity implements Serializable {
 	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "address", referencedColumnName = "id")
+	@EqualsAndHashCode.Exclude
 	private AddressEntity address;
 }
