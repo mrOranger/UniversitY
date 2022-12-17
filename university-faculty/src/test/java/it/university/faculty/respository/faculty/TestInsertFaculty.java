@@ -15,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import it.university.faculty.dao.service.FacultyService;
 import it.university.faculty.entity.AddressEntity;
 import it.university.faculty.entity.FacultyEntity;
+import it.university.faculty.exception.BindingException;
+import it.university.faculty.exception.DuplicateException;
 
 @SpringBootTest @TestMethodOrder(OrderAnnotation.class) @Order(1)
 public final class TestInsertFaculty {
@@ -60,78 +62,78 @@ public final class TestInsertFaculty {
 	}
 	
 	@Test @Order(4)
-	public final void testInsertFacultyThrowsBadRequestExceptionForFacultyName() {
+	public final void testInsertFacultyThrowsBindingExceptionForFacultyName() {
 		faculty.setName(null);
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 	}
 	
 	@Test @Order(5)
-	public final void testInsertFacultyThrowsBadRequestExceptionForAddressId() {
+	public final void testInsertFacultyThrowsBindingExceptionForAddressId() {
 		address.setId(null);
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setId(99);
 	}
 	
 	@Test @Order(6)
-	public final void testInsertFacultyThrowsBadRequestExceptionForAddressStreet() {
+	public final void testInsertFacultyThrowsBindingExceptionForAddressStreet() {
 		address.setStreet(null);
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setStreet("Prova");
 	}
 	
 	@Test @Order(7)
-	public final void testInsertFacultyThrowsBadRequestExceptionForAddressNumber() {
+	public final void testInsertFacultyThrowsBindingExceptionForAddressNumber() {
 		address.setNumber(null);
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setNumber(99);
 	}
 	
 	@Test @Order(8)
-	public final void testInsertFacultyThrowsBadRequestExceptionForAddressCity() {
+	public final void testInsertFacultyThrowsBindingExceptionForAddressCity() {
 		address.setCity(null);
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setCity(null);
 	}
 	
 	@Test @Order(9)
-	public final void testInsertFacultyThrowsBadRequestExceptionForAddressNation() {
+	public final void testInsertFacultyThrowsBindingExceptionForAddressNation() {
 		address.setNation(null);
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setNation("Prova");
 	}
 	
 	@Test @Order(10)
-	public final void testInsertFacultyThrowsBadRequestExceptionForStreetSize() {
+	public final void testInsertFacultyThrowsBindingExceptionForStreetSize() {
 		address.setStreet("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setStreet("Prova");
 	}
 	
 	@Test @Order(11)
-	public final void testInsertFacultyThrowsBadRequestExceptionForCitySize() {
+	public final void testInsertFacultyThrowsBindingExceptionForCitySize() {
 		address.setCity("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setCity("Prova");		
 	}
 	
 	@Test @Order(12)
-	public final void testInsertFacultyThrowsBadRequestExceptionForProvinceSize() {
+	public final void testInsertFacultyThrowsBindingExceptionForProvinceSize() {
 		address.setProvince("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setProvince("Prova");		
 	}
 	
 	@Test @Order(13)
-	public final void testInsertFacultyThrowsBadRequestExceptionForRegionSize() {
+	public final void testInsertFacultyThrowsBindingExceptionForRegionSize() {
 		address.setRegion("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setRegion("Prova");		
 	}
 	
 	@Test @Order(14)
-	public final void testInsertFacultyThrowsBadRequestExceptionForNationSize() {
+	public final void testInsertFacultyThrowsBindingExceptionForNationSize() {
 		address.setNation("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-		assertThrows(BadRequestException.class, () -> facultyService.save(faculty));
+		assertThrows(BindingException.class, () -> facultyService.save(faculty));
 		address.setNation("Prova");		
 	}
 	
