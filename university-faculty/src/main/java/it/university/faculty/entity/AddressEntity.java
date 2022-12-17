@@ -28,7 +28,7 @@ public final class AddressEntity implements Serializable {
 	@Id 
 	@Column(name = "id")
 	@NotNull(message = "{Address.Id.NotNull}")
-	private int id;
+	private Integer id;
 	
 	@Column(name = "street")
 	@Size(max = 50, message = "Address.Street.Size")
@@ -37,7 +37,7 @@ public final class AddressEntity implements Serializable {
 
 	@Column(name = "number")
 	@NotNull(message = "{Address.Number.NotNull}")
-	private int number;
+	private Integer number;
 	
 	@Column(name = "city")
 	@NotNull(message = "{Address.City.NotNull}")
