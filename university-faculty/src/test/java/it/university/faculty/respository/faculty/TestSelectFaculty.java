@@ -1,7 +1,6 @@
 package it.university.faculty.respository.faculty;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -30,7 +29,7 @@ public final class TestSelectFaculty {
 	
 	@Test @Order(3)
 	public final void testSelectFacultyNotFound() {
-		assertNull(this.facultyService.findById("Medicina"));
+		assertThat(this.facultyService.findById("Medicina").isEmpty());
 	}
 	
 	@Test @Order(4)

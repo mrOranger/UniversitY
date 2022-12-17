@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 import it.university.faculty.dao.service.converter.FacultyConverter;
 
 @Configuration
-public final class ConverterConfiguration {
+public class ConverterConfiguration {
 
 	@Bean @Scope("singleton") @Description("Bean per il converter di DTO di tipo Faculty")
 	public FacultyConverter facultyConverter() {
