@@ -12,6 +12,7 @@ import it.university.faculty.dao.service.converter.FacultyConverter;
 import it.university.faculty.dto.Faculty;
 import it.university.faculty.entity.FacultyEntity;
 import it.university.faculty.repository.FacultyRepository;
+import lombok.SneakyThrows;
 
 @Service @Transactional(readOnly = true)
 public class FacultyService implements FacultyDAO {
@@ -50,12 +51,12 @@ public class FacultyService implements FacultyDAO {
 	}
 
 	@Override @Transactional
-	public Optional<Faculty> save(FacultyEntity faculty) throws IllegalArgumentException {
+	public Optional<Faculty> save(FacultyEntity faculty) {
 		return converter.convertToDto(Optional.of(facultyRepository.save(faculty)));
 	}
 
-	@Override @Transactional
-	public void delete(String faculty) throws IllegalArgumentException {
+	@Override @Transactional @SneakyThrows
+	public void delete(String faculty) {
 		facultyRepository.deleteById(faculty);
 	}
 }

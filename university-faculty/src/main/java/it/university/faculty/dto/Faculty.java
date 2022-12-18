@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public final class Faculty {
-
+	
 	private String name;
 	private Address address;
 	

@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public final class Address {
-	private int id;
+	
+	private Integer id;
 	private String street;
-	private int number;
+	private Integer number;
 	private String city;
 	private String province;
 	private String region;

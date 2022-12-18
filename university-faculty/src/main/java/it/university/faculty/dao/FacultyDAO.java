@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import it.university.faculty.dto.Faculty;
 import it.university.faculty.entity.FacultyEntity;
-
 public interface FacultyDAO {
 	
 	public abstract List<Faculty> findAll();

@@ -11,7 +11,7 @@ public class DuplicateException extends Exception {
 	private String message;
 	
 	public DuplicateException() {
-		this.message = "Dipartimento già presente in memoria!";
+		this.message = "Facoltà già presente in memoria!";
 	}
 
 	public DuplicateException(String message) {
